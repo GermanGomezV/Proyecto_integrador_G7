@@ -4,6 +4,9 @@ const fs = require('fs');
 //Requiriendo la funcionalidad de read y write json
 const {readJson, writeJson, newId} = require('./helpers');
 
+//Requiriendo bcryptjs
+const bcrypt = require('bcryptjs')
+
 //Definiendo la logica del controlador: Renderizando vistas EJS
 //El controlador está compuesto por un objeto literal que a su vez compuesto por métodos (funciones o callbacks)
 const usersController = {
@@ -19,7 +22,7 @@ const usersController = {
             id : newId('users.json'),
             nombre: req.body.nombre,
             email: req.body.email,
-            password: req.body.password,
+            password: bcrypt.hashSync(req.body.password, 10),
             imagen: "",
             direccion: "",
             telefono: "",
@@ -37,7 +40,7 @@ const usersController = {
                 imagen: req.file.filename,
                 nombre: req.body.nombre,
                 email: req.body.email,
-                password: req.body.password,
+                password: bcrypt.hashSync(req.body.password, 10),
                 direccion : req.body.direccion,
                 telefono : req.body.telefono,
                 nacimiento : req.body.nacimiento

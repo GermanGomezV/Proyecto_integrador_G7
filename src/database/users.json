@@ -111,5 +111,25 @@
         "direccion": "",
         "telefono": "",
         "nacimiento": ""
+    },
+    {
+        "id": 12,
+        "nombre": "Julian",
+        "email": "tumail@mail.com",
+        "password": "$2a$10$9Cx.Duv39eIceASkB4pOgO/JZc3FCBAGmBTUh7YGPDv37D.Ks3XRe",
+        "imagen": "",
+        "direccion": "",
+        "telefono": "",
+        "nacimiento": ""
+    },
+    {
+        "id": 13,
+        "nombre": "Julian",
+        "email": "fradsadsadnco@gmail.com",
+        "password": "$2a$10$32599MYUCwFGKqgHYe3YR.rBWwWREHcJSFlZU9nh9pRD47TUc0gaW",
+        "imagen": "",
+        "direccion": "",
+        "telefono": "",
+        "nacimiento": ""
     }
 ]
