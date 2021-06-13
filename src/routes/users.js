@@ -10,9 +10,12 @@ const usersController = require('../controllers/usersController')
 //Requiriendo Multer para enviar archivos desde un formulario
 const uploadUsuario = require('../middlewares/multerUsers')
 
+//Requiriendo las validaciones
+const validacionesRegister = require('../middlewares/validacionRegister')
+
 //Rutas (sin el prefijo definido en app.js)
 router.get('/register', usersController.register);
-router.post('/register', usersController.create);
+router.post('/register', validacionesRegister, usersController.create);
 
 router.get('/login', usersController.login);
 

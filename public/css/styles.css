@@ -170,6 +170,14 @@ footer{
     margin: 30px auto;
 }
 
+/*------- Estilos de notificaciones de error -------*/
+
+.notificacion_error{
+    padding: 0px 10px 10px 0px;
+    color: red;
+}
+
+
 /* ---------------------------------- */
 
 /*************************************************************

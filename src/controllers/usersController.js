@@ -7,6 +7,9 @@ const {readJson, writeJson, newId} = require('./helpers');
 //Requiriendo bcryptjs
 const bcrypt = require('bcryptjs')
 
+//Requiriendo el metodo validation Result
+const { validationResult } = require('express-validator')
+
 //Definiendo la logica del controlador: Renderizando vistas EJS
 //El controlador está compuesto por un objeto literal que a su vez compuesto por métodos (funciones o callbacks)
 const usersController = {
@@ -17,6 +20,15 @@ const usersController = {
         res.render('users/login');
     },
     create : (req, res) => {
+        const resultValidation = validationResult(req)
+
+        if (resultValidation.errors.length > 0){
+            return res.render('users/register', {
+                errors: resultValidation.mapped(),
+                oldData: req.body,
+            });
+        };
+
         let archivosUsusarios = readJson('users.json');
         let usuario = {
             id : newId('users.json'),
@@ -70,6 +82,9 @@ const usersController = {
     },
     userUpdate : (req, res) => {
         return res.redirect('/');
+    },
+    loginProcess : (req, res) => {
+        return res.send(req.body)
     }
 };
 

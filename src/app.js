@@ -24,6 +24,7 @@ app.set('views', __dirname + '/views');
 //Accediendo a los archivos de la carpeta public
 app.use(express.static(path.resolve(__dirname, '../public')));
 app.use(methodOverride('_method'));
+
 //La siguiente linea nos permite procesar los formularios
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());

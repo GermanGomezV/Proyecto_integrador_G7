@@ -5,6 +5,9 @@ const path = require('path');
 //fs convierte un objeto literal (el cual puede ser obtenido de un formulario) en un archivo JSON
 const fs = require('fs');
 
+//Requiriendo el metodo validation Result
+const { validationResult } = require('express-validator')
+
 //Requerir la funcionalidad para leer y leer/actualizar el archivo .json 
 const {readJson, writeJson, newId} = require('./helpers');
 
@@ -41,6 +44,16 @@ const productsController = {
         res.render('products/productCharge');
     },
     store: (req, res) => {
+
+        const resultValidation = validationResult(req)
+
+        if (resultValidation.errors.length > 0){
+            return res.render('products/productCharge', {
+                errors: resultValidation.mapped(),
+                oldData: req.body,
+            });
+        };
+
         if(req.file) {
             let archivoProductos = readJson('products.json');
     
@@ -83,7 +96,6 @@ const productsController = {
     productUpdate : (req, res) => {
         let idProduct = req.params.id;
         let archivoProductos = readJson('products.json');
-
 
         if(req.file) {
             let producto = {
@@ -132,12 +144,10 @@ const productsController = {
                 marca: req.body.marca,
             };
             
-
             archivoProductos.push(producto);
             writeJson('products.json', archivoProductos);
     
             return res.redirect('/');
-          
            
         }
         
