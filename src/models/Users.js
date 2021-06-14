@@ -2,31 +2,40 @@
 const path = require('path');
 
 //Requiriendo la funcionalidad fs
-//fs convierte un objeto literal (el cual puede ser obtenido de un formulario) en un archivo JSON
+//fs permite manipular al archivo JSON para trabajarlo en con JS
 const fs = require('fs');
 
-//Objeto para manipular la base de datos
+//Objeto con métodos para manipular la BD
 const Users = {
     
-    filename: './database/users',
+    //BD de los usuarios registrados
+    filename: './database/users.json',
 
-    //Trae todos los usuarios en formato objeto literal
+    //Lee el archivo JSON y lo convierte en un objeto literal
+    //Luego, lo convierte en un array de objetos literales para trabajarlo con JS
     getData: () => {
         return JSON.parse(fs.readFileSync(this.filename, 'utf-8'));
     },
 
-    //Trae todos los usuarios en formato objeto literal
+    //Trae todos los usuarios en formato de array de objetos literales
     findAll : () => {
         return this.getData();
     },
 
-    //Busca los usuarios por ID
+    //Filtra los usuarios por ID y devuelve el objeto literal con el ID indicado
     findByPk : (id) => {
         let allUsers = this.findAll();
         let userFound = allUsers.find(usuario => usuario.id === id);
     },
 
-    //Trae elultimo usuario y le suma uno para agregarlo al proximo usuario a guardar
+    //Filtra los usuarios por un texto, que puede ser un ID o un e-mail, buscando solamente en la propiedad (field) indicada.
+    findByField : (field, text) => {
+        let allUsers = this.findAll();
+        let userFound = allUsers.find(usuario => usuario[field] === text);
+        return userFound
+    },
+    
+    //Trae el último usuario y le suma uno para agregarlo en la próxima posición del array
     generateId : () => {
         let allUsers = this.findAll();
         let lastUser = allUsers.pop();
@@ -36,14 +45,7 @@ const Users = {
         return 1;
     },
 
-    //Busca por cualquiera campo dentro del archivo users (solo trae un usuario, para que traiga todo que hacerlo iterar)
-    findByField : (field, text) => {
-        let allUsers = this.findAll();
-        let userFound = allUsers.find(usuario => usuario[field] === text);
-        return userFound
-    },
-
-    //Crea el usuario y lo agrega en la base de datos
+    //Crea el usuario y lo agrega en la BD
     create : (userData) => {
         let allUsers = this.findAll();
         let newUser = {

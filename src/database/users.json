@@ -131,5 +131,35 @@
         "direccion": "",
         "telefono": "",
         "nacimiento": ""
+    },
+    {
+        "id": 14,
+        "nombre": "walter german",
+        "email": "ger_7124@hotmail.com",
+        "password": "$2a$10$sl/U9yQiMV.x.HIrRaKeeOrWrX.LlHlDvKG5yTogRMoDnFmRxXRsK",
+        "imagen": "",
+        "direccion": "",
+        "telefono": "",
+        "nacimiento": ""
+    },
+    {
+        "id": 15,
+        "nombre": "walter ",
+        "email": "",
+        "password": "$2a$10$SRDkFbGrOKJb2IeOF7xmZuwEk8NjjKSgcOqtwCXAyI73O9x7sUlQW",
+        "imagen": "",
+        "direccion": "",
+        "telefono": "",
+        "nacimiento": ""
+    },
+    {
+        "id": 16,
+        "nombre": "Leo",
+        "email": "leo@algo.com",
+        "password": "$2a$10$qabco.YYFAhahaxj8KcFAuYkPxSg.ypZv5R4GzO3hbTGHZ5R1g1tu",
+        "imagen": "",
+        "direccion": "",
+        "telefono": "",
+        "nacimiento": ""
     }
 ]
