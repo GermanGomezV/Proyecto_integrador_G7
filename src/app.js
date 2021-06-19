@@ -7,6 +7,10 @@ app.use(session({
 
 }));
 
+//Requiriendo el middleware selectivo del heder en función de si estoy o no logueado
+const userLoggedMiddleware = require("./middlewares/userLoggedMiddleware");
+app.use(userLoggedMiddleware);
+
 //Requiriendo e invocando express para obtener sus funcionalidades
 const express = require('express'); 
 const app = express();
