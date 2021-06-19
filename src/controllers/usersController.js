@@ -5,10 +5,10 @@ const fs = require('fs');
 const {readJson, writeJson, newId} = require('./helpers');
 
 //Requiriendo bcryptjs
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs');
 
 //Requiriendo el metodo validation Result
-const { validationResult } = require('express-validator')
+const { validationResult } = require('express-validator');
 
 //Definiendo la logica del controlador: Renderizando vistas EJS
 //El controlador está compuesto por un objeto literal que a su vez compuesto por métodos (funciones o callbacks)
@@ -85,6 +85,10 @@ const usersController = {
     },
     loginProcess : (req, res) => {
         return res.send(req.body)
+    },
+    logout: (req, res) => {
+        req.session.destroy();
+        return res.redirect("/");
     }
 };
 

@@ -1,3 +1,12 @@
+//Requiriendo el metodo para guardar sesiones
+const session = require('express-session');
+app.use(session({
+    secret:"Esto es un secreto",
+    resve: false,
+    saveUninitialized: false,
+
+}));
+
 //Requiriendo e invocando express para obtener sus funcionalidades
 const express = require('express'); 
 const app = express();
