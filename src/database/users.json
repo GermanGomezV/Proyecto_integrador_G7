@@ -118,5 +118,15 @@
   "direccion": "",
   "telefono": "",
   "nacimiento": ""
+ },
+ {
+  "id": 13,
+  "nombre": "walter german",
+  "email": "ger_7124@hotmail.com",
+  "password": "$2a$10$MzpzgNyyf/ZIpvWZf1yPUe0DKlSKSIxSK/PQ4.wfN7nyB1zgamgVW",
+  "imagen": "",
+  "direccion": "",
+  "telefono": "",
+  "nacimiento": ""
  }
 ]

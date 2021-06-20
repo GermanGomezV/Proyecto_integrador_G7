@@ -9,7 +9,7 @@ const fs = require('fs');
 const Products = {
     
     //BD de los usuarios registrados - ESTO NO ME GUSTA
-    fileName: 'C:/Users/turco/Visual Studio Code/Digital House/Proyecto/grupo_7_AllMeet/src/database/products.json',
+    fileName: './src/database/products.json',
 
     //Lee el archivo JSON y lo convierte en un objeto literal
     //Luego, lo convierte en un array de objetos literales para trabajarlo con JS
