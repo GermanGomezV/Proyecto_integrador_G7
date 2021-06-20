@@ -8,9 +8,19 @@
             <div class=ingresoManual>
                 <p class="ingresa-cuenta">Ingresá con tu cuenta</p><br>
                 <label for="email">Usuario</label>
-                <input class="email" type="email" placeholder="Ingresá tu usuario o correo electrónico" name="email">
+                <input class="email" type="email" placeholder="Ingresá tu usuario o correo electrónico" name="email" value="<%= locals.oldData ? oldData.email : null %>">
+                <% if (locals.errors && errors.email) { %>
+                    <div class="notificacion_error">
+                        <%= errors.email.msg %> 
+                    </div>
+                <% } %>
                 <label for="password">Contraseña</label>
                 <input class="password" type="password" placeholder="Ingresá tu contraseña" name="password">
+                <% if (locals.errors && errors.password) { %>
+                    <div class="notificacion_error">
+                        <%= errors.password.msg %> 
+                    </div>
+                <% } %>
             </div>
             <div class="cajaIngreso">
                 <label for="recordarUsuario"><input type="checkbox" name="recordarUsuario"> Recordar usuario</label>

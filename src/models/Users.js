@@ -8,36 +8,36 @@ const fs = require('fs');
 //Objeto con métodos para manipular la BD
 const Users = {
     
-    //BD de los usuarios registrados
-    fileName: './database/users.json',
+    //BD de los usuarios registrados - ESTO NO ME GUSTA
+    fileName: 'C:/Users/turco/Visual Studio Code/Digital House/Proyecto/grupo_7_AllMeet/src/database/users.json',
 
     //Lee el archivo JSON y lo convierte en un objeto literal
     //Luego, lo convierte en un array de objetos literales para trabajarlo con JS
-    getData: () => {
+    getData: function () {
         return JSON.parse(fs.readFileSync(this.fileName, 'utf-8'));
     },
 
     //Trae todos los usuarios en formato de array de objetos literales
-    findAll: () => {
+    findAll: function () {
         return this.getData();
     },
 
     //Filtra los usuarios por ID y devuelve el objeto literal con el ID indicado
-    findByPk: (id) => {
+    findByPk: function (id) {
         let allUsers = this.findAll();
         let userFound = allUsers.find(usuario => usuario.id === id);
         return userFound;
     },
 
     //Filtra los usuarios por un texto, que puede ser un ID o un e-mail, buscando solamente en la propiedad (field) indicada.
-    findByField: (field, text) => {
+    findByField: function (field, text) {
         let allUsers = this.findAll();
         let userFound = allUsers.find(usuario => usuario[field] === text);
         return userFound
     },
     
     //Trae el último usuario y le suma uno para agregarlo en la próxima posición del array
-    generateId: () => {
+    generateId: function () {
         let allUsers = this.findAll();
         let lastUser = allUsers.pop();
         if (lastUser) {
@@ -47,7 +47,7 @@ const Users = {
     },
 
     //Crea el usuario y lo agrega en la BD
-    create: (userData) => {
+    create: function (userData) {
         let allUsers = this.findAll();
         let newUser = {
             id: this.generateId(),
@@ -59,7 +59,7 @@ const Users = {
     },
 
     //Borra al usuario
-    delete: (id) => {
+    delete: function (id) {
         let allUsers = this.findAll();
         let finalUsers = allUsers.filter(usuario => usuario.id !== id);
         fs.writeFileSync(this.fileName, JSON.stringify(finalUsers, null, ' '));
@@ -67,7 +67,7 @@ const Users = {
     },
 
     // Edita un usuario - Ver el codigo
-    update: (id) => {
+    update: function (id) {
         let allUsers = this.findAll();
         let finalUsers = allUsers.filter(usuario => usuario.id === id);
         let newUser = {

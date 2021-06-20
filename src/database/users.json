@@ -1,165 +1,112 @@
 [
-    {
-        "id": 1,
-        "nombre": "Jose Peralta",
-        "email": "mvitler0@diigo.com",
-        "password": "4324532",
-        "imagen": "default.jpg",
-        "direccion": "p.sherman 42",
-        "telefono": "4962753",
-        "nacimiento": "12/02/1990"
-    },
-    {
-        "id": 2,
-        "nombre": "David Gonzalez",
-        "email": "gstonner1@virginia.edu",
-        "password": "dgonzalez4*",
-        "imagen": "default.jpg",
-        "direccion": "p.sherman 42",
-        "telefono": "4962753",
-        "nacimiento": "12/02/1990"
-    },
-    {
-        "id": 3,
-        "nombre": "Micaela Perez",
-        "email": "bread2@zimbio.com",
-        "password": "perez.mica23",
-        "imagen": "default.jpg",
-        "direccion": "p.sherman 42",
-        "telefono": "4962753",
-        "nacimiento": "12/02/1990"
-    },
-    {
-        "id": 4,
-        "nombre": "Josefina Lana",
-        "email": "dkinforth3@nature.com",
-        "password": "jose1990*",
-        "imagen": "default.jpg",
-        "direccion": "p.sherman 42",
-        "telefono": "4962753",
-        "nacimiento": "12/02/1990"
-    },
-    {
-        "id": 5,
-        "nombre": "Julian Alonso",
-        "email": "dtidridge4@youku.com",
-        "password": "ja4967892$",
-        "imagen": "default.jpg",
-        "direccion": "p.sherman 42",
-        "telefono": "4962753",
-        "nacimiento": "12/02/1990"
-    },
-    {
-        "id": 6,
-        "nombre": "Pedro Martin",
-        "email": "dpetel5@xinhuanet.com",
-        "password": "pedroraul55",
-        "imagen": "default.jpg",
-        "direccion": "p.sherman 42",
-        "telefono": "4962753",
-        "nacimiento": "12/02/1990"
-    },
-    {
-        "id": 7,
-        "nombre": "Gaspar Jose",
-        "email": "tsanthouse6@alexa.com",
-        "password": "gasparmjose1193",
-        "imagen": "default.jpg",
-        "direccion": "p.sherman 42",
-        "telefono": "4962753",
-        "nacimiento": "12/02/1990"
-    },
-    {
-        "id": 8,
-        "nombre": "Joaquin Vega",
-        "email": "hredshaw7@wikispaces.com",
-        "password": "joaco45vega1",
-        "imagen": "default.jpg",
-        "direccion": "p.sherman 42",
-        "telefono": "4962753",
-        "nacimiento": "12/02/1990"
-    },
-    {
-        "id": 9,
-        "nombre": "Rodrigo Mansilla",
-        "email": "mohrtmann8@npr.org",
-        "password": "rodri!14",
-        "imagen": "default.jpg",
-        "direccion": "p.sherman 42",
-        "telefono": "4962753",
-        "nacimiento": "12/02/1990"
-    },
-    {
-        "id": 10,
-        "nombre": "Martin Rodriguez",
-        "email": "mkeme9@princeton.edu",
-        "password": "rodriguez9martin4",
-        "imagen": "default.jpg",
-        "direccion": "p.sherman 42",
-        "telefono": "4962753",
-        "nacimiento": "12/02/1990"
-    },
-    {
-        "id": 11,
-        "nombre": "Pepsi",
-        "email": "mimail@gmail.com.ar",
-        "password": [
-            "1321312",
-            "132132"
-        ],
-        "imagen": "",
-        "direccion": "",
-        "telefono": "",
-        "nacimiento": ""
-    },
-    {
-        "id": 12,
-        "nombre": "Julian",
-        "email": "tumail@mail.com",
-        "password": "$2a$10$9Cx.Duv39eIceASkB4pOgO/JZc3FCBAGmBTUh7YGPDv37D.Ks3XRe",
-        "imagen": "",
-        "direccion": "",
-        "telefono": "",
-        "nacimiento": ""
-    },
-    {
-        "id": 13,
-        "nombre": "Julian",
-        "email": "fradsadsadnco@gmail.com",
-        "password": "$2a$10$32599MYUCwFGKqgHYe3YR.rBWwWREHcJSFlZU9nh9pRD47TUc0gaW",
-        "imagen": "",
-        "direccion": "",
-        "telefono": "",
-        "nacimiento": ""
-    },
-    {
-        "id": 14,
-        "nombre": "walter german",
-        "email": "ger_7124@hotmail.com",
-        "password": "$2a$10$sl/U9yQiMV.x.HIrRaKeeOrWrX.LlHlDvKG5yTogRMoDnFmRxXRsK",
-        "imagen": "",
-        "direccion": "",
-        "telefono": "",
-        "nacimiento": ""
-    },
-    {
-        "id": 15,
-        "nombre": "walter ",
-        "email": "",
-        "password": "$2a$10$SRDkFbGrOKJb2IeOF7xmZuwEk8NjjKSgcOqtwCXAyI73O9x7sUlQW",
-        "imagen": "",
-        "direccion": "",
-        "telefono": "",
-        "nacimiento": ""
-    },
-    {
-        "id": 16,
-        "nombre": "Leo",
-        "email": "leo@algo.com",
-        "password": "$2a$10$qabco.YYFAhahaxj8KcFAuYkPxSg.ypZv5R4GzO3hbTGHZ5R1g1tu",
-        "imagen": "",
-        "direccion": "",
-        "telefono": "",
-        "nacimiento": ""
-    }
+ {
+  "id": 1,
+  "nombre": "Jose Peralta",
+  "email": "mvitler0@diigo.com",
+  "password": "4324532",
+  "imagen": "default.jpg",
+  "direccion": "p.sherman 42",
+  "telefono": "4962753",
+  "nacimiento": "12/02/1990"
+ },
+ {
+  "id": 2,
+  "nombre": "David Gonzalez",
+  "email": "gstonner1@virginia.edu",
+  "password": "dgonzalez4*",
+  "imagen": "default.jpg",
+  "direccion": "p.sherman 42",
+  "telefono": "4962753",
+  "nacimiento": "12/02/1990"
+ },
+ {
+  "id": 3,
+  "nombre": "Micaela Perez",
+  "email": "bread2@zimbio.com",
+  "password": "perez.mica23",
+  "imagen": "default.jpg",
+  "direccion": "p.sherman 42",
+  "telefono": "4962753",
+  "nacimiento": "12/02/1990"
+ },
+ {
+  "id": 4,
+  "nombre": "Josefina Lana",
+  "email": "dkinforth3@nature.com",
+  "password": "jose1990*",
+  "imagen": "default.jpg",
+  "direccion": "p.sherman 42",
+  "telefono": "4962753",
+  "nacimiento": "12/02/1990"
+ },
+ {
+  "id": 5,
+  "nombre": "Julian Alonso",
+  "email": "dtidridge4@youku.com",
+  "password": "ja4967892$",
+  "imagen": "default.jpg",
+  "direccion": "p.sherman 42",
+  "telefono": "4962753",
+  "nacimiento": "12/02/1990"
+ },
+ {
+  "id": 6,
+  "nombre": "Pedro Martin",
+  "email": "dpetel5@xinhuanet.com",
+  "password": "pedroraul55",
+  "imagen": "default.jpg",
+  "direccion": "p.sherman 42",
+  "telefono": "4962753",
+  "nacimiento": "12/02/1990"
+ },
+ {
+  "id": 7,
+  "nombre": "Gaspar Jose",
+  "email": "tsanthouse6@alexa.com",
+  "password": "gasparmjose1193",
+  "imagen": "default.jpg",
+  "direccion": "p.sherman 42",
+  "telefono": "4962753",
+  "nacimiento": "12/02/1990"
+ },
+ {
+  "id": 8,
+  "nombre": "Joaquin Vega",
+  "email": "hredshaw7@wikispaces.com",
+  "password": "joaco45vega1",
+  "imagen": "default.jpg",
+  "direccion": "p.sherman 42",
+  "telefono": "4962753",
+  "nacimiento": "12/02/1990"
+ },
+ {
+  "id": 9,
+  "nombre": "Rodrigo Mansilla",
+  "email": "mohrtmann8@npr.org",
+  "password": "rodri!14",
+  "imagen": "default.jpg",
+  "direccion": "p.sherman 42",
+  "telefono": "4962753",
+  "nacimiento": "12/02/1990"
+ },
+ {
+  "id": 10,
+  "nombre": "Martin Rodriguez",
+  "email": "mkeme9@princeton.edu",
+  "password": "rodriguez9martin4",
+  "imagen": "default.jpg",
+  "direccion": "p.sherman 42",
+  "telefono": "4962753",
+  "nacimiento": "12/02/1990"
+ },
+ {
+  "id": 11,
+  "nombre": "Julian",
+  "email": "mimail@gmail.com.ar",
+  "password": "$2a$10$TNeyjE5QgJZ.B1L.0W41ueo5A8CgR4g.bG0Zfdxr3C40P96MhBzaC",
+  "imagen": "",
+  "direccion": "",
+  "telefono": "",
+  "nacimiento": ""
+ }
 ]

@@ -13,31 +13,31 @@ const Products = {
 
     //Lee el archivo JSON y lo convierte en un objeto literal
     //Luego, lo convierte en un array de objetos literales para trabajarlo con JS
-    getData: () => {
+    getData: function () {
         return JSON.parse(fs.readFileSync(this.fileName, 'utf-8'));
     },
 
     //Trae todos los products en formato de array de objetos literales
-    findAll: () => {
+    findAll: function () {
         return this.getData();
     },
 
     //Filtra los products por ID y devuelve el objeto literal con el ID indicado
-    findByPk: (id) => {
+    findByPk: function (id) {
         let allProducts = this.findAll();
         let productFound = allProducts.find(product => product.id === id);
         return productFound;
     },
 
     //Filtra los products por un texto, que puede ser un ID o un e-mail, buscando solamente en la propiedad (field) indicada.
-    findByField: (field, text) => {
+    findByField: function (field, text) {
         let allProducts = this.findAll();
         let productFound = allProducts.find(product => product[field] === text);
         return productFound
     },
     
     //Trae el último product y le suma uno para agregarlo en la próxima posición del array
-    generateId: () => {
+    generateId: function () {
         let allProducts = this.findAll();
         let lastUser = allProducts.pop();
         if (lastUser) {
@@ -47,7 +47,7 @@ const Products = {
     },
 
     //Crea el product y lo agrega en la BD
-    create: (userData) => {
+    create: function (userData) {
         let allProducts = this.findAll();
         let newUser = {
             id: this.generateId(),
@@ -59,7 +59,7 @@ const Products = {
     },
 
     //Borra al product
-    delete: (id) => {
+    delete: function (id) {
         let allProducts = this.findAll();
         let finalUsers = allProducts.filter(product => product.id !== id);
         fs.writeFileSync(this.fileName, JSON.stringify(finalUsers, null, ' '));
@@ -67,7 +67,7 @@ const Products = {
     },
 
     // Edita un product - Ver el codigo
-    update: (id) => {
+    update: function (id) {
         let allProducts = this.findAll();
         let finalUsers = allProducts.filter(product => product.id === id);
         let newUser = {

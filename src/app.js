@@ -1,15 +1,14 @@
+//Ejecutando la funcionalidad de path que resuelve rutas
+const path = require('path');
+
 //Requiriendo el metodo para guardar sesiones
 const session = require('express-session');
-app.use(session({
-    secret:"Esto es un secreto",
-    resve: false,
-    saveUninitialized: false,
 
-}));
+//Requiriendo el cookie parser
+const cookies = require('cookie-parser');
 
 //Requiriendo el middleware selectivo del heder en función de si estoy o no logueado
 const userLoggedMiddleware = require("./middlewares/userLoggedMiddleware");
-app.use(userLoggedMiddleware);
 
 //Requiriendo e invocando express para obtener sus funcionalidades
 const express = require('express'); 
@@ -25,14 +24,24 @@ const rutasUsuario= require('./routes/users')
 
 const process = require('process');
 
-//Ejecutando la funcionalidad de path que resuelve rutas
-const path = require('path');
-
 //Comando para decirle a express que vamos a usar archivos con extensión ejs
 //La ruta la defino desde el archivo app.js porque estoy parado en él
 app.set('view engine', 'ejs');
 //Comando para cuando la carpeta views no esta en la raiz app.set('views', __dirname + '/views');
 app.set('views', __dirname + '/views');
+
+//Configurando session como middleware global
+app.use(session({
+    secret:"Esto es un secreto",
+    resave: false,
+    saveUninitialized: false,
+}));
+
+//Configurando cookie parser
+app.use(cookies());
+
+// Configurando el middleware para que sea global
+app.use(userLoggedMiddleware);
 
 //Accediendo a los archivos de la carpeta public
 app.use(express.static(path.resolve(__dirname, '../public')));

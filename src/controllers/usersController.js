@@ -10,6 +10,9 @@ const bcrypt = require('bcryptjs');
 //Requiriendo el metodo validation Result
 const { validationResult } = require('express-validator');
 
+//Requiriendo el modelo User
+const User = require('../models/Users')
+
 //Definiendo la logica del controlador: Renderizando vistas EJS
 //El controlador está compuesto por un objeto literal que a su vez compuesto por métodos (funciones o callbacks)
 const usersController = {
@@ -19,8 +22,10 @@ const usersController = {
     login : (req, res) => {
         res.render('users/login');
     },
-    create : (req, res) => {
-        const resultValidation = validationResult(req)
+
+    //Antes se llamaba create
+    processRegister : (req, res) => {
+        const resultValidation = validationResult(req);
 
         if (resultValidation.errors.length > 0){
             return res.render('users/register', {
@@ -29,7 +34,19 @@ const usersController = {
             });
         };
 
-        let archivosUsusarios = readJson('users.json');
+        let userInDb = User.findByField('email', req.body.email)
+
+        if(userInDb){
+            return res.render('users/register', {
+                errors: {
+                    email : {
+                        msg : 'Este email ya esta registrado'
+                    }
+                },
+                oldData: req.body
+            });
+        };
+
         let usuario = {
             id : newId('users.json'),
             nombre: req.body.nombre,
@@ -40,10 +57,14 @@ const usersController = {
             telefono: "",
             nacimiento: ""
         };
-        archivosUsusarios.push(usuario);
-        writeJson('users.json', archivosUsusarios);
-        return res.redirect('/')
+
+        User.create(usuario);
+
+        return res.redirect('/');
+        
     },
+
+    //Eliminar esto??? No esta en los controladores
     store : (req, res) => {
         if(req.file){
             let archivosUsusarios = readJson('users.json');
@@ -84,9 +105,40 @@ const usersController = {
         return res.redirect('/');
     },
     loginProcess : (req, res) => {
-        return res.send(req.body)
+        let userToLogin = User.findByField('email', req.body.email);
+
+        if(userToLogin){
+            let correctPassword = bcrypt.compareSync(req.body.password, userToLogin.password);
+            if(correctPassword){
+                delete correctPassword.password;
+                req.session.userLogged = userToLogin;
+                
+                if(req.body.recordarUsuario){
+                    res.cookie('userEmail', req.body.email, {maxAge : (1000 * 60) * 60})
+                }
+
+                return res.redirect('/')
+            };
+            return res.render('users/login', {
+                errors: {
+                    password : {
+                        msg : 'Usuario o contraseña incorrectos'
+                    }
+                },
+                oldData: req.body
+            });
+        };
+
+        return res.render('users/login', {
+            errors: {
+                email : {
+                    msg : 'No se encuentra este email en nuestra base de datos'
+                }
+            }
+        })
     },
     logout: (req, res) => {
+        res.clearCookie('userEmail');
         req.session.destroy();
         return res.redirect("/");
     }

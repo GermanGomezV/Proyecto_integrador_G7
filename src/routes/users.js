@@ -17,18 +17,20 @@ const uploadUsuario = require ('../middlewares/multerUsers');
 //Requiriendo las validaciones
 const validacionesRegister = require('../middlewares/validacionRegister');
 
-
 //Rutas (sin el prefijo definido en app.js)
-router.get('/profile', authMiddleware, usersController.profile);
+
 router.get('/logout', usersController.logout);
 
 router.get('/register', guestMiddleware, usersController.register);
-router.post('/register', validacionesRegister, usersController.create);
+router.post('/register', validacionesRegister, usersController.processRegister);
 
 router.get('/login', guestMiddleware, usersController.login);
+router.post('/login', usersController.loginProcess);
 
-router.get('/:id/edit', usersController.userEdit);
+router.get('/:id/edit', authMiddleware, usersController.userEdit);
 router.put('/edit', uploadUsuario.single('imagen'), usersController.userUpdate);
+
+router.get('/logout', usersController.logout);
 
 //Exportando al router para que pueda ser usado por el entry point
 module.exports = router;
