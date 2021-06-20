@@ -108,5 +108,15 @@
   "direccion": "",
   "telefono": "",
   "nacimiento": ""
+ },
+ {
+  "id": 12,
+  "nombre": "Gaspar",
+  "email": "gaspar@gmail.com",
+  "password": "$2a$10$i40ng1oVECQXqrZOY3HFqesRHkXNIHQDRvAq0A/Vo/vlaBRszyGUq",
+  "imagen": "",
+  "direccion": "",
+  "telefono": "",
+  "nacimiento": ""
  }
 ]

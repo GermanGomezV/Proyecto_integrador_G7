@@ -8,8 +8,8 @@ const fs = require('fs');
 //Objeto con métodos para manipular la BD
 const Products = {
     
-    //BD de los products registrados
-    fileName: './database/products.json',
+    //BD de los usuarios registrados - ESTO NO ME GUSTA
+    fileName: 'C:/Users/turco/Visual Studio Code/Digital House/Proyecto/grupo_7_AllMeet/src/database/products.json',
 
     //Lee el archivo JSON y lo convierte en un objeto literal
     //Luego, lo convierte en un array de objetos literales para trabajarlo con JS
@@ -17,26 +17,26 @@ const Products = {
         return JSON.parse(fs.readFileSync(this.fileName, 'utf-8'));
     },
 
-    //Trae todos los products en formato de array de objetos literales
+    //Trae todos los productos en formato de array de objetos literales
     findAll: function () {
         return this.getData();
     },
 
-    //Filtra los products por ID y devuelve el objeto literal con el ID indicado
+    //Filtra los productos por ID y devuelve el objeto literal con el ID indicado
     findByPk: function (id) {
         let allProducts = this.findAll();
         let productFound = allProducts.find(product => product.id === id);
         return productFound;
     },
 
-    //Filtra los products por un texto, que puede ser un ID o un e-mail, buscando solamente en la propiedad (field) indicada.
+    //Filtra los productos por un texto, que puede ser un ID o un e-mail, buscando solamente en la propiedad (field) indicada.
     findByField: function (field, text) {
         let allProducts = this.findAll();
         let productFound = allProducts.find(product => product[field] === text);
         return productFound
     },
     
-    //Trae el último product y le suma uno para agregarlo en la próxima posición del array
+    //Trae el último producto y le suma uno para agregarlo en la próxima posición del array
     generateId: function () {
         let allProducts = this.findAll();
         let lastUser = allProducts.pop();
@@ -46,7 +46,7 @@ const Products = {
         return 1;
     },
 
-    //Crea el product y lo agrega en la BD
+    //Crea el producto y lo agrega en la BD
     create: function (userData) {
         let allProducts = this.findAll();
         let newUser = {
@@ -58,7 +58,7 @@ const Products = {
         return newUser;
     },
 
-    //Borra al product
+    //Borra al producto
     delete: function (id) {
         let allProducts = this.findAll();
         let finalUsers = allProducts.filter(product => product.id !== id);
@@ -66,7 +66,7 @@ const Products = {
         return true;
     },
 
-    // Edita un product - Ver el codigo
+    // Edita un producto - Ver el codigo
     update: function (id) {
         let allProducts = this.findAll();
         let finalUsers = allProducts.filter(product => product.id === id);

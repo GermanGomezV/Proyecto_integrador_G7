@@ -8,7 +8,7 @@ const fs = require('fs');
 //Objeto con métodos para manipular la BD
 const Users = {
     
-    //BD de los usuarios registrados - ESTO NO ME GUSTA
+    //BD de los productos registrados - ESTO NO ME GUSTA
     fileName: 'C:/Users/turco/Visual Studio Code/Digital House/Proyecto/grupo_7_AllMeet/src/database/users.json',
 
     //Lee el archivo JSON y lo convierte en un objeto literal
@@ -17,26 +17,26 @@ const Users = {
         return JSON.parse(fs.readFileSync(this.fileName, 'utf-8'));
     },
 
-    //Trae todos los usuarios en formato de array de objetos literales
+    //Trae todos los productos en formato de array de objetos literales
     findAll: function () {
         return this.getData();
     },
 
-    //Filtra los usuarios por ID y devuelve el objeto literal con el ID indicado
+    //Filtra los productos por ID y devuelve el objeto literal con el ID indicado
     findByPk: function (id) {
         let allUsers = this.findAll();
         let userFound = allUsers.find(usuario => usuario.id === id);
         return userFound;
     },
 
-    //Filtra los usuarios por un texto, que puede ser un ID o un e-mail, buscando solamente en la propiedad (field) indicada.
+    //Filtra los productos por un texto, que puede ser un ID o un e-mail, buscando solamente en la propiedad (field) indicada.
     findByField: function (field, text) {
         let allUsers = this.findAll();
         let userFound = allUsers.find(usuario => usuario[field] === text);
         return userFound
     },
     
-    //Trae el último usuario y le suma uno para agregarlo en la próxima posición del array
+    //Trae el último producto y le suma uno para agregarlo en la próxima posición del array
     generateId: function () {
         let allUsers = this.findAll();
         let lastUser = allUsers.pop();
@@ -46,7 +46,7 @@ const Users = {
         return 1;
     },
 
-    //Crea el usuario y lo agrega en la BD
+    //Crea el producto y lo agrega en la BD
     create: function (userData) {
         let allUsers = this.findAll();
         let newUser = {
@@ -58,7 +58,7 @@ const Users = {
         return newUser;
     },
 
-    //Borra al usuario
+    //Borra el producto
     delete: function (id) {
         let allUsers = this.findAll();
         let finalUsers = allUsers.filter(usuario => usuario.id !== id);
@@ -66,7 +66,7 @@ const Users = {
         return true;
     },
 
-    // Edita un usuario - Ver el codigo
+    // Edita un producto - Ver el codigo
     update: function (id) {
         let allUsers = this.findAll();
         let finalUsers = allUsers.filter(usuario => usuario.id === id);
