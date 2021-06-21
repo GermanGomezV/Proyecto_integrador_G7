@@ -29,16 +29,19 @@
                     <input type="password" name="password" placeholder="Confirmar contraseña">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="direccion" placeholder="Agregar direccion de envio" required value="<%=idUsuarioToEdit[0].direccion%>">
+                    <input type="text" name="direccion" placeholder="Agregar direccion de envio" value="<%=idUsuarioToEdit[0].direccion%>">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="telefono" placeholder="Telefono de contacto" required value="<%=idUsuarioToEdit[0].telefono%>">
+                    <input type="text" name="telefono" placeholder="Telefono de contacto" value="<%=idUsuarioToEdit[0].telefono%>">
                 </div>
                 <div class="form-group">
-                    <input class="edad" type="date" name="nacimiento" placeholder="Fecha de nacimiento" required value="<%=idUsuarioToEdit[0].nacimiento%>">
+                    <input class="edad" type="date" name="nacimiento" placeholder="Fecha de nacimiento" value="<%=idUsuarioToEdit[0].nacimiento%>">
                 </div>
                 <div class="form-group"> 
                     <input type="submit" value="Modificar Perfil">
+                </div>
+                <div class="form-group"> 
+                    <a href="/users/logout"><input type="submit" value="Cerrar Sesion"></a>
                 </div>
             </form>
         </div>

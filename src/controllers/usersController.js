@@ -98,7 +98,7 @@ const usersController = {
             return usuario.id == idUsuario
         });
         res.render('users/edit',
-        { idUsuarioToEdit: idUsuarioToEdit });
+        { idUsuarioToEdit });
 
     },
     userUpdate : (req, res) => {
