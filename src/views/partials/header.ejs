@@ -13,14 +13,14 @@
     <div class="user">  
         <div class="iconos">
             <% if (locals.isLogged) { %>
-                    <a href="/users/<%= locals.userLogged.id %>/edit"><img class="profile" src="/images/usuarios/default.jpg" alt="profile-image"></a>
+                    <a href="/users/<%= locals.userLogged.id %>/edit"><img class="profile" src="/images/usuarios/<%= locals.userLogged.imagen %>" alt="profile-image"></a>
                     <a href="/products/cart"><i class="fas carrito fa-shopping-cart"></i> </a>
                 <% } else { %>
                     <a href="/users/login"><i class="fas persona fa-user"></i></a>
                     <a href="/products/cart"><i class="fas carrito fa-shopping-cart"></i> </a>
             <% } %>
         </div>
-    </div> 
+    </div>
 
     <p class="bienvenida">
         Hola Bienvenido, <br><span class="frase">¿te ayudamos a cortar la semana?</span>

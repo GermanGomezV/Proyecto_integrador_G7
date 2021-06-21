@@ -100,16 +100,6 @@
         "nacimiento": "12/02/1990"
     },
     {
-        "id": 11,
-        "nombre": "Julian",
-        "email": "mimail@gmail.com.ar",
-        "password": "$2a$10$TNeyjE5QgJZ.B1L.0W41ueo5A8CgR4g.bG0Zfdxr3C40P96MhBzaC",
-        "imagen": "",
-        "direccion": "",
-        "telefono": "",
-        "nacimiento": ""
-    },
-    {
         "id": 12,
         "nombre": "Gaspar",
         "email": "gaspar@gmail.com",
@@ -124,18 +114,19 @@
         "nombre": "walter german",
         "email": "ger_7124@hotmail.com",
         "password": "$2a$10$MzpzgNyyf/ZIpvWZf1yPUe0DKlSKSIxSK/PQ4.wfN7nyB1zgamgVW",
-        "imagen": "hielo5k.png",
+        "imagen": "user-1624312297116.png",
         "direccion": "",
         "telefono": "",
         "nacimiento": ""
     },
     {
-        "id": 14,
-        "imagen": "user-1624312297116.PNG",
+        "id": 11,
+        "imagen": "user-1624318004191.PNG",
         "nombre": "Julian",
         "email": "mimail@gmail.com.ar",
-        "password": "$2a$10$eQQOWd8y2yIgStJORrJcP.5/bVu1OVx9AC1OSlaTWxFaX.CJEBpAG",
+        "password": "$2a$10$TEpquZEgkjgkndT8BmAFGuH7c6iVLpf4TH3KUheAbQ/k31thYORDS",
         "direccion": "Los soretes 3434",
-        "telefono": "3354545234"
+        "telefono": "32444444444444",
+        "nacimiento": "1983-02-09"
     }
 ]

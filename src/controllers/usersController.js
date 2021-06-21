@@ -108,7 +108,7 @@ const usersController = {
 
         if(req.file) {
             let usuario = {
-                id : newId('users.json'),
+                id : parseInt(req.body.id),
                 imagen: req.file.filename,
                 nombre: req.body.nombre,
                 email: req.body.email,
@@ -116,7 +116,7 @@ const usersController = {
                 direccion : req.body.direccion,
                 telefono : req.body.telefono,
                 nacimiento : req.body.nacimiento
-            };
+            }
             
             for(i in archivoUsuarios ){
                 if(archivoUsuarios[i].id == idUser){
@@ -139,7 +139,7 @@ const usersController = {
             }
 
             let usuario = {
-                id : newId('users.json'),
+                id : parseInt(req.body.id),
                 imagen: imagen,
                 nombre: req.body.nombre,
                 email: req.body.email,
@@ -147,16 +147,17 @@ const usersController = {
                 direccion : req.body.direccion,
                 telefono : req.body.telefono,
                 nacimiento : req.body.nacimiento
-            };
+            }
             
             archivoUsuarios.push(usuario);
             writeJson('users.json', archivoUsuarios);
     
             return res.redirect('/');
-            
+           
         }
         
     },
+
     loginProcess : (req, res) => {
         let userToLogin = User.findByField('email', req.body.email);
 

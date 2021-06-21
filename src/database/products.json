@@ -27,15 +27,6 @@
         "imagen": "aperol.jpg"
     },
     {
-        "id": 5,
-        "nombre": "Speed Unlimited",
-        "descripcion": "Speed Unlimited Energy Drink es una bebida sin alcohol, que contiene Cafeína, Taurina y Vitaminas. Speed Unlimited Energy Drink ayuda a estimular el metabolismo de la energía, facilita la eliminación de toxinas, contribuye a mejorar el estado de animo, la concentración y la recuperación.",
-        "precio": "70",
-        "descuento": 15,
-        "categoria": "Bebida",
-        "imagen": "speed.PNG"
-    },
-    {
         "id": 6,
         "nombre": "Red Bull",
         "descripcion": "Red Bull Energy Drink es reconocida mundialmente por los mejores atletas, estudiantes y profesiones de alta demanda, incluso durante largas jornadas de manejo.",
@@ -81,15 +72,6 @@
         "imagen": "magna.png"
     },
     {
-        "id": 11,
-        "nombre": "Pepsi 2L",
-        "descripcion": "Pepsi, también conocida como Pepsi-Cola, es una gaseosa de cola originaria en los Estados Unidos y producida por la compañía PepsiCo. Su mayor competidora es la también estadounidense Coca-Cola.",
-        "precio": "170",
-        "descuento": 35,
-        "categoria": "Bebida",
-        "imagen": "pepsi.png"
-    },
-    {
         "id": 12,
         "nombre": "Hielo 5 Kg",
         "descripcion": "Las bolsas de hielo se usan en refrigeradores para mantener alimentos perecederos (especialmente carnes, productos lácteos, huevos, etc.) por debajo de la zona de peligro de 5 a 75° C cuando están fuera de un refrigerador o congelador, y para mantener las bebidas frías.",
@@ -133,5 +115,20 @@
         "descuento": 15,
         "categoria": "Comida",
         "imagen": "product-1622700982381.jpg"
+    },
+    {
+        "id": 5,
+        "nombre": "Speed Unlimited",
+        "descripcion": "Speed Unlimited Energy Drink es una bebida sin alcohol, que contiene Cafeína, Taurina y Vitaminas. Speed Unlimited Energy Drink ayuda a estimular el metabolismo de la energía, facilita la eliminación de toxinas, contribuye a mejorar el estado de animo, la concentración y la recuperación. ",
+        "precio": "70",
+        "descuento": 15,
+        "categoria": "Bebida",
+        "imagen": "speed.PNG"
+    },
+    {
+        "id": 11,
+        "nombre": "Julian",
+        "descuento": null,
+        "imagen": "pepsi.png"
     }
 ]

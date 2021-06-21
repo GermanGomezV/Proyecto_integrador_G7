@@ -7,11 +7,12 @@
     <div id="contenedor">
         <div id="registro"><h1>Editar Perfil</h1></div>
         <div id="form">
-            <form action="/users/edit?_method=PUT" method="POST" enctype="multipart/form-data">
+            <form action="/users/<%=idUsuarioToEdit[0].id%>/edit?_method=PUT" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
-                    <img src="/images/usuarios/hielo5k.png" alt="defaul-profile-image">
+                    <img src="/images/usuarios/<%= idUsuarioToEdit[0].imagen %>" alt="defaul-profile-image">
                 </div>
                 <div class=ingresoManual>
+                    <input type="hidden" name="id" value="<%=idUsuarioToEdit[0].id%>">
                     <label for="imagen">Modificar imagen</label>
                     <input class="imagen" type="file" name="imagen" acept=".jpg, .png">
                     <label for="nombre">Nombre</label>
@@ -31,7 +32,7 @@
                 </div>
                 <div class="ingresos">
                     <button type="submit" class="ingresar" >Modificar</button>
-                    <a href="/users/login" class="registrate" >Cerrar Sesion</a>
+                    <a href="/users/logout" class="registrate" >Cerrar Sesion</a>
                 </div>
             </form>
         </div>
