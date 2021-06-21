@@ -87,7 +87,7 @@ const usersController = {
     },
     userEdit : (req, res) => {
         
-        //Nota: De todos los productos, vamos a editar el sumistrado como parametro de la URL
+        //Nota: De todos los usuarios, vamos a editar el sumistrado como parametro de la URL
         let idUsuario = req.params.id
 
         //Nota: El archivo users.json ya fue leido gracias al helper 
@@ -101,8 +101,61 @@ const usersController = {
         { idUsuarioToEdit });
 
     },
+
     userUpdate : (req, res) => {
-        return res.redirect('/');
+        let idUser = req.params.id;
+        let archivoUsuarios = readJson('users.json');
+
+        if(req.file) {
+            let usuario = {
+                id : newId('users.json'),
+                imagen: req.file.filename,
+                nombre: req.body.nombre,
+                email: req.body.email,
+                password: bcrypt.hashSync(req.body.password, 10),
+                direccion : req.body.direccion,
+                telefono : req.body.telefono,
+                nacimiento : req.body.nacimiento
+            };
+            
+            for(i in archivoUsuarios ){
+                if(archivoUsuarios[i].id == idUser){
+                    archivoUsuarios.splice(i,1)
+                }
+            }
+
+            archivoUsuarios.push(usuario);
+            writeJson('users.json', archivoUsuarios);
+    
+            return res.redirect('/');
+        }else{
+            let imagen;
+
+            for(i in archivoUsuarios ){
+                if(archivoUsuarios[i].id == idUser){
+                    imagen = archivoUsuarios[i].imagen
+                    archivoUsuarios.splice(i,1)
+                }
+            }
+
+            let usuario = {
+                id : newId('users.json'),
+                imagen: imagen,
+                nombre: req.body.nombre,
+                email: req.body.email,
+                password: bcrypt.hashSync(req.body.password, 10),
+                direccion : req.body.direccion,
+                telefono : req.body.telefono,
+                nacimiento : req.body.nacimiento
+            };
+            
+            archivoUsuarios.push(usuario);
+            writeJson('users.json', archivoUsuarios);
+    
+            return res.redirect('/');
+            
+        }
+        
     },
     loginProcess : (req, res) => {
         let userToLogin = User.findByField('email', req.body.email);

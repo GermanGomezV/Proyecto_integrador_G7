@@ -722,8 +722,20 @@ background-color: rgb(252, 252, 252);
 .aclaracion-imagen{
         font-size: 12px;
 }
-    
 
+::placeholder{
+    color: black;
+}
+
+.form-group img{
+    display:block;
+    margin:auto;
+    width: 250px;
+}
+
+#registro{
+    text-align: center;
+}
 
 /*************************************************************
 **************************************************************
