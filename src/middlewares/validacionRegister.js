@@ -12,7 +12,13 @@ let validaciones = [
         .isEmail().withMessage('Debes escribir un correo electronico valido'),
     body('password').notEmpty().withMessage('Tienes que escribir una contraseña'),
     body('password2').notEmpty().withMessage('Tienes que repetir la contraseña'),
-    body('recordarUsuario').notEmpty().withMessage('Tienes que aceptar los Términos y condiciones')
+    body('recordarUsuario').notEmpty().withMessage('Tienes que aceptar los Términos y condiciones'),
+    body('password2').custom((value, { req }) => {
+            if (value !== req.body.password) {
+            throw new Error('Las contraseñas no coinciden');
+        }
+        return true
+    })
 ];
 
 module.exports = validaciones;
