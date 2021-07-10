@@ -20,7 +20,7 @@ module.exports = (sequelize, dataTypes) => {
             unique: true
         },
         contraseña: {
-            type: dataTypes.STRING,
+            type: dataTypes.TEXT,
         },
         direccion: {
             type: dataTypes.STRING(400),
@@ -35,10 +35,17 @@ module.exports = (sequelize, dataTypes) => {
 
     let config = {
         tableName: "usuarios",
-        timestamps : false //Analizar si esta opcion esta bien de acuerdo a la base de datos(6:35)
+        timestamps : false
     };
     
     const Usuarios = sequelize.define(alias, cols, config);
+
+    Usuarios.associate = function (models) {
+        Usuarios.belongsTo(models.Compras, {
+            as: "compras",
+            foreignKey: "usuario_id"
+        });
+    };
 
     return Usuarios;
 }

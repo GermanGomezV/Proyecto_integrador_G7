@@ -21,3 +21,6 @@ module.exports = {
     "dialect": "mysql"
   }
 }
+
+
+// Aca falta cambiar el nombre de la base de datos, sino no va a funcionar
