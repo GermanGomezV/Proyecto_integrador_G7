@@ -1,18 +1,18 @@
 //Modelo de la tabla Compra_productos
 module.exports = (sequelize, dataTypes) => {
     
-    let alias = "Compra_productos";
+    let alias = "Compras_productos";
 
     let cols = {
-        id: {
+        id_compras_productos: {
             type: dataTypes.INTEGER,
             primaryKey: true,
             autoIncremental: true
         },
-        compra_id: {
+        id_compra_FK: {
             type: dataTypes.INTEGER,
         },
-        producto_id: {
+        id_producto_FK: {
             type: dataTypes.INTEGER,
         },
         cantidad: {
@@ -24,7 +24,7 @@ module.exports = (sequelize, dataTypes) => {
     };
 
     let config = {
-        tableName: "compra_productos",
+        tableName: "compras_productos",
         timestamps : false
     };
     

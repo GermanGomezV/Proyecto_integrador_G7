@@ -4,26 +4,26 @@ module.exports = (sequelize, dataTypes) => {
     let alias = "Usuarios";
 
     let cols = {
-        id: {
+        id_usuario: {
             type: dataTypes.INTEGER,
             primaryKey: true,
             autoIncremental: true
         },
         nombre: {
-            type: dataTypes.STRING(100),
+            type: dataTypes.STRING(50),
         },
         apellido: {
-            type: dataTypes.STRING(100),
+            type: dataTypes.STRING(50),
         },
         correo: {
             type: dataTypes.STRING(100),
             unique: true
         },
         contraseña: {
-            type: dataTypes.TEXT,
+            type: dataTypes.STRING(200),
         },
         direccion: {
-            type: dataTypes.STRING(400),
+            type: dataTypes.STRING(200),
         },
         telefono: {
             type: dataTypes.INTEGER,
@@ -43,7 +43,7 @@ module.exports = (sequelize, dataTypes) => {
     Usuarios.associate = function (models) {
         Usuarios.belongsTo(models.Compras, {
             as: "compras",
-            foreignKey: "usuario_id"
+            foreignKey: "id_usuario_FK"
         });
     };
 

@@ -4,16 +4,16 @@ module.exports = (sequelize, dataTypes) => {
     let alias = "Compras";
 
     let cols = {
-        id: {
+        id_compra: {
             type: dataTypes.INTEGER,
             primaryKey: true,
             autoIncremental: true
         },
-        usuario_id: {
+        id_usuario_FK: {
             type: dataTypes.INTEGER,
         },
         fecha_compra: {
-            type: dataTypes.DATETIME,
+            type: dataTypes.DATE,
         }
     };
 
@@ -27,14 +27,14 @@ module.exports = (sequelize, dataTypes) => {
     Compras.associate = function (models) {
         Compras.hasMany(models.Usuarios, {
             as: "usuarios",
-            foreignKey: "usuario_id"
+            foreignKey: "id_usuario_FK"
         });
 
         Compras.belongsToMany(models.Productos, {
             as: "productos",
             through: "compra_productos",
-            foreignKey: "compra_id",
-            otherKey: "producto_id",
+            foreignKey: "id_compra_FK",
+            otherKey: "id_producto_FK",
             timestamps : false
         });
     };

@@ -4,16 +4,16 @@ module.exports = (sequelize, dataTypes) => {
     let alias = "Productos";
 
     let cols = {
-        id: {
+        id_producto: {
             type: dataTypes.INTEGER,
             primaryKey: true,
             autoIncremental: true
         },
         nombre: {
-            type: dataTypes.STRING(100),
+            type: dataTypes.STRING(50),
         },
         descripcion: {
-            type: dataTypes.TEXT,
+            type: dataTypes.STRING(500),
         },
         precio: {
             type: dataTypes.FLOAT,
@@ -21,8 +21,11 @@ module.exports = (sequelize, dataTypes) => {
         descuento: {
             type: dataTypes.INTEGER,
         },
-        categoria_id: {
+        id_categoria_FK: {
             type: dataTypes.INTEGER,
+        },
+        imagen: {
+            type: dataTypes.STRING(100)
         }
     };
 
@@ -36,14 +39,14 @@ module.exports = (sequelize, dataTypes) => {
     Productos.associate = function (models) {
         Productos.belongsTo(models.Categorias, {
             as: "categorias",
-            foreignKey: "categoria_id"
+            foreignKey: "id_categoria_FK"
         });
 
         Productos.belongsToMany(models.Compras, {
             as: "compras",
-            through: "compra_productos",
-            foreignKey: "producto_id",
-            otherKey: "compra_id",
+            through: "compras_productos",
+            foreignKey: "id_producto_FK",
+            otherKey: "id_compra_FK",
             timestamps : false
         });
     };
