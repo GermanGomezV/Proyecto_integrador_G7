@@ -30,6 +30,9 @@ module.exports = (sequelize, dataTypes) => {
         },
         fecha_nacimiento: {
             type: dataTypes.DATEONLY,
+        },
+        imagen: {
+            type: dataTypes.STRING(100),
         }
     };
 

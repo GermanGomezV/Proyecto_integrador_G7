@@ -86,76 +86,47 @@ const usersController = {
         }
     },
     userEdit : (req, res) => {
-        
-        //Nota: De todos los usuarios, vamos a editar el sumistrado como parametro de la URL
-        let idUsuario = req.params.id
-
-        //Nota: El archivo users.json ya fue leido gracias al helper 
-        let archivoUsuarios = readJson('users.json');
-        
-        //Crear una variable que filtre y luego envío está variable a la vista
-        let idUsuarioToEdit = archivoUsuarios.filter( (usuario) => { 
-            return usuario.id == idUsuario
-        });
-        res.render('users/edit',
-        { idUsuarioToEdit });
-
-    },
-
-    userUpdate : (req, res) => {
         let idUser = req.params.id;
-        let archivoUsuarios = readJson('users.json');
-
+        db.Usuarios.findByPk(idUser)
+            .then(usuario => {
+                res.render('users/edit', {usuario: usuario})
+            })
+         },
+    userUpdate : (req, res) => {
         if(req.file) {
-            let usuario = {
-                id : parseInt(req.body.id),
+            db.Usuarios.update({
+                nombre: req.body.nombre,
+                apellido: req.body.apellido,
+                telefono: req.body.telefono,
+                direccion: req.body.direccion,
+                correo: req.body.email,
+                fechaNacimiento: req.body.nacimiento,
+                contrasena: bcrypt.hashSync(req.body.password, 10),
                 imagen: req.file.filename,
-                nombre: req.body.nombre,
-                email: req.body.email,
-                password: bcrypt.hashSync(req.body.password, 10),
-                direccion : req.body.direccion,
-                telefono : req.body.telefono,
-                nacimiento : req.body.nacimiento
-            }
-            
-            for(i in archivoUsuarios ){
-                if(archivoUsuarios[i].id == idUser){
-                    archivoUsuarios.splice(i,1)
+            },
+            {
+                where: {
+                    id_producto: idUser
                 }
-            }
-
-            archivoUsuarios.push(usuario);
-            writeJson('users.json', archivoUsuarios);
-    
-            return res.redirect('/');
+            })
+              return res.redirect('/');
         }else{
-            let imagen;
-
-            for(i in archivoUsuarios ){
-                if(archivoUsuarios[i].id == idUser){
-                    imagen = archivoUsuarios[i].imagen
-                    archivoUsuarios.splice(i,1)
-                }
-            }
-
-            let usuario = {
-                id : parseInt(req.body.id),
-                imagen: imagen,
+            db.Usuarios.update({
                 nombre: req.body.nombre,
-                email: req.body.email,
-                password: bcrypt.hashSync(req.body.password, 10),
-                direccion : req.body.direccion,
-                telefono : req.body.telefono,
-                nacimiento : req.body.nacimiento
-            }
-            
-            archivoUsuarios.push(usuario);
-            writeJson('users.json', archivoUsuarios);
-    
-            return res.redirect('/');
-           
-        }
-        
+                apellido: req.body.apellido,
+                telefono: req.body.telefono,
+                direccion: req.body.direccion,
+                correo: req.body.email,
+                fechaNacimiento: req.body.nacimiento,
+                contrasena: bcrypt.hashSync(req.body.password, 10)
+            },
+            {
+                where: {
+                    id_producto: idUser
+                }
+            })
+            return res.redirect('/');          
+        }        
     },
 
     loginProcess : (req, res) => {
