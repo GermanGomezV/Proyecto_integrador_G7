@@ -25,7 +25,7 @@ module.exports = (sequelize, dataTypes) => {
     const Compras = sequelize.define(alias, cols, config);
 
     Compras.associate = function (models) {
-        Compras.hasMany(models.Usuarios, {
+        Compras.belongsTo(models.Usuarios, {
             as: "usuarios",
             foreignKey: "id_usuario_FK"
         });

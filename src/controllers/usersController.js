@@ -1,6 +1,8 @@
 //Requiriendo la funcionalidad fyle sinc que resuelve rutas
 const fs = require('fs');
 
+let db = require('../../database/models')
+
 //Requiriendo la funcionalidad de read y write json
 const {readJson, writeJson, newId} = require('./helpers');
 
@@ -93,6 +95,7 @@ const usersController = {
             })
          },
     userUpdate : (req, res) => {
+        let idUser = req.params.id;
         if(req.file) {
             db.Usuarios.update({
                 nombre: req.body.nombre,
@@ -106,7 +109,7 @@ const usersController = {
             },
             {
                 where: {
-                    id_producto: idUser
+                    id_usuario: idUser
                 }
             })
               return res.redirect('/');
@@ -122,7 +125,7 @@ const usersController = {
             },
             {
                 where: {
-                    id_producto: idUser
+                    id_usuario: idUser
                 }
             })
             return res.redirect('/');          

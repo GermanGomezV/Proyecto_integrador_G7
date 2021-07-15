@@ -19,7 +19,7 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.STRING(100),
             unique: true
         },
-        contraseña: {
+        contrasena: {
             type: dataTypes.STRING(200),
         },
         direccion: {
@@ -29,7 +29,7 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.INTEGER,
         },
         fecha_nacimiento: {
-            type: dataTypes.DATEONLY,
+            type: dataTypes.DATE,
         },
         imagen: {
             type: dataTypes.STRING(100),
@@ -44,7 +44,7 @@ module.exports = (sequelize, dataTypes) => {
     const Usuarios = sequelize.define(alias, cols, config);
 
     Usuarios.associate = function (models) {
-        Usuarios.belongsTo(models.Compras, {
+        Usuarios.hasMany(models.Compras, {
             as: "compras",
             foreignKey: "id_usuario_FK"
         });

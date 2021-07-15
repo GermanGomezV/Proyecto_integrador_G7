@@ -7,9 +7,9 @@
     <div id="contenedor">
         <div id="registro"><h1>Editar Perfil</h1></div>
         <div id="form">
-            <form action="/users/<%=idUsuarioToEdit[0].id%>/edit?_method=PUT" method="POST" enctype="multipart/form-data">
+            <form action="/users/<%=usuario.id_usuario%>/edit?_method=PUT" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
-                    <img src="/images/usuarios/<%= idUsuarioToEdit[0].imagen %>" alt="defaul-profile-image">
+                    <img src="/images/usuarios/<%= usuario.imagen %>" alt="defaul-profile-image">
                 </div>
                 <div class=ingresoManual>
                     <input type="hidden" name="id" value="<%=usuario.id_usuario%>">
