@@ -124,11 +124,5 @@
         "descuento": 15,
         "categoria": "Bebida",
         "imagen": "speed.PNG"
-    },
-    {
-        "id": 11,
-        "nombre": "Julian",
-        "descuento": null,
-        "imagen": "pepsi.png"
     }
 ]

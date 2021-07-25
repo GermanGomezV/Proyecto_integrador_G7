@@ -33,14 +33,10 @@ const productsController = {
         res.render('products/productCart');
     },
     productDetail : (req, res) => {
-        let idProduct = req.params.id;
-        let archivoProductos = readJson('products.json');
-
-        let idProductDetail = archivoProductos.filter ( (product) => { 
-            return product.id == idProduct
-        });
-        
-        res.render('products/productDetail', { idProductDetail: idProductDetail, archivoProductos : archivoProductos });
+        db.Productos.findByPk(req.params.id)
+            .then(producto => {
+                res.render('products/productDetail', {producto})
+            })
     },
     productCharge : (req, res) => {
         db.Categorias.findAll()
@@ -142,11 +138,15 @@ const productsController = {
         }
         
     },
-    destroy : (req, res) => {
-		let nuevaBase = productos.filter (producto => producto.id != req.params.id);
-		writeJson ('products.json', nuevaBase)
-		res.redirect('/');
-	}
+    delete : function (req, res) {
+        db.Productos.destroy({
+            where : {
+                id_producto : req.params.id
+            }
+        })
+        res.redirect('/');
+    },
+
 };
 
 //Exportando al controlador para que pueda ser usado por la ruta.

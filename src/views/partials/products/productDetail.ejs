@@ -1,12 +1,12 @@
 <article>
     <div class="caja-foto">
-        <p class="tituloDetalle"><%= idProductDetail[0].nombre %></p>
-        <img class="foto" src="/images/productos/<%= idProductDetail[0].imagen %>" alt="">
+        <p class="tituloDetalle"><%= producto.nombre %></p>
+        <img class="foto" src="/images/productos/<%= producto.imagen %>" alt="">
     </div>
     <div class="caja1">
         <div class="pago">
-            <p class="precio">$ <%= idProductDetail[0].precio %></p>
-            <p class="descuento"><%= idProductDetail[0].descuento %> % OFF</p>
+            <p class="precio">$ <%= producto.precio %></p>
+            <p class="descuento"><%= producto.descuento %> % OFF</p>
             <p class="pago">Ver medios de pago</p>
         </div>
         <div class="valoracion">
@@ -20,6 +20,6 @@
     </div>
     
     <div class="detalleProducto">
-        <p><%= idProductDetail[0].descripcion %></p>
+        <p><%= producto.descripcion %></p>
     </div>
 </article>

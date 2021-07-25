@@ -26,7 +26,7 @@ router.post('/charge', uploadProducto.single('imagen'), validacionesCharge, prod
 router.get('/:id/edit', productsController.productEdit);
 router.put('/:id/edit', uploadProducto.single('imagen'), productsController.productUpdate);
 
-router.post('/:id/delete', productsController.destroy);
+router.post('/:id/delete', productsController.delete);
 
 //Exportando al router para que pueda ser usado por el entry point
 module.exports = router;

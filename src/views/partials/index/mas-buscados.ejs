@@ -4,14 +4,14 @@
         <a href="/products/list" class="mira"> Mirá todo</a>
     </div>
     <div class="caja-ofertas">   
-        <% for(i in archivoProductos) {%>
-        <a href="/products/detail/<%= archivoProductos[i].id %> %>" class="ofe-1">
+        <% for (i in producto) {%>
+        <a href="/products/detail/<%= producto[i].id_producto %>" class="ofe-1">
             <div class="foto-oferta">
-                <img class="foto-ofe" src="/images/productos/<%= archivoProductos[i].imagen %>" alt="">
+                <img class="foto-ofe" src="/images/productos/<%= producto[i].imagen %>" alt="">
             </div>
             <div class="desc-oferta">
-                <p class="nombre-oferta"><%= archivoProductos[i].nombre %></p>
-                <p class="precio-oferta">$ <%= archivoProductos[i].precio %></p>
+                <p class="nombre-oferta"><%= producto[i].nombre %></p>
+                <p class="precio-oferta">$ <%= producto[i].precio %></p>
             </div>
         </a>
         <% } %>
