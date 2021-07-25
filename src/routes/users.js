@@ -21,8 +21,8 @@ const validacionesRegister = require('../middlewares/validacionRegister');
 
 router.get('/logout', usersController.logout);
 
-router.get('/register', guestMiddleware, usersController.register);
-router.post('/register', validacionesRegister, usersController.processRegister);
+router.get('/register', guestMiddleware, usersController.register);// add
+router.post('/register', validacionesRegister, usersController.processRegister);// create
 
 router.get('/login', guestMiddleware, usersController.login);
 router.post('/login', usersController.loginProcess);

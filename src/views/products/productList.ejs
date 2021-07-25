@@ -6,7 +6,9 @@
     <section class="bebidas">
         <% for (i in productosBebida) { %>
         <article class="listadoArticulo">
-            <img src="/images/productos/<%= productosBebida[i].imagen %>" alt="<%= productosBebida[i].nombre %>">
+            <div class="cajaProducto">
+                <img src="/images/productos/<%= productosBebida[i].imagen %>" alt="<%= productosBebida[i].nombre %>">
+            </div>
             <div class="cajaArticulo">
                 <div class='cajaImporte'>
                     <p class='precio'>$<%= productosBebida[i].precio %></p>

@@ -18,14 +18,13 @@ const User = require('../models/Users')
 //Definiendo la logica del controlador: Renderizando vistas EJS
 //El controlador está compuesto por un objeto literal que a su vez compuesto por métodos (funciones o callbacks)
 const usersController = {
+    //add
     register : (req, res) => {
         res.render('users/register');
     },
     login : (req, res) => {
         res.render('users/login');
     },
-
-    //Antes se llamaba create
     processRegister : (req, res) => {
         const resultValidation = validationResult(req);
 
@@ -48,22 +47,15 @@ const usersController = {
                 oldData: req.body
             });
         };
-
         let usuario = {
-            id : newId('users.json'),
             nombre: req.body.nombre,
-            email: req.body.email,
-            password: bcrypt.hashSync(req.body.password, 10),
-            imagen: "",
-            direccion: "",
-            telefono: "",
-            nacimiento: ""
+            apellido:req.body.apellido,
+            correo: req.body.email,
+            contrasena: bcrypt.hashSync(req.body.password, 10)
         };
 
-        User.create(usuario);
-
+        db.Usuarios.create(usuario);
         return res.redirect('/');
-        
     },
 
     //Eliminar esto??? No esta en los controladores

@@ -138,5 +138,15 @@
   "direccion": "",
   "telefono": "",
   "nacimiento": ""
+ },
+ {
+  "id": 15,
+  "nombre": "miguel",
+  "email": "miguelhquinteros@gmail.com",
+  "password": "$2a$10$Bepua/kY88V7aXcHg7a7p.fgEhAJNPHZxnbG1h90bvJf5rc/H84Sq",
+  "imagen": "",
+  "direccion": "",
+  "telefono": "",
+  "nacimiento": ""
  }
 ]

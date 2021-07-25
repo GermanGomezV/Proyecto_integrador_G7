@@ -43,7 +43,10 @@ const productsController = {
         res.render('products/productDetail', { idProductDetail: idProductDetail, archivoProductos : archivoProductos });
     },
     productCharge : (req, res) => {
-        res.render('products/productCharge');
+        db.Categorias.findAll()
+        .then (function(categorias){
+            return res.render('products/productCharge',{categorias:categorias});
+        })
     },
     store: (req, res) => {
 
@@ -56,28 +59,37 @@ const productsController = {
             });
         };
 
-        if(req.file) {
-            let archivoProductos = readJson('products.json');
+        db.Productos.create({
+            nombre: req.body.nombre,
+            descripcion: req.body.descripcion,
+            precio: req.body.precio,
+            descuento: req.body.descuento,
+            // id_categoria_FK: req.body.categoria,
+            imagen: req.body.imagen 
+        })
+
+        // if(req.file) {
+        //     let archivoProductos = readJson('products.json');
     
-            let producto = {
-                id : newId('products.json'),
-                nombre: req.body.nombre,
-                descripcion: req.body.descripcion,
-                precio: req.body.precio,
-                descuento: parseInt(req.body.descuento),
-                categoria: req.body.categoria,
-                imagen: req.file.filename
-                // origen: req.body.origin,
-                // volumen: req.body.volumen,
-                // marca: req.body.marca,
-            };
-            archivoProductos.push(producto);
-            writeJson('products.json', archivoProductos);
+        //     let producto = {
+        //         id : newId('products.json'),
+        //         nombre: req.body.nombre,
+        //         descripcion: req.body.descripcion,
+        //         precio: req.body.precio,
+        //         descuento: parseInt(req.body.descuento),
+        //         categoria: req.body.categoria,
+        //         imagen: req.file.filename
+        //         // origen: req.body.origin,
+        //         // volumen: req.body.volumen,
+        //         // marca: req.body.marca,
+        //     };
+        //     archivoProductos.push(producto);
+        //     writeJson('products.json', archivoProductos);
     
-            return res.redirect('/');
-        }else{
-            res.render('products/productCharge');
-        }
+        //     return res.redirect('/');
+        // }else{
+        //     res.render('products/productCharge');
+        // }
     },
     productEdit : (req, res) => {
         //Nota: De todos los productos, vamos a editar el sumistrado como parametro de la URL

@@ -21,7 +21,7 @@
                         <%= errors.descripcion.msg %> 
                     </div>
                 <% } %>
-                <label for="´precio">Precio</label>
+                <label for="precio">Precio</label>
                 <input class="precio" type="text" name="precio" placeholder="Precio" value="<%= locals.oldData ? oldData.precio : null %>"> 
                 <% if (locals.errors && errors.precio) { %>
                     <div class="notificacion_error">
@@ -36,10 +36,12 @@
                     </div>
                 <% } %>
                 <label for="categoria">Categoría</label>
-                <select class="categoria" name="categoria" value="<%= locals.oldData ? oldData.categoria : null %>">
-                    <option>Comida</option>
-                    <option>Bebida</option>
-                    <option>Otros</option>
+                <select class="categoria" name="categoria">
+                    <% for (let i=0; i < categorias.length; i++) { %> 
+                    <option value="<%=categorias[i].id%>">
+                        <%= categorias[i].nombre%>
+                    </option>
+                <% } %>
                 </select>
                 <% if (locals.errors && errors.categoria) { %>
                     <div class="notificacion_error">
