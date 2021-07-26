@@ -3,50 +3,9 @@
     <%- include('../partials/head') %>
 <body>
     <%- include('../partials/header') %>
-    <section class="bebidas">
-        <% for (i in productosBebida) { %>
-        <article class="listadoArticulo">
-            <div class="cajaProducto">
-                <img src="/images/productos/<%= productosBebida[i].imagen %>" alt="<%= productosBebida[i].nombre %>">
-            </div>
-            <div class="cajaArticulo">
-                <div class='cajaImporte'>
-                    <p class='precio'>$<%= productosBebida[i].precio %></p>
-                    <p class='descuento'><%= productosBebida[i].descuento %>%</p>
-                </div>
-                <p class='descripcion'><%= productosBebida[i].nombre %></p>
-            </div>
-        </article>
-        <% } %>
-    </section>
-    <section class="asado">
-        <% for (i in productosAsado) { %>
-            <article class="listadoArticulo">
-                <img src="/images/productos/<%= productosAsado[i].imagen %>" alt="<%= productosAsado[i].nombre %>">
-                <div class="cajaArticulo">
-                    <div class='cajaImporte'>
-                        <p class='precio'>$<%= productosAsado[i].precio %></p>
-                        <p class='descuento'><%= productosAsado[i].descuento %>%</p>
-                    </div>
-                    <p class='descripcion'><%= productosAsado[i].nombre %></p>
-                </div>
-            </article>
-            <% } %>
-    </section>
-    <section class="picada">
-        <% for (i in productosPicada) { %>
-            <article class="listadoArticulo">
-                <img src="/images/productos/<%= productosPicada[i].imagen %>" alt="<%= productosPicada[i].nombre %>">
-                <div class="cajaArticulo">
-                    <div class='cajaImporte'>
-                        <p class='precio'>$<%= productosPicada[i].precio %></p>
-                        <p class='descuento'><%= productosPicada[i].descuento %>%</p>
-                    </div>
-                    <p class='descripcion'><%= productosPicada[i].nombre %></p>
-                </div>
-            </article>
-            <% } %>
-    </section>
+    <%- include('../partials/index/productos') %>
+    
     <%- include('../partials/footer') %>
 </body>
 </html>
+

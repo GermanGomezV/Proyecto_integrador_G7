@@ -22,12 +22,12 @@ const productosPicada = productos.filter (producto => producto.categoria == 'Pic
 //Definiendo la logica del controlador: Renderizando vistas EJS
 //El controlador está compuesto por un objeto literal que a su vez compuesto por métodos (funciones o callbacks)
 const productsController = {
+    
     productList : (req, res) => {
-        res.render('products/productlist',{
-        productosBebida,
-        productosAsado,
-        productosPicada
-        });
+        db.Productos.findAll()
+        .then(function(producto){
+            res.render("products/productList", {producto:producto})
+        })
     },
     productCart : (req, res) => {
         res.render('products/productCart');
