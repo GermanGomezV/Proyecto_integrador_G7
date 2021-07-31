@@ -7,7 +7,7 @@ const {readJson, writeJson, newId} = require('./helpers');
 //Requiriendo bcryptjs
 const bcrypt = require('bcryptjs');
 
-//Requiriendo el metodo validation Result
+//Validacion Backend - Requiriendo el metodo validationResult
 const { validationResult } = require('express-validator');
 
 //Requiriendo el modelo User

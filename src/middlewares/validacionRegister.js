@@ -1,10 +1,12 @@
 //Ejecutando la funcionalidad de path que resuelve rutas
 const path = require('path');
 
-//Requiero Express validator
+//Validacion Backend - Requiriendo el metodo body de express-validator
 const { body } = require('express-validator');
 
 //Creo el array con las validaciones
+//Indicamos que campo del req.body queremos chequear y que es lo que queremos chequear
+//En caso de cumplirse la condición, dejamos un mensaje indicando cual es el error
 let validaciones = [
     body('nombre').notEmpty().withMessage('Tienes que escribir tu nombre'),
     body('apellido').notEmpty().withMessage('Tienes que escribir tu apellido'),
