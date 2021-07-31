@@ -52,3 +52,11 @@ Dc: Hincha de Talleres y apasionado del deporte.
 #### **Link Jira** 
 
 https://ecommerce-dh.atlassian.net/secure/BrowseProjects.jspa
+
+#### **Link GitHub** 
+
+https://github.com/GermanGomezV/grupo_7_AllMeet
+
+#### **Link Jamboard** 
+
+https://jamboard.google.com/d/10Xww49EbAFfBHVoRXU-VJJjDwALbcFD3dx3e5bfXeT0/edit?usp=sharing
