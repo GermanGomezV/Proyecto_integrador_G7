@@ -28,5 +28,7 @@ router.put('/:id/edit', uploadProducto.single('imagen'), productsController.prod
 
 router.post('/:id/delete', productsController.delete);
 
+router.post('/productList', productsController.search);
+
 //Exportando al router para que pueda ser usado por el entry point
 module.exports = router;

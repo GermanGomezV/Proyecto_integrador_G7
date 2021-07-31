@@ -2,6 +2,7 @@
 const fs = require('fs');
 
 let db = require('../../database/models')
+const { Op } = require("sequelize");
 
 //Requiriendo la funcionalidad de read y write json
 const {readJson, writeJson, newId} = require('./helpers');
@@ -13,7 +14,8 @@ const bcrypt = require('bcryptjs');
 const { validationResult } = require('express-validator');
 
 //Requiriendo el modelo User
-const User = require('../models/Users')
+const User = require('../models/Users');
+const { parse } = require('path');
 
 //Definiendo la logica del controlador: Renderizando vistas EJS
 //El controlador está compuesto por un objeto literal que a su vez compuesto por métodos (funciones o callbacks)
@@ -35,49 +37,35 @@ const usersController = {
             });
         };
 
-        let userInDb = User.findByField('email', req.body.email)
+        db.Usuarios.findAll({
+            where : {
+                correo : {
+                    [Op.like] : `%${req.body.email}%`
+                }
+            }
+        })
+        .then(usuario => {
+            if(usuario){
+                return res.render('users/register', {
+                    errors: {
+                        email : {
+                            msg : 'Este email ya esta registrado'
+                        }
+                    },
+                    oldData: req.body
+                });
+            };
+        })
 
-        if(userInDb){
-            return res.render('users/register', {
-                errors: {
-                    email : {
-                        msg : 'Este email ya esta registrado'
-                    }
-                },
-                oldData: req.body
-            });
-        };
-        let usuario = {
+        db.Usuarios.create({
             nombre: req.body.nombre,
             apellido:req.body.apellido,
             correo: req.body.email,
-            contrasena: bcrypt.hashSync(req.body.password, 10)
-        };
+            contrasena: bcrypt.hashSync(req.body.password, 10),
+            imagen: "default.jpg"
+        })
 
-        db.Usuarios.create(usuario);
         return res.redirect('/');
-    },
-
-    //Eliminar esto??? No esta en los controladores
-    store : (req, res) => {
-        if(req.file){
-            let archivosUsusarios = readJson('users.json');
-            let usuario = {
-                id : newId('users.json'),
-                imagen: req.file.filename,
-                nombre: req.body.nombre,
-                email: req.body.email,
-                password: bcrypt.hashSync(req.body.password, 10),
-                direccion : req.body.direccion,
-                telefono : req.body.telefono,
-                nacimiento : req.body.nacimiento
-            };
-            archivosUsusarios.push(usuario);
-            writeJson('users.json', archivosUsusarios);
-            return res.redirect('/')
-        }else{
-            res.render('users/edit')
-        }
     },
     userEdit : (req, res) => {
         let idUser = req.params.id;
@@ -125,8 +113,50 @@ const usersController = {
     },
 
     loginProcess : (req, res) => {
-        let userToLogin = User.findByField('email', req.body.email);
+        //Busca un usuario
+        //let userToLogin = User.findByField('email', req.body.email);
 
+        db.Usuarios.findAll({
+            where : {
+                correo : {
+                    [Op.like] : `%${req.body.email}%`
+                }
+            }
+        })
+        .then(respuesta => {
+            return JSON.stringify(respuesta);
+        })
+        .then(usuario => {
+            let correctPassword = bcrypt.compareSync(req.body.password, usuario.contrasena);
+            if(correctPassword){
+                delete correctPassword.password;
+                req.session.userLogged = userToLogin;
+                
+                if(req.body.recordarUsuario){
+                    res.cookie('userEmail', req.body.email, {maxAge : (1000 * 60) * 60})
+                }
+
+                return res.redirect('/')
+            };
+            return res.render('users/login', {
+                errors: {
+                    password : {
+                        msg : 'Usuario o contraseña incorrectos'
+                    }
+                },
+                oldData: req.body
+            });
+        })
+
+        return res.render('users/login', {
+            errors: {
+                email : {
+                    msg : 'No se encuentra este email en nuestra base de datos'
+                }
+            }
+        })
+
+        /*
         if(userToLogin){
             let correctPassword = bcrypt.compareSync(req.body.password, userToLogin.password);
             if(correctPassword){
@@ -148,7 +178,9 @@ const usersController = {
                 oldData: req.body
             });
         };
+        */
 
+        /*
         return res.render('users/login', {
             errors: {
                 email : {
@@ -156,6 +188,7 @@ const usersController = {
                 }
             }
         })
+        */
     },
     logout: (req, res) => {
         res.clearCookie('userEmail');

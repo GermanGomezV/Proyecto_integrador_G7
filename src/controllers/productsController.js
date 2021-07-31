@@ -2,6 +2,7 @@
 const path = require('path');
 
 let db = require('../../database/models')
+const { Op } = require("sequelize");
 
 //Requiriendo la funcionalidad fs
 //fs convierte un objeto literal (el cual puede ser obtenido de un formulario) en un archivo JSON
@@ -33,9 +34,14 @@ const productsController = {
         res.render('products/productCart');
     },
     productDetail : (req, res) => {
+        db.Productos.findAll()
+            .then(productos => {
+                return productos
+            })
+
         db.Productos.findByPk(req.params.id)
             .then(producto => {
-                res.render('products/productDetail', {producto})
+                res.render('products/productDetail', {producto, productos})
             })
     },
     productCharge : (req, res) => {
@@ -138,13 +144,31 @@ const productsController = {
         }
         
     },
-    delete : function (req, res) {
+    delete : (req, res) => {
         db.Productos.destroy({
             where : {
                 id_producto : req.params.id
             }
         })
         res.redirect('/');
+    },
+    search : (req, res) => {
+
+        db.Productos.findAll()
+        .then(productos => {
+            return productos
+        })
+
+        db.Productos.findAll({
+            where : {
+                nombre : {
+                    [Op.like] : `%${req.body.busqueda}%`
+                }
+            }
+        })
+        .then((producto) => {
+            res.render("products/productList", {producto, productos})
+        })
     },
 
 };

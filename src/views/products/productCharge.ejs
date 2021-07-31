@@ -37,11 +37,9 @@
                 <% } %>
                 <label for="categoria">Categoría</label>
                 <select class="categoria" name="categoria">
-                    <% for (let i=0; i < categorias.length; i++) { %> 
-                    <option value="<%=categorias[i].id%>">
-                        <%= categorias[i].nombre%>
-                    </option>
-                <% } %>
+                    <option value="0">Seleccione una categoria</option>
+                    <option value="1" <%= locals.old && old.categoria === 1 ? 'selected' : ''; %>>Bebidas</option>
+                    <option value="2" <%= locals.old && old.categoria === 2 ? 'selected' : ''; %>>Snaks</option>
                 </select>
                 <% if (locals.errors && errors.categoria) { %>
                     <div class="notificacion_error">
