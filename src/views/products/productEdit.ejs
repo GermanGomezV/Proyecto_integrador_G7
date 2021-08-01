@@ -4,7 +4,7 @@
 <body>
     <%- include('../partials/header') %>
     <main>
-        <form method="POST" action="/products/<%=idProductToEdit[0].id%>/edit?_method=PUT" enctype="multipart/form-data">
+        <form method="POST" action="/products/<%=idProductToEdit[0].id%>/edit?_method=PUT" enctype="multipart/form-data" class="formEdit">
             
             <div class=ingresoManual>
                 <p class="ingresa-cuenta">Actualizá el producto</p><br>
