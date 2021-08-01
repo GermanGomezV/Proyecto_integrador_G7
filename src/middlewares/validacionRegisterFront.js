@@ -9,6 +9,7 @@ window.addEventListener("load" , function () {
         let errores = [];
 
         // Verificando el nombre
+        // Obligatorio, 2 caracteres min
         let campoNombre = document.querySelector("input.nombre");
         if(campoNombre.value == ""){
             errores.push("El nombre debe completarse");
@@ -18,6 +19,7 @@ window.addEventListener("load" , function () {
         }
 
         // Verificando el apellido
+        // Obligatorio, 2 caracteres min
         let campoApellido = document.querySelector("input.apellido");
         if(campoApellido.value == ""){
             errores.push("El apellido debe completarse");
@@ -27,6 +29,7 @@ window.addEventListener("load" , function () {
         }
 
         // Verificando el email
+        // Oobligatorio, valido - Opcional: Que no se repita con los existentes en la base
         let campoEmail = document.querySelector("input.email");
         if(campoEmail.value == ""){
             errores.push("El email debe completarse");
@@ -35,7 +38,8 @@ window.addEventListener("load" , function () {
             errores.push("El email debe contener un formato de email");
         }
         
-        // Verificando la contraseña
+        // Verificando la contraseña 
+        // Obligatoria, 8 caracteres min - Opcional: contenga mayúsculas minúsculas un numero y un caracter especial
         let campoContraseña = document.querySelector("input.password");
         if(campoContraseña.value == ""){
             errores.push("La contraseña debe completarse");
@@ -44,6 +48,7 @@ window.addEventListener("load" , function () {
             errores.push("La contraseña debe tener al menos 8 caracteres");
         }
 
+        // Verificando la imagen (JPG, JPEG, PNG, GIF)
         
         //Si hay errores cancelo el envío del formulario, recorro el array de errores y los muestro 
         if( errores.length > 0 ){
