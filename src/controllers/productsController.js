@@ -66,32 +66,12 @@ const productsController = {
             descripcion: req.body.descripcion,
             precio: req.body.precio,
             descuento: req.body.descuento,
-            // id_categoria_FK: req.body.categoria,
-            imagen: req.body.imagen 
+            id_categoria_FK: req.body.categoria,
+            imagen: req.file.filename
         })
 
-        // if(req.file) {
-        //     let archivoProductos = readJson('products.json');
-    
-        //     let producto = {
-        //         id : newId('products.json'),
-        //         nombre: req.body.nombre,
-        //         descripcion: req.body.descripcion,
-        //         precio: req.body.precio,
-        //         descuento: parseInt(req.body.descuento),
-        //         categoria: req.body.categoria,
-        //         imagen: req.file.filename
-        //         // origen: req.body.origin,
-        //         // volumen: req.body.volumen,
-        //         // marca: req.body.marca,
-        //     };
-        //     archivoProductos.push(producto);
-        //     writeJson('products.json', archivoProductos);
-    
-        //     return res.redirect('/');
-        // }else{
-        //     res.render('products/productCharge');
-        // }
+        return res.redirect('/');
+
     },
     productEdit : (req, res) => {
         //Nota: De todos los productos, vamos a editar el sumistrado como parametro de la URL
