@@ -9,6 +9,9 @@ const mainController = {
             .then(function(producto){
                 return res.render('main/index', { producto });
             })
+    },
+    ayuda: (req, res) => {
+        return res.render('main/ayuda')
     }
 };
 
