@@ -111,84 +111,45 @@ const usersController = {
             return res.redirect('/');          
         }        
     },
-
     loginProcess : (req, res) => {
-        //Busca un usuario
-        //let userToLogin = User.findByField('email', req.body.email);
-
-        db.Usuarios.findAll({
+        db.Usuarios.findOne({
             where : {
                 correo : {
                     [Op.like] : `%${req.body.email}%`
                 }
             }
         })
-        .then(respuesta => {
-            return JSON.stringify(respuesta);
-        })
         .then(usuario => {
-            let correctPassword = bcrypt.compareSync(req.body.password, usuario.contrasena);
-            if(correctPassword){
-                delete correctPassword.password;
-                req.session.userLogged = userToLogin;
-                
-                if(req.body.recordarUsuario){
-                    res.cookie('userEmail', req.body.email, {maxAge : (1000 * 60) * 60})
-                }
-
-                return res.redirect('/')
-            };
-            return res.render('users/login', {
-                errors: {
-                    password : {
-                        msg : 'Usuario o contraseña incorrectos'
+            if(usuario){
+                let correctPassword = bcrypt.compareSync(req.body.password, usuario.contrasena);
+                if(correctPassword){
+                    delete correctPassword.password;
+                    req.session.userLogged = usuario;
+                    
+                    if(req.body.recordarUsuario){
+                        res.cookie('userEmail', req.body.email, {maxAge : (1000 * 60) * 60})
                     }
-                },
-                oldData: req.body
-            });
-        })
-
-        return res.render('users/login', {
-            errors: {
-                email : {
-                    msg : 'No se encuentra este email en nuestra base de datos'
-                }
+    
+                    return res.redirect('/')
+                };
+                return res.render('users/login', {
+                    errors: {
+                        password : {
+                            msg : 'Usuario o contraseña incorrectos'
+                        }
+                    },
+                    oldData: req.body
+                });
+            }else{
+                return res.render('users/login', {
+                    errors: {
+                        email : {
+                            msg : 'No se encuentra este email en nuestra base de datos'
+                        }
+                    }
+                })
             }
         })
-
-        /*
-        if(userToLogin){
-            let correctPassword = bcrypt.compareSync(req.body.password, userToLogin.password);
-            if(correctPassword){
-                delete correctPassword.password;
-                req.session.userLogged = userToLogin;
-                
-                if(req.body.recordarUsuario){
-                    res.cookie('userEmail', req.body.email, {maxAge : (1000 * 60) * 60})
-                }
-
-                return res.redirect('/')
-            };
-            return res.render('users/login', {
-                errors: {
-                    password : {
-                        msg : 'Usuario o contraseña incorrectos'
-                    }
-                },
-                oldData: req.body
-            });
-        };
-        */
-
-        /*
-        return res.render('users/login', {
-            errors: {
-                email : {
-                    msg : 'No se encuentra este email en nuestra base de datos'
-                }
-            }
-        })
-        */
     },
     logout: (req, res) => {
         res.clearCookie('userEmail');
