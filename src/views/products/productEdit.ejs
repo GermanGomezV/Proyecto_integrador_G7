@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
     <%- include('../partials/head') %>
+    <script type="text/javascript" src="/js/form_validations/validationFrontChargeEdit.js"></script>
 <body>
     <%- include('../partials/header') %>
     <main>
-        <form method="POST" action="/products/<%=producto.id_producto%>/edit?_method=PUT" enctype="multipart/form-data" class="formEdit">
+        <form method="POST" action="/products/<%=producto.id_producto%>/edit?_method=PUT" enctype="multipart/form-data" class="formChargeEdit">
             
             <div class=ingresoManual>
                 <p class="ingresa-cuenta">Actualizá el producto</p><br>
                 <input type="hidden" name="id" value="<%=producto.id_producto.id%>">  
                 <label for="nombre">Nombre de producto</label>
                 <input class="nombre" type="text" name="nombre" placeholder="Nombre del Producto" value="<%=producto.nombre%>" required>
+                <div class="notificacion_error nombre_error"></div>
                 <label for="descripcion" >Descripción del producto</label>
                 <textarea class="descripcion" type="text" name="descripcion" rows="10" cols="50" placeholder="Descripcion del producto"><%=producto.descripcion%> </textarea><br>
+                <div class="notificacion_error descripcion_error"></div>
                 <label for="descuento">Precio</label>
                 <input class="precio" type="text" name="precio" placeholder="Precio" value="<%=producto.precio%>">
                 <label for="descuento">Descuento</label>
@@ -26,6 +29,7 @@
                     <img class="imagenEdit" src="/images/productos/<%=producto.imagen%>" alt="">
                 </div>
                 <input class="imagen" type="file" name="imagen" accept=".jpg, .png"></input>
+                <div class="notificacion_error imagen_error"></div>
                 <button class="editar" type="submit" value="Editar">Editar</button>
             </div>
         </form>
