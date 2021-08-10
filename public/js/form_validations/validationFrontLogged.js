@@ -8,7 +8,7 @@ window.addEventListener("load" , function () {
         validateForm(evento);
     });    
     
-    })
+})
 
 function validateForm(evento) {
     
@@ -37,7 +37,7 @@ function validateForm(evento) {
     //Si el objeto literal contiene propiedades con mensajes cancelo el envío del formulario
     if( errores.email || errores.password){
         evento.preventDefault();
-        // Capturo el div, si existe la propiedad, le asigno el mensaje, sino no hago nada
+        // Capturo el div, si existe la propiedad, le asigno la propiedad con el mensaje, sino no hago nada
         document.querySelector("div.email_errors").innerHTML = errores.email ?? ""
         document.querySelector("div.password_errors").innerHTML = errores.password ?? "";
     }        
