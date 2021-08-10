@@ -32,5 +32,7 @@ router.put('/:id/edit', uploadUsuario.single('imagen'), usersController.userUpda
 
 router.get('/logout', usersController.logout);
 
+router.get('/:id/profile', usersController.profile);
+
 //Exportando al router para que pueda ser usado por el entry point
 module.exports = router;

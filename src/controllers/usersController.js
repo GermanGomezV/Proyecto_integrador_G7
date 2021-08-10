@@ -155,7 +155,18 @@ const usersController = {
         res.clearCookie('userEmail');
         req.session.destroy();
         return res.redirect("/");
+    },
+    profile: (req, res) => {
+        db.Usuarios.findAll()
+        .then(usuarios=> {
+            return usuarios
+        })
+        db.Usuarios.findByPk(req.params.id)
+        .then(usuario =>{
+            res.render("users/profile", {usuario:usuario})
+        })
     }
+
 };
 
 //Exportando al router para que pueda ser usado por el entry point
