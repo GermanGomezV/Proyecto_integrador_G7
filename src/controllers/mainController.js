@@ -1,5 +1,6 @@
 //Requieriendo la base de datos
-let db = require('../../database/models')
+let db = require('../database/models')
+const Op = db.Sequelize.Op;
 
 //Definiendo la logica del controlador: Renderizando vistas EJS
 //El controlador está compuesto por un objeto literal que a su vez compuesto por métodos (funciones o callbacks)

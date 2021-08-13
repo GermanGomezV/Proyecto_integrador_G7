@@ -1,7 +1,7 @@
 //Requiriendo la funcionalidad fyle sinc que resuelve rutas
 const fs = require('fs');
 
-let db = require('../../database/models')
+let db = require('../database/models')
 const { Op } = require("sequelize");
 
 //Requiriendo la funcionalidad de read y write json

@@ -1,7 +1,7 @@
 //Requiriendo la funcionalidad path que resuelve rutas
 const path = require('path');
 
-let db = require('../../database/models')
+let db = require('../database/models')
 const { Op } = require("sequelize");
 
 //Requiriendo la funcionalidad fs
@@ -11,14 +11,15 @@ const fs = require('fs');
 //Requiriendo el metodo validation Result
 const { validationResult } = require('express-validator')
 
+// BORRAR
 //Requerir la funcionalidad para leer y leer/actualizar el archivo .json 
-const {readJson, writeJson, newId} = require('./helpers');
+// const {readJson, writeJson, newId} = require('./helpers');
 
 //arrays de productos por categoria
-const productos = readJson('products.json');
-const productosBebida = productos.filter (producto => producto.categoria == 'Bebida');
-const productosAsado = productos.filter (producto => producto.categoria == 'Asado');
-const productosPicada = productos.filter (producto => producto.categoria == 'Picada');
+// const productos = readJson('products.json');
+// const productosBebida = productos.filter (producto => producto.categoria == 'Bebida');
+// const productosAsado = productos.filter (producto => producto.categoria == 'Asado');
+// const productosPicada = productos.filter (producto => producto.categoria == 'Picada');
 
 //Definiendo la logica del controlador: Renderizando vistas EJS
 //El controlador está compuesto por un objeto literal que a su vez compuesto por métodos (funciones o callbacks)
@@ -26,28 +27,30 @@ const productsController = {
     
     productList : (req, res) => {
         db.Productos.findAll()
-        .then(function(producto){
-            res.render("products/productList", {producto:producto})
+        .then(producto => {
+            res.render("products/productList", {producto})
         })
     },
+    
     productCart : (req, res) => {
         res.render('products/productCart');
     },
+
     productDetail : (req, res) => {
         db.Productos.findAll()
-            .then(productos => {
-                return productos
+            .then(producto => {
+                return producto
             })
 
         db.Productos.findByPk(req.params.id)
             .then(producto => {
-                res.render('products/productDetail', {producto, productos})
+                res.render('products/productDetail', {producto})
             })
     },
     productCharge : (req, res) => {
         db.Categorias.findAll()
         .then (function(categorias){
-            return res.render('products/productCharge',{categorias:categorias});
+            return res.render('products/productCharge',{categorias});
         })
     },
     store: (req, res) => {
@@ -66,7 +69,7 @@ const productsController = {
             descripcion: req.body.descripcion,
             precio: req.body.precio,
             descuento: req.body.descuento,
-            id_categoria_FK: req.body.categoria,
+            id_categoria_FK: req.body.categoria_id,
             imagen: req.file.filename
         })
 
