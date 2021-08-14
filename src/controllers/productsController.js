@@ -78,13 +78,16 @@ const productsController = {
 
     },
     productEdit : (req, res) => {
+
+        const resultValidation = validationResult(req)
+
         //Nota: De todos los productos, vamos a editar el sumistrado como parametro de la URL
         let idProduct = req.params.id;
         db.Productos.findByPk(idProduct, {
             include: [{association: 'categorias'}]
         })
             .then(producto => {
-                res.render('products/productEdit', {producto: producto})
+                res.render('products/productEdit', {producto, resultValidation})
             })
          },
 

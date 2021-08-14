@@ -13,6 +13,7 @@ const uploadProducto = require('../middlewares/multerProducts')
 
 //Requiriendo las validaciones
 const validacionesCharge = require('../middlewares/validacionCharge')
+const validacionesEdit = require('../middlewares/validacionEdit')
 
 //Rutas (sin el prefijo definido en app.js)
 //En el mismo defino la ruta relativa, el controlador y su metodo asociado
@@ -24,7 +25,7 @@ router.get('/charge', productsController.productCharge);
 router.post('/charge', uploadProducto.single('imagen'), validacionesCharge, productsController.store);
 
 router.get('/:id/edit', productsController.productEdit);
-router.put('/:id/edit', uploadProducto.single('imagen'), productsController.productUpdate);
+router.put('/:id/edit', uploadProducto.single('imagen'), validacionesEdit, productsController.productUpdate);
 
 router.post('/:id/delete', productsController.delete);
 

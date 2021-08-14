@@ -6,7 +6,6 @@
     <%- include('../partials/header') %>
     <main>
         <form method="POST" action="/products/<%=producto.id_producto%>/edit?_method=PUT" enctype="multipart/form-data" class="formChargeEdit">
-            
             <div class=ingresoManual>
                 <p class="ingresa-cuenta">Actualizá el producto</p><br>
                 <input type="hidden" name="id" value="<%=producto.id_producto.id%>">  
