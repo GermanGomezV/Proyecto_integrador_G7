@@ -37,7 +37,7 @@ function validateForm(evento) {
     // Deberá ser un archivo válido (JPEG, JPG, PNG, GIF)
     const expresionImagen = /\.(jpe?g|png|gif)$/i // Expresión regular de imagen
     let campoImagen = document.querySelector("input.imagen");
-    if (!expresionImagen.test(campoImagen.value)) {
+    if (expresionImagen.test(campoImagen.value)) {
         errores.imagen = "La imagen debe contener extensión JPEG, JPG, PNG o GIF";
     }
     

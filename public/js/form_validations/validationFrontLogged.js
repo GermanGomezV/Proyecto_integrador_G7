@@ -23,7 +23,7 @@ function validateForm(evento) {
         errores.email = "El email debe completarse"; // Creo en el objeto literal errores la propiedad email con este mensaje
     }
     // Valido
-    else if (!expressionEmail.test(campoEmail.value)) {
+    else if (expressionEmail.test(campoEmail.value)) {
         errores.email = "El campo debe contener un formato de email"; // o bien creo en el objeto literal errores la propiedad email con este mensaje
     }
     

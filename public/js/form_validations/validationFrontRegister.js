@@ -38,14 +38,14 @@ function validateForm(evento) {
     }
 
     // Verificando el email
-    const expressionEmail = /^\S+@\S+\.\S+$/;
+    const expressionEmail = /\S+@\S+\.\S+/;
     let campoEmail = document.querySelector("input.email");
     // Obligatorio
     if(campoEmail.value == ""){
         errores.email = "El email debe completarse";
     }
     // Valido
-    else if (!expressionEmail.test(campoEmail)) {
+    else if (expressionEmail.test(campoEmail)) {
         errores.email = "El email debe contener un formato de email";
     }
     
@@ -57,7 +57,7 @@ function validateForm(evento) {
         errores.contrasena =  "La contraseña debe completarse";
     }
     // 8 caracteres min y que contenga mayúsculas, minúsculas, un numero y un caracter especial
-    else if (!expresionContrasena.test(campoContrasena.value)) {
+    else if (expresionContrasena.test(campoContrasena.value)) {
         errores.contrasena = "La contraseña deberá tener al menos 8 caracteres, letras mayúsculas y minúsculas, un número y un carácter especial";
     }
 
