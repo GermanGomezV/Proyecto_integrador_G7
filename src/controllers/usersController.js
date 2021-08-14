@@ -1,11 +1,12 @@
 //Requiriendo la funcionalidad fyle sinc que resuelve rutas
 const fs = require('fs');
 
+//Requieriendo la base de datos
 let db = require('../database/models')
 const { Op } = require("sequelize");
 
 //Requiriendo la funcionalidad de read y write json
-const {readJson, writeJson, newId} = require('./helpers');
+//const {readJson, writeJson, newId} = require('./helpers');
 
 //Requiriendo bcryptjs
 const bcrypt = require('bcryptjs');
@@ -14,7 +15,7 @@ const bcrypt = require('bcryptjs');
 const { validationResult } = require('express-validator');
 
 //Requiriendo el modelo User
-const User = require('../models/Users');
+//const User = require('../models/Users');
 const { parse } = require('path');
 
 //Definiendo la logica del controlador: Renderizando vistas EJS

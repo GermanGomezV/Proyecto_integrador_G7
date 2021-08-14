@@ -674,6 +674,39 @@ background-color: rgb(252, 252, 252);
         transition: 0.4s;
 }
 
+a .editar{
+    margin-left: 150px;
+}
+
+a .editar_res_ayuda{
+    width: 130px;
+    margin-top: 30px;
+    display: inline-block;
+    font-size: 15px;
+    padding: 1px 15px;
+    line-height: 30px;
+    border: none;
+    border-radius: 10px;
+    height: 40px;
+    color: #fff;
+    text-align: center;
+    text-decoration: none ;
+    cursor: pointer;
+}
+
+.editar_res_ayuda{
+    background-color: #838282;
+    transition: 0.4s;
+}
+
+a .editar_res_ayuda{
+margin-left: 150px;
+}
+
+a .editar_res_ayuda{
+    margin-left: 550px;
+}
+
 .editar:hover{
         background-color: #5f5f5f;
 }
@@ -983,6 +1016,23 @@ background-color: rgb(252, 252, 252);
 .titulo-total, .titulo-subtotal, .titulo-descuento{
     color:#4e4e4eef;
 }
+
+/*************************************************************
+**************************************************************
+****************  A   Y   U   D   A   ************************
+**************************************************************
+**************************************************************/
+
+.contenedor_res_ayuda{
+    height: 300px;
+}
+
+.mensaje_res_ayuda{
+    text-align: center;
+    color: #4e4e4eef;
+    padding-top: 150px;
+}
+
 
 /*------- MEDIA QUERYS -------*/
 /*------- DISEÑO TABLET -------*/

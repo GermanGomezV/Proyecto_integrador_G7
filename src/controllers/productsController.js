@@ -1,6 +1,7 @@
 //Requiriendo la funcionalidad path que resuelve rutas
 const path = require('path');
 
+//Requieriendo la base de datos
 let db = require('../database/models')
 const { Op } = require("sequelize");
 

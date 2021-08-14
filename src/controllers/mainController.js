@@ -13,7 +13,10 @@ const mainController = {
     },
     ayuda: (req, res) => {
         return res.render('main/ayuda')
-    }
+    },
+    res_ayuda: (req, res) => {
+        return res.render('main/res_ayuda')
+    },
 };
 
 //Exportando al router para que pueda ser usado por el entry point
