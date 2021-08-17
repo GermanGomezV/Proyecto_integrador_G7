@@ -1,7 +1,3 @@
-//Requiriendo de login y logout
-const guestMiddleware = require ('../middlewares/guestMiddleware');
-const authMiddleware = require ('../middlewares/authMiddleware');
-
 //Requiriendo express para obtener sus funcionalidades
 const express = require('express');
 
@@ -14,15 +10,19 @@ const usersController = require('../controllers/usersController')
 //Requiriendo Multer para enviar archivos desde un formulario
 const uploadUsuario = require ('../middlewares/multerUsers');
 
+//Requiriendo de login y logout
+const guestMiddleware = require ('../middlewares/guestMiddleware');
+const authMiddleware = require ('../middlewares/authMiddleware');
+
 //Requiriendo las validaciones
-const validacionesRegister = require('../middlewares/validacionRegister');
+const validacionRegister = require ('../middlewares/validacionRegister');
 
 //Rutas (sin el prefijo definido en app.js)
 
 router.get('/logout', usersController.logout);
 
 router.get('/register', guestMiddleware, usersController.register);// add
-router.post('/register', validacionesRegister, usersController.processRegister);// create
+router.post('/register', validacionRegister, usersController.processRegister);// create
 
 router.get('/login', guestMiddleware, usersController.login);
 router.post('/login', usersController.loginProcess);

@@ -5,7 +5,7 @@ const path = require('path');
 const { body } = require('express-validator');
 
 //Creo el array con las validaciones
-let validaciones = [
+let validacionRegister = [
     body('nombre').notEmpty().withMessage('Tienes que escribir tu nombre'),
     body('apellido').notEmpty().withMessage('Tienes que escribir tu apellido'),
     body('email').notEmpty().withMessage('Tienes que escribir tu correo electronico').bail()
@@ -21,4 +21,4 @@ let validaciones = [
     })
 ];
 
-module.exports = validaciones;
+module.exports = validacionRegister;
