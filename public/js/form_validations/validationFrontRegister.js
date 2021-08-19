@@ -38,16 +38,19 @@ function validateForm(evento) {
     }
 
     // Verificando el email
-    //Expresión regular de emails
-    const expressionEmail = /\S+@\S+\.\S+/;
     let campoEmail = document.querySelector("input.email");
     // Obligatorio
     if(campoEmail.value == ""){
         errores.email = "El email debe completarse";
     }
-    // Valido
-    else if (expressionEmail.test(campoEmail)) {
-        errores.email = "El email debe contener un formato de email";
+    else {
+        // Valido
+        //Expresión regular de emails
+        expressionEmail = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+        if (expressionEmail.test("input.email")) {
+        } else {
+            errores.email = "El email debe contener un formato de email";
+        }
     }
     
     // Verificando la contraseña 1

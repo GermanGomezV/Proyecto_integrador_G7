@@ -17,17 +17,20 @@ function validateForm(evento) {
     
     // Verificando el email
     let campoEmail = document.querySelector("input.email");
-    //Expresión regular de emails
-    const expressionEmail = /\S+@\S+\.\S+/;
     // Obligatorio
     if(campoEmail.value == ""){
-        errores.email = "El email debe completarse"; // Creo en el objeto literal errores la propiedad email con este mensaje
+        errores.email = "El email debe completarse";
     }
-    // Valido
-    else if (expressionEmail.test(campoEmail)) {
-        errores.email = "El campo debe contener un formato de email"; // o bien creo en el objeto literal errores la propiedad email con este mensaje
+    else {
+        // Valido
+        //Expresión regular de emails
+        expressionEmail = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+        if (expressionEmail.test("input.email")) {
+        } else {
+            errores.email = "El email debe contener un formato de email";
+        }
     }
-    
+
     // Verificando la contraseña
     // Obligatoria
     let campoContraseña = document.querySelector("input.password");
