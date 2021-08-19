@@ -1,6 +1,10 @@
 //Requiriendo la funcionalidad path que resuelve rutas
 const path = require('path');
 
+//Requieriendo la base de datos
+let db = require('../database/models')
+const { Op } = require("sequelize");
+
 //Requiriendo la funcionalidad fs
 //fs convierte un objeto literal (el cual puede ser obtenido de un formulario) en un archivo JSON
 const fs = require('fs');
@@ -8,40 +12,47 @@ const fs = require('fs');
 //Requiriendo el metodo validation Result
 const { validationResult } = require('express-validator')
 
+// BORRAR
 //Requerir la funcionalidad para leer y leer/actualizar el archivo .json 
-const {readJson, writeJson, newId} = require('./helpers');
+// const {readJson, writeJson, newId} = require('./helpers');
 
 //arrays de productos por categoria
-const productos = readJson('products.json');
-const productosBebida = productos.filter (producto => producto.categoria == 'Bebida');
-const productosAsado = productos.filter (producto => producto.categoria == 'Asado');
-const productosPicada = productos.filter (producto => producto.categoria == 'Picada');
+// const productos = readJson('products.json');
+// const productosBebida = productos.filter (producto => producto.categoria == 'Bebida');
+// const productosAsado = productos.filter (producto => producto.categoria == 'Asado');
+// const productosPicada = productos.filter (producto => producto.categoria == 'Picada');
 
 //Definiendo la logica del controlador: Renderizando vistas EJS
 //El controlador está compuesto por un objeto literal que a su vez compuesto por métodos (funciones o callbacks)
 const productsController = {
+    
     productList : (req, res) => {
-        res.render('products/productlist',{
-        productosBebida,
-        productosAsado,
-        productosPicada
-        });
+        db.Productos.findAll()
+        .then(producto => {
+            res.render("products/productList", {producto})
+        })
     },
+    
     productCart : (req, res) => {
         res.render('products/productCart');
     },
-    productDetail : (req, res) => {
-        let idProduct = req.params.id;
-        let archivoProductos = readJson('products.json');
 
-        let idProductDetail = archivoProductos.filter ( (product) => { 
-            return product.id == idProduct
-        });
-        
-        res.render('products/productDetail', { idProductDetail: idProductDetail, archivoProductos : archivoProductos });
+    productDetail : (req, res) => {
+        db.Productos.findAll()
+            .then(producto => {
+                return producto
+            })
+
+        db.Productos.findByPk(req.params.id)
+            .then(producto => {
+                res.render('products/productDetail', {producto})
+            })
     },
     productCharge : (req, res) => {
-        res.render('products/productCharge');
+        db.Categorias.findAll()
+        .then (function(categorias){
+            return res.render('products/productCharge',{categorias});
+        })
     },
     store: (req, res) => {
 
@@ -54,109 +65,99 @@ const productsController = {
             });
         };
 
-        if(req.file) {
-            let archivoProductos = readJson('products.json');
-    
-            let producto = {
-                id : newId('products.json'),
-                nombre: req.body.nombre,
-                descripcion: req.body.descripcion,
-                precio: req.body.precio,
-                descuento: parseInt(req.body.descuento),
-                categoria: req.body.categoria,
-                imagen: req.file.filename
-                // origen: req.body.origin,
-                // volumen: req.body.volumen,
-                // marca: req.body.marca,
-            };
-            archivoProductos.push(producto);
-            writeJson('products.json', archivoProductos);
-    
-            return res.redirect('/');
-        }else{
-            res.render('products/productCharge');
-        }
+        db.Productos.create({
+            nombre: req.body.nombre,
+            descripcion: req.body.descripcion,
+            precio: req.body.precio,
+            descuento: req.body.descuento,
+            id_categoria_FK: req.body.categoria_id,
+            imagen: req.file.filename
+        })
+
+        return res.redirect('/');
+
     },
     productEdit : (req, res) => {
+
+        const resultValidation = validationResult(req)
+
         //Nota: De todos los productos, vamos a editar el sumistrado como parametro de la URL
         let idProduct = req.params.id;
+        db.Productos.findByPk(idProduct, {
+            include: [{association: 'categorias'}]
+        })
+            .then(producto => {
+                res.render('products/productEdit', {producto, resultValidation})
+            })
+         },
 
-        //Nota: El archivo products.json ya fue leido gracias al helper 
-        let archivoProductos = readJson('products.json');
-        
-        //Crear una variable que filtre y luego envío está variable a la vista
-        let idProductToEdit = archivoProductos.filter ( (product) => { 
-            return product.id == idProduct
-        });
-
-        res.render('products/productEdit',
-        {idProductToEdit: idProductToEdit });
-    
-    },
     productUpdate : (req, res) => {
         let idProduct = req.params.id;
-        let archivoProductos = readJson('products.json');
-
         if(req.file) {
-            let producto = {
-                id : parseInt(req.body.id),
+            db.Productos.update({
                 nombre: req.body.nombre,
                 descripcion: req.body.descripcion,
                 precio: req.body.precio,
                 descuento: parseInt(req.body.descuento),
-                categoria: req.body.categoria,
                 imagen: req.file.filename,
-                origen: req.body.origin,
-                volumen: req.body.volumen,
-                marca: req.body.marca,
-            }
-            
-            for(i in archivoProductos ){
-                if(archivoProductos[i].id == idProduct){
-                    archivoProductos.splice(i,1)
+                id_categoria_FK: req.body.categoria_id
+            },
+            {
+                where: {
+                    id_producto: idProduct
                 }
-            }
-
-            archivoProductos.push(producto);
-            writeJson('products.json', archivoProductos);
-    
-            return res.redirect('/');
+            },
+            {
+                include: [{association:'categorias'}]
+            })
+              return res.redirect('/');
         }else{
-            let imagen;
-
-            for(i in archivoProductos ){
-                if(archivoProductos[i].id == idProduct){
-                    imagen = archivoProductos[i].imagen
-                    archivoProductos.splice(i,1)
-                }
-            }
-
-            let producto = {
-                id : parseInt(req.body.id),
+            db.Productos.update({
                 nombre: req.body.nombre,
                 descripcion: req.body.descripcion,
                 precio: req.body.precio,
                 descuento: parseInt(req.body.descuento),
-                categoria: req.body.categoria,
-                imagen: imagen,
-                origen: req.body.origin,
-                volumen: req.body.volumen,
-                marca: req.body.marca,
-            };
-            
-            archivoProductos.push(producto);
-            writeJson('products.json', archivoProductos);
-    
-            return res.redirect('/');
-           
+                id_categoria_FK: req.body.categoria_id
+            },
+            {
+                where: {
+                    id_producto: idProduct
+                }
+            },
+            {
+                include: [{association:'categorias'}]
+            })
+            return res.redirect('/');          
         }
         
     },
-    destroy : (req, res) => {
-		let nuevaBase = productos.filter (producto => producto.id != req.params.id);
-		writeJson ('products.json', nuevaBase)
-		res.redirect('/');
-	}
+    delete : (req, res) => {
+        db.Productos.destroy({
+            where : {
+                id_producto : req.params.id
+            }
+        })
+        res.redirect('/');
+    },
+    search : (req, res) => {
+
+        db.Productos.findAll()
+        .then(productos => {
+            return productos
+        })
+
+        db.Productos.findAll({
+            where : {
+                nombre : {
+                    [Op.like] : `%${req.body.busqueda}%`
+                }
+            }
+        })
+        .then((producto) => {
+            res.render("products/productList", {producto, productos})
+        })
+    },
+
 };
 
 //Exportando al controlador para que pueda ser usado por la ruta.

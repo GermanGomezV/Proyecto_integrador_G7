@@ -14,6 +14,9 @@
                 <div class=ingresoManual>
                     <input type="hidden" name="id" value="<%=usuario.id_usuario%>">
                     <label for="imagen">Modificar imagen</label>
+
+                    <p>Nombre</p>
+                    <p><%= usuario.nombre %></p>
                     <input class="imagen" type="file" name="imagen" acept=".jpg, .png">
                     <label for="nombre">Nombre</label>
                     <input class="nombre" type="text" name="nombre" value="<%= usuario.nombre %>">
@@ -21,11 +24,7 @@
                     <input class="nombre" type="text" name="apellido" value="<%= usuario.apellido %>">
                     <label for="email">Email</label>
                     <input class="email" type="text" name="email" value="<%= usuario.correo %>">
-                    <label for="password">Contraseña</label>
-                    <input class="password" type="password" name="password" placeholder="Ingresa tu contraseña">
-                    <label for="password2">Contraseña</label>
-                    <input class="password2" type="password" name="password2" placeholder="Repetí tu contraseña">
-                    <label for="direccion">Escribi tu dirección de envio</label>
+                    <label for="direccion">Dirección de envio</label>
                     <input class="nombre" type="text" name="direccion" value="<%= usuario.direccion %>">
                     <label for="telefono">Teléfono de contacto</label>
                     <input class="nombre" type="text" name="telefono" value="<%= usuario.telefono %>">

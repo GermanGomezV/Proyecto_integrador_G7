@@ -6,8 +6,7 @@
     <a class="link-logo2" href="/"><img class="logo2" src="/images/logos/logo2.png" alt="All Meet"></a>
     <nav class="nav">
         <ul class="menu1">
-            <li class="lista-nav"><a class="btn-nav" href="#">Ofertas</a></li>
-            <li class="lista-nav"><a class="btn-nav" href="#">Ayuda</a></li>
+            <li class="lista-nav"><a class="btn-nav" href="/ayuda">Ayuda</a></li>
         </ul>
     </nav>
     <div class="user">  
@@ -26,7 +25,8 @@
         Hola Bienvenido, <br><span class="frase">¿te ayudamos a cortar la semana?</span>
     </p>
 
-    <div class="barra">
+    <form class="barra" action="/products/productList" method="POST">
         <input class="busqueda" type="search" name="busqueda" placeholder="Buscá acá tu producto"><i class="fas lupa fa-search"></i></input>
-    </div>
+    </form>
+
 </header>

@@ -20,8 +20,12 @@ main article div.caja-foto img.foto{
 main article div.caja1{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     margin: 10px 5px;
+}
+
+main article div.caja1 .pago{
+    margin-right: 150px;
 }
 
 main article div.caja1 div.pago p.precio{
@@ -53,10 +57,11 @@ main article div.caja1 div.valoracion p{
 main article div.compra{
     width: 100%;
     margin: 10px auto;
+    text-align: center;
 }
         
 main article div.compra button{
-    width: 100%;
+    width: 40%;
     border: 1px solid #666;
     border-radius: 10px;
     padding: 10px;  
@@ -70,6 +75,12 @@ main article div.detalleProducto{
     border-radius: 15px;
     padding: 10px 15px;
     background-color: #f6f6f6 ;
+    width: 40%;
+}
+
+main article div.detalleProducto p{
+    font-size: 16px;
+    text-align: center;
 }
 
 main article div.recomendaciones{

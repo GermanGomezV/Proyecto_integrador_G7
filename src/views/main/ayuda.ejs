@@ -1,0 +1,52 @@
+<html lang="en">
+  <%- include('../partials/head') %>
+  <body>
+    <!-- header -->
+    <%- include('../partials/header') %>
+    <main>
+      <!--div class="erroresFront">
+            <ul></ul>
+        </div-->
+      <form action="/res_ayuda" method="GET" class="formRegister">
+        <div class="ingresoManual">
+          <p class="ingresa-cuenta">Dejanos tu mensaje</p>
+          <br />
+          <label for="nombre">Nombre</label>
+          <input
+            class="nombre"
+            type="text"
+            placeholder="Ingresá tu nombre"
+            name="nombre"
+          />
+
+          <label for="apellido">Apellido</label>
+          <input
+            class="apellido"
+            type="text"
+            placeholder="Ingresá tu apellido"
+            name="apellido"
+          />
+
+          <label for="email">Correo</label>
+          <input
+            class="email"
+            type="email"
+            placeholder="Ingresá tu e-mail"
+            name="email"
+          />
+
+          <label for="descripcion">Escribí tu mensaje</label>
+          <textarea class="descripcion" type="text" name="descripcion">
+          </textarea>
+
+          <a href="/res_ayuda">
+            <button class="editar" href="" type="submit" value="Editar">
+              Enviar
+            </button>
+          </a>
+        </div>
+        <%- include('../partials/footer') %>
+      </form>
+    </main>
+  </body>
+</html>

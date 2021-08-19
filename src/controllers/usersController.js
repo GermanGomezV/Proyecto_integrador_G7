@@ -1,8 +1,12 @@
 //Requiriendo la funcionalidad fyle sinc que resuelve rutas
 const fs = require('fs');
 
+//Requieriendo la base de datos
+let db = require('../database/models')
+const { Op } = require("sequelize");
+
 //Requiriendo la funcionalidad de read y write json
-const {readJson, writeJson, newId} = require('./helpers');
+//const {readJson, writeJson, newId} = require('./helpers');
 
 //Requiriendo bcryptjs
 const bcrypt = require('bcryptjs');
@@ -11,19 +15,19 @@ const bcrypt = require('bcryptjs');
 const { validationResult } = require('express-validator');
 
 //Requiriendo el modelo User
-const User = require('../models/Users')
+//const User = require('../models/Users');
+const { parse } = require('path');
 
 //Definiendo la logica del controlador: Renderizando vistas EJS
 //El controlador está compuesto por un objeto literal que a su vez compuesto por métodos (funciones o callbacks)
 const usersController = {
+    //add
     register : (req, res) => {
         res.render('users/register');
     },
     login : (req, res) => {
         res.render('users/login');
     },
-
-    //Antes se llamaba create
     processRegister : (req, res) => {
         const resultValidation = validationResult(req);
 
@@ -34,160 +38,117 @@ const usersController = {
             });
         };
 
-        let userInDb = User.findByField('email', req.body.email)
+        db.Usuarios.findAll({
+            where : {
+                correo : {
+                    [Op.like] : `%${req.body.email}%`
+                }
+            }
+        })
+        .then(usuario => {
+            if(usuario){
+                return res.render('users/register', {
+                    errors: {
+                        email : {
+                            msg : 'Este email ya esta registrado'
+                        }
+                    },
+                    oldData: req.body
+                });
+            };
+        })
 
-        if(userInDb){
-            return res.render('users/register', {
-                errors: {
-                    email : {
-                        msg : 'Este email ya esta registrado'
-                    }
-                },
-                oldData: req.body
-            });
-        };
-
-        let usuario = {
-            id : newId('users.json'),
+        db.Usuarios.create({
             nombre: req.body.nombre,
-            email: req.body.email,
-            password: bcrypt.hashSync(req.body.password, 10),
-            imagen: "",
-            direccion: "",
-            telefono: "",
-            nacimiento: ""
-        };
-
-        User.create(usuario);
+            apellido:req.body.apellido,
+            correo: req.body.email,
+            contrasena: bcrypt.hashSync(req.body.password, 10),
+            imagen: "default.jpg"
+        })
 
         return res.redirect('/');
-        
-    },
-
-    //Eliminar esto??? No esta en los controladores
-    store : (req, res) => {
-        if(req.file){
-            let archivosUsusarios = readJson('users.json');
-            let usuario = {
-                id : newId('users.json'),
-                imagen: req.file.filename,
-                nombre: req.body.nombre,
-                email: req.body.email,
-                password: bcrypt.hashSync(req.body.password, 10),
-                direccion : req.body.direccion,
-                telefono : req.body.telefono,
-                nacimiento : req.body.nacimiento
-            };
-            archivosUsusarios.push(usuario);
-            writeJson('users.json', archivosUsusarios);
-            return res.redirect('/')
-        }else{
-            res.render('users/edit')
-        }
     },
     userEdit : (req, res) => {
-        
-        //Nota: De todos los usuarios, vamos a editar el sumistrado como parametro de la URL
-        let idUsuario = req.params.id
-
-        //Nota: El archivo users.json ya fue leido gracias al helper 
-        let archivoUsuarios = readJson('users.json');
-        
-        //Crear una variable que filtre y luego envío está variable a la vista
-        let idUsuarioToEdit = archivoUsuarios.filter( (usuario) => { 
-            return usuario.id == idUsuario
-        });
-        res.render('users/edit',
-        { idUsuarioToEdit });
-
-    },
-
+        let idUser = req.params.id;
+        db.Usuarios.findByPk(idUser)
+            .then(usuario => {
+                res.render('users/edit', {usuario: usuario})
+            })
+         },
     userUpdate : (req, res) => {
         let idUser = req.params.id;
-        let archivoUsuarios = readJson('users.json');
-
         if(req.file) {
-            let usuario = {
-                id : parseInt(req.body.id),
+            db.Usuarios.update({
+                nombre: req.body.nombre,
+                apellido: req.body.apellido,
+                telefono: req.body.telefono,
+                direccion: req.body.direccion,
+                correo: req.body.email,
+                fechaNacimiento: req.body.nacimiento,
+                contrasena: bcrypt.hashSync(req.body.password, 10),
                 imagen: req.file.filename,
-                nombre: req.body.nombre,
-                email: req.body.email,
-                password: bcrypt.hashSync(req.body.password, 10),
-                direccion : req.body.direccion,
-                telefono : req.body.telefono,
-                nacimiento : req.body.nacimiento
-            }
-            
-            for(i in archivoUsuarios ){
-                if(archivoUsuarios[i].id == idUser){
-                    archivoUsuarios.splice(i,1)
+            },
+            {
+                where: {
+                    id_usuario: idUser
                 }
-            }
-
-            archivoUsuarios.push(usuario);
-            writeJson('users.json', archivoUsuarios);
-    
-            return res.redirect('/');
+            })
+              return res.redirect('/');
         }else{
-            let imagen;
-
-            for(i in archivoUsuarios ){
-                if(archivoUsuarios[i].id == idUser){
-                    imagen = archivoUsuarios[i].imagen
-                    archivoUsuarios.splice(i,1)
-                }
-            }
-
-            let usuario = {
-                id : parseInt(req.body.id),
-                imagen: imagen,
+            db.Usuarios.update({
                 nombre: req.body.nombre,
-                email: req.body.email,
-                password: bcrypt.hashSync(req.body.password, 10),
-                direccion : req.body.direccion,
-                telefono : req.body.telefono,
-                nacimiento : req.body.nacimiento
-            }
-            
-            archivoUsuarios.push(usuario);
-            writeJson('users.json', archivoUsuarios);
-    
-            return res.redirect('/');
-           
-        }
-        
+                apellido: req.body.apellido,
+                telefono: req.body.telefono,
+                direccion: req.body.direccion,
+                correo: req.body.email,
+                fechaNacimiento: req.body.nacimiento,
+                contrasena: bcrypt.hashSync(req.body.password, 10)
+            },
+            {
+                where: {
+                    id_usuario: idUser
+                }
+            })
+            return res.redirect('/');          
+        }        
     },
-
     loginProcess : (req, res) => {
-        let userToLogin = User.findByField('email', req.body.email);
-
-        if(userToLogin){
-            let correctPassword = bcrypt.compareSync(req.body.password, userToLogin.password);
-            if(correctPassword){
-                delete correctPassword.password;
-                req.session.userLogged = userToLogin;
-                
-                if(req.body.recordarUsuario){
-                    res.cookie('userEmail', req.body.email, {maxAge : (1000 * 60) * 60})
+        db.Usuarios.findOne({
+            where : {
+                correo : {
+                    [Op.like] : `%${req.body.email}%`
                 }
-
-                return res.redirect('/')
-            };
-            return res.render('users/login', {
-                errors: {
-                    password : {
-                        msg : 'Usuario o contraseña incorrectos'
+            }
+        })
+        .then(usuario => {
+            if(usuario){
+                let correctPassword = bcrypt.compareSync(req.body.password, usuario.contrasena);
+                if(correctPassword){
+                    delete correctPassword.password;
+                    req.session.userLogged = usuario;
+                    
+                    if(req.body.recordarUsuario){
+                        res.cookie('userEmail', req.body.email, {maxAge : (1000 * 60) * 60})
                     }
-                },
-                oldData: req.body
-            });
-        };
-
-        return res.render('users/login', {
-            errors: {
-                email : {
-                    msg : 'No se encuentra este email en nuestra base de datos'
-                }
+    
+                    return res.redirect('/')
+                };
+                return res.render('users/login', {
+                    errors: {
+                        password : {
+                            msg : 'Usuario o contraseña incorrectos'
+                        }
+                    },
+                    oldData: req.body
+                });
+            }else{
+                return res.render('users/login', {
+                    errors: {
+                        email : {
+                            msg : 'No se encuentra este email en nuestra base de datos'
+                        }
+                    }
+                })
             }
         })
     },
@@ -195,7 +156,18 @@ const usersController = {
         res.clearCookie('userEmail');
         req.session.destroy();
         return res.redirect("/");
+    },
+    profile: (req, res) => {
+        db.Usuarios.findAll()
+        .then(usuarios=> {
+            return usuarios
+        })
+        db.Usuarios.findByPk(req.params.id)
+        .then(usuario =>{
+            res.render("users/profile", {usuario:usuario})
+        })
     }
+
 };
 
 //Exportando al router para que pueda ser usado por el entry point

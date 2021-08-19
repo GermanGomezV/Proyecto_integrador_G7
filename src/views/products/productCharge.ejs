@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
     <%- include('../partials/head') %>
+    <script type="text/javascript" src="/js/form_validations/validationFrontChargeEdit.js"></script>
 <body>
     <%- include('../partials/header') %>
     <main>
-        <form action="/products/charge" method="POST" enctype="multipart/form-data" class="formCharge">
+        <form action="/products/charge" method="POST" enctype="multipart/form-data" class="formChargeEdit">
             <div class=ingresoManual>
                 <p class="ingresa-cuenta">Cargá un nuevo producto</p><br>
                 <label for="nombre">Nombre de producto</label>
                 <input class="nombre" type="text" name="nombre" placeholder="Nombre del Producto" value="<%= locals.oldData ? oldData.nombre : null %>">
+                <div class="notificacion_error nombre_error"></div>
                 <% if (locals.errors && errors.nombre) { %>
                     <div class="notificacion_error">
                         <%= errors.nombre.msg %> 
@@ -16,13 +18,14 @@
                 <% } %>
                 <label for="descripcion" >Descripción del producto</label>
                 <textarea class="descripcion" type="text" name="descripcion" rows="10" cols="50" placeholder="Descripcion del producto" value="<%= locals.oldData ? oldData.descripcion : null %>"></textarea><br>
+                <div class="notificacion_error descripcion_error"></div>
                 <% if (locals.errors && errors.descripcion) { %>
                     <div class="notificacion_error">
                         <%= errors.descripcion.msg %> 
                     </div>
                 <% } %>
-                <label for="´precio">Precio</label>
-                <input class="precio" type="text" name="precio" placeholder="Precio" value="<%= locals.oldData ? oldData.precio : null %>"> 
+                <label for="precio">Precio</label>
+                <input class="precio" type="text" name="precio" placeholder="Precio" value="<%= locals.oldData ? oldData.precio : null %>">
                 <% if (locals.errors && errors.precio) { %>
                     <div class="notificacion_error">
                         <%= errors.precio.msg %> 
@@ -36,10 +39,10 @@
                     </div>
                 <% } %>
                 <label for="categoria">Categoría</label>
-                <select class="categoria" name="categoria" value="<%= locals.oldData ? oldData.categoria : null %>">
-                    <option>Comida</option>
-                    <option>Bebida</option>
-                    <option>Otros</option>
+                <select class="categoria" name="categoria">
+                    <option value="0">Seleccione una categoria</option>
+                    <option value="1" <%= locals.old && old.categoria === 1 ? 'selected' : ''; %>>Bebidas</option>
+                    <option value="2" <%= locals.old && old.categoria === 2 ? 'selected' : ''; %>>Comidas</option>
                 </select>
                 <% if (locals.errors && errors.categoria) { %>
                     <div class="notificacion_error">
@@ -49,6 +52,7 @@
                 <label for="imagen">Imagen</label>
                 <span class="aclaracion-imagen">(La imagen debe ser de 1000 x 1000 píxeles y fondo blanco)</span>
                 <input class="imagen" type="file" name="imagen" accept=".jpg, .png">
+                <div class="notificacion_error imagen_error"></div>
                 <% if (locals.errors && errors.imagen) { %>
                     <div class="notificacion_error">
                         <%= errors.imagen.msg %> 

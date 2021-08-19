@@ -1,35 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
     <%- include('../partials/head') %>
+    <script type="text/javascript" src="/js/form_validations/validationFrontChargeEdit.js"></script>
 <body>
     <%- include('../partials/header') %>
     <main>
-        <form method="POST" action="/products/<%=idProductToEdit[0].id%>/edit?_method=PUT" enctype="multipart/form-data" class="formEdit">
-            
+        <form method="POST" action="/products/<%=producto.id_producto%>/edit?_method=PUT" enctype="multipart/form-data" class="formChargeEdit">
             <div class=ingresoManual>
                 <p class="ingresa-cuenta">Actualizá el producto</p><br>
-                <input type="hidden" name="id" value="<%=idProductToEdit[0].id%>">  
+                <input type="hidden" name="id" value="<%=producto.id_producto.id%>">  
                 <label for="nombre">Nombre de producto</label>
-                <input class="nombre" type="text" name="nombre" placeholder="Nombre del Producto" value="<%=idProductToEdit[0].nombre%>" required>
+                <input class="nombre" type="text" name="nombre" placeholder="Nombre del Producto" value="<%=producto.nombre%>" required>
+                <div class="notificacion_error nombre_error"></div>
                 <label for="descripcion" >Descripción del producto</label>
-                <textarea class="descripcion" type="text" name="descripcion" rows="10" cols="50" placeholder="Descripcion del producto"><%=idProductToEdit[0].descripcion%> </textarea><br>
+                <textarea class="descripcion" type="text" name="descripcion" rows="10" cols="50" placeholder="Descripcion del producto"><%=producto.descripcion%> </textarea><br>
+                <div class="notificacion_error descripcion_error"></div>
                 <label for="descuento">Precio</label>
-                <input class="precio" type="text" name="precio" placeholder="Precio" value="<%=idProductToEdit[0].precio%>">
+                <input class="precio" type="text" name="precio" placeholder="Precio" value="<%=producto.precio%>">
                 <label for="descuento">Descuento</label>
-                <input class="descuento" type="text" name="descuento" placeholder="Descuento" value="<%=idProductToEdit[0].descuento%>" > 
+                <input class="descuento" type="text" name="descuento" placeholder="Descuento" value="<%=producto.descuento%>" > 
                 <label for="categoria">Categoría</label>
-                <input class="categoria" type="text" name="categoria" placeholder="categoria" value="<%=idProductToEdit[0].categoria%>" > 
+                <input type="hidden" name="categoria_id" value="<%=producto.categorias.id_categoria%>">  
+                <input class="categoria" type="text" name="categoria" placeholder="categoria" value="<%=producto.categorias.nombre%>" > 
                 <label for="imagen">Imagen</label>
                 <span class="aclaracion-imagen">(La imagen debe ser de 1000 x 1000 píxeles y fondo blanco)</span>
                 <div class="imagen-edit">
-                    <img class="imagenEdit" src="/images/productos/<%=idProductToEdit[0].imagen%>" alt="">
+                    <img class="imagenEdit" src="/images/productos/<%=producto.imagen%>" alt="">
                 </div>
                 <input class="imagen" type="file" name="imagen" accept=".jpg, .png"></input>
+                <div class="notificacion_error imagen_error"></div>
                 <button class="editar" type="submit" value="Editar">Editar</button>
             </div>
         </form>
         
-            <form action="/products/<%= idProductToEdit[0].id %>/delete" method="POST" >
+            <form action="/products/<%= producto.id_producto %>/delete" method="POST" >
                 
                 <div class=ingresoManual>
                     <p class="ingresa-cuenta">Eliminá el producto</p><br>

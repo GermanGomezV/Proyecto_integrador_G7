@@ -9,6 +9,9 @@ const mainController = require('../controllers/mainController');
 
 //Rutas (sin el prefijo definido en app.js)
 router.get('/', mainController.inicio);
+router.get('/ayuda', mainController.ayuda);
+router.get('/res_ayuda', mainController.res_ayuda);
+
 
 //Exportando al router para que pueda ser usado por el entry point
 module.exports = router;

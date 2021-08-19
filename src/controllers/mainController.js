@@ -1,17 +1,22 @@
-//Requiriendo la funcionalidad fs
-//fs convierte un objeto literal (el cual puede ser obtenido de un formulario) en un archivo JSON
-const fs = require('fs');
-
-//Requerir la funcionalidad para leer y leer/actualizar el archivo .json 
-const {readJson, writeJson} = require('./helpers');
+//Requieriendo la base de datos
+let db = require('../database/models')
+const Op = db.Sequelize.Op;
 
 //Definiendo la logica del controlador: Renderizando vistas EJS
 //El controlador está compuesto por un objeto literal que a su vez compuesto por métodos (funciones o callbacks)
 const mainController = {
     inicio : (req, res) => {
-        let archivoProductos = readJson('products.json');
-        res.render('main/index', { archivoProductos: archivoProductos});
-    }
+        db.Productos.findAll()
+            .then(function(producto){
+                return res.render('main/index', { producto });
+            })
+    },
+    ayuda: (req, res) => {
+        return res.render('main/ayuda')
+    },
+    res_ayuda: (req, res) => {
+        return res.render('main/res_ayuda')
+    },
 };
 
 //Exportando al router para que pueda ser usado por el entry point
