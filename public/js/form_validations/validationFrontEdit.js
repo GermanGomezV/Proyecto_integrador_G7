@@ -1,7 +1,7 @@
 window.addEventListener("load" , function () {
-       
+    console.log("atrape el formulario") 
     //Atrapando el formulario de registro
-    let formulario = document.querySelector("form.formChargeEdit");
+    let formulario = document.querySelector("form.formEdit");
     
     //Defino un evento para el momento en que se envia el formulario
     formulario.addEventListener("submit", function(evento){
@@ -15,6 +15,8 @@ function validateForm(evento) {
     //Creo un objeto literal vacio en el cual ire creando una propiedad por cada mensaje de error 
     let errores = {};
 
+    console.log("Por verificar")
+    
     // Verificando el nombre
     // Obligatorio
     let campoNombre = document.querySelector("input.nombre");
@@ -43,7 +45,9 @@ function validateForm(evento) {
     
     //Si el objeto literal contiene propiedades con mensajes cancelo el envío del formulario
     if( errores.email || errores.descripcion || errores.imagen){
+        console.log("Antes del prevent")
         evento.preventDefault();
+        console.log("Despues del prevent")
         // Capturo el div, si existe la propiedad, le asigno la propiedad con el mensaje, sino no hago nada
         document.querySelector("div.nombre_error").innerHTML = errores.nombre ?? ""
         document.querySelector("div.descripcion_error").innerHTML = errores.descripcion ?? "";

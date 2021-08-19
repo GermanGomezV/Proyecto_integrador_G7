@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
     <%- include('../partials/head') %>
-    <script type="text/javascript" src="/js/form_validations/validationFrontChargeEdit.js"></script>
+    <script type="text/javascript" src="/js/form_validations/validationFrontEdit.js"></script>
 <body>
     <%- include('../partials/header') %>
     <main>
-        <form method="POST" action="/products/<%=producto.id_producto%>/edit?_method=PUT" enctype="multipart/form-data" class="formChargeEdit">
+        <form method="POST" action="/products/<%=producto.id_producto%>/edit?_method=PUT" enctype="multipart/form-data" class="formEdit">
             <div class=ingresoManual>
                 <p class="ingresa-cuenta">Actualizá el producto</p><br>
                 <input type="hidden" name="id" value="<%=producto.id_producto.id%>">  

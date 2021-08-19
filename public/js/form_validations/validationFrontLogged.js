@@ -16,9 +16,10 @@ function validateForm(evento) {
     let errores = {};
     
     // Verificando el email
-    // Obligatorio
-    const expressionEmail = /\S+@\S+\.\S+/; // Expresión regular de email
     let campoEmail = document.querySelector("input.email");
+    //Expresión regular de emails
+    const expressionEmail = /\S+@\S+\.\S+/;
+    // Obligatorio
     if(campoEmail.value == ""){
         errores.email = "El email debe completarse"; // Creo en el objeto literal errores la propiedad email con este mensaje
     }

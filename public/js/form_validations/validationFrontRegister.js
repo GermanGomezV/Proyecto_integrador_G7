@@ -38,6 +38,7 @@ function validateForm(evento) {
     }
 
     // Verificando el email
+    //Expresión regular de emails
     const expressionEmail = /\S+@\S+\.\S+/;
     let campoEmail = document.querySelector("input.email");
     // Obligatorio
@@ -49,25 +50,40 @@ function validateForm(evento) {
         errores.email = "El email debe contener un formato de email";
     }
     
-    // Verificando la contraseña 
-    const expresionContrasena = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z](?=.*[@#$%^&+=]){8,}$/ // Expresión regular de contraseña
+    // Verificando la contraseña 1
     let campoContrasena = document.querySelector("input.password");
     // Obligatoria
     if(campoContrasena.value == ""){
         errores.contrasena =  "La contraseña debe completarse";
     }
-    // 8 caracteres min y que contenga mayúsculas, minúsculas, un numero y un caracter especial
-    else if (expresionContrasena.test(campoContrasena.value)) {
-        errores.contrasena = "La contraseña deberá tener al menos 8 caracteres, letras mayúsculas y minúsculas, un número y un carácter especial";
+    // 8 caracteres min
+    else if (campoContrasena.value.length < 8) {
+        errores.contrasena = "La contraseña debe tener al menos 8 caracteres";
     }
 
-    // Verificando la imagen
-    // Deberá ser un archivo válido (JPEG, JPG, PNG, GIF)
-    // const expresionImagen = /\.(jpe?g|png|gif)$/i // Expresión regular de imagen
-    // let campoImagen = document.querySelector("input.imagen");
-    // if (!expresionImagen.test(campoImagen.value)) {
-    //    errores.imagen = "La imagen debe contener extensión JPEG, JPG, PNG o GIF";
-    // }
+    // Verificando la contraseña 2
+    let campoContrasena2 = document.querySelector("input.password2");
+    // Obligatoria
+    if(campoContrasena2.value == ""){
+        errores.contrasena2 =  "La contraseña debe completarse";
+    }
+    // 8 caracteres min
+    else if (campoContrasena2.value.length < 8) {
+        errores.contrasena2 = "La contraseña debe tener al menos 8 caracteres";
+    }
+
+    /* (opcional) La contraseña debera tener 8 caracteres min, mayúsculas, minúsculas, un numero y un caracter especial
+    Expresión regular de contraseña
+    const expresionContrasena = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/
+    /^            : Start
+    (?=.{8,})        : Length
+    (?=.*[a-zA-Z])   : Letters
+    (?=.*\d)         : Digits
+    (?=.*[!#$%&? "]) : Special characters
+    $/              : End
+    else if (expresionContrasena.test(campoContrasena.value)) {
+        errores.contrasena = "La contraseña deberá tener al menos 8 caracteres, letras mayúsculas y minúsculas, un número y un carácter especial";
+    } */
     
     //Si el objeto literal contiene propiedades con mensajes cancelo el envío del formulario
     if( errores.nombre || errores.apellido || errores.email || errores.contrasena){
@@ -77,6 +93,7 @@ function validateForm(evento) {
         document.querySelector("div.apellido_error").innerHTML = errores.apellido ?? "";
         document.querySelector("div.email_error").innerHTML = errores.email ?? ""
         document.querySelector("div.password_error").innerHTML = errores.contrasena ?? "";
+        document.querySelector("div.password2_error").innerHTML = errores.contrasena2 ?? "";
     }       
         
 }
