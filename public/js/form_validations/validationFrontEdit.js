@@ -1,6 +1,6 @@
 window.addEventListener("load" , function () {
-    console.log("atrape el formulario") 
-    //Atrapando el formulario de registro
+
+    //Atrapando el formulario
     let formulario = document.querySelector("form.formEdit");
     
     //Defino un evento para el momento en que se envia el formulario
@@ -32,26 +32,14 @@ function validateForm(evento) {
     // 20 caracteres min
     let campoDescripcion = document.querySelector("input.descripcion");
     if (campoDescripcion.value.length < 20) {
-        errores.descripcion("La descripción debe tener al menos 20 caracteres");
-    }
-
-    // Verificando la imagen
-    // Deberá ser un archivo válido (JPEG, JPG, PNG, GIF)
-    const expresionImagen = /\.(jpe?g|png|gif)$/i // Expresión regular de imagen
-    let campoImagen = document.querySelector("input.imagen");
-    if (expresionImagen.test(campoImagen.value)) {
-        errores.imagen = "La imagen debe contener extensión JPEG, JPG, PNG o GIF";
+        errores.descripcion = "La descripción debe tener al menos 20 caracteres";
     }
     
     //Si el objeto literal contiene propiedades con mensajes cancelo el envío del formulario
     if( errores.email || errores.descripcion || errores.imagen){
-        console.log("Antes del prevent")
         evento.preventDefault();
-        console.log("Despues del prevent")
-        // Capturo el div, si existe la propiedad, le asigno la propiedad con el mensaje, sino no hago nada
         document.querySelector("div.nombre_error").innerHTML = errores.nombre ?? ""
         document.querySelector("div.descripcion_error").innerHTML = errores.descripcion ?? "";
-        document.querySelector("div.imagen_error").innerHTML = errores.imagen ?? "";
     }        
     
 }

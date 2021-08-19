@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
     <%- include('../partials/head') %>
-    <script type="text/javascript" src="/js/form_validations/validationFrontChargeEdit.js"></script>
+    <script type="text/javascript" src="/js/form_validations/validationFrontCharge.js"></script>
 <body>
     <%- include('../partials/header') %>
     <main>
-        <form action="/products/charge" method="POST" enctype="multipart/form-data" class="formChargeEdit">
+        <form action="/products/charge" method="POST" enctype="multipart/form-data" class="formCharge">
             <div class=ingresoManual>
                 <p class="ingresa-cuenta">Cargá un nuevo producto</p><br>
                 <label for="nombre">Nombre de producto</label>
@@ -52,18 +52,15 @@
                 <label for="imagen">Imagen</label>
                 <span class="aclaracion-imagen">(La imagen debe ser de 1000 x 1000 píxeles y fondo blanco)</span>
                 <input class="imagen" type="file" name="imagen" accept=".jpg, .png">
-                <div class="notificacion_error imagen_error"></div>
+                <div class="notificacion_error"></div>
                 <% if (locals.errors && errors.imagen) { %>
                     <div class="notificacion_error">
                         <%= errors.imagen.msg %> 
                     </div>
                 <% } %>
-                <button class="editar" type="submit" value="Editar">Subir</button>
+                <button type="submit" class="editar" value="Editar">Subir</button>
             </div>
         </form>
     <%- include('../partials/footer') %>
 </body>
 </html>
-
-  
-    

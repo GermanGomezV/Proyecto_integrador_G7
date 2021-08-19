@@ -92,7 +92,7 @@ function validateForm(evento) {
     if( errores.nombre || errores.apellido || errores.email || errores.contrasena){
         evento.preventDefault();
         // Capturo el div, si existe la propiedad, le asigno la propiedad con el mensaje, sino no hago nada
-        document.querySelector("div.nombre_error").innerHTML = errores.nombre ?? ""
+        document.querySelector("div.nombre_error").innerHTML = errores.nombre ?? "";
         document.querySelector("div.apellido_error").innerHTML = errores.apellido ?? "";
         document.querySelector("div.email_error").innerHTML = errores.email ?? ""
         document.querySelector("div.password_error").innerHTML = errores.contrasena ?? "";
