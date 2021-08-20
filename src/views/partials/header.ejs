@@ -12,7 +12,7 @@
     <div class="user">  
         <div class="iconos">
             <% if (locals.isLogged) { %>
-                    <a href="/users/<%= userLogged.id %>/profile"><img class="profile" src="/images/usuarios/<%= locals.userLogged.imagen %>" alt="profile-image"></a>
+                    <a href="/users/<%= locals.userLogged.id_usuario %>/profile"><img class="profile" src="/images/usuarios/<%= locals.userLogged.imagen %>" alt="profile-image"></a>
                     <a href="/products/cart"><i class="fas carrito fa-shopping-cart"></i> </a>
                 <% } else { %>
                     <a href="/users/register"><i class="fa fa-user-plus"></i></a>
