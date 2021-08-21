@@ -25,19 +25,14 @@ const usersController = {
     register : (req, res) => {
         res.render('users/register');
     },
-    login : (req, res) => {
-        res.render('users/login');
-    },
     processRegister : (req, res) => {
         const resultValidation = validationResult(req);
-
         if (resultValidation.errors.length > 0){
             return res.render('users/register', {
                 errors: resultValidation.mapped(),
                 oldData: req.body,
             });
         };
-
         db.Usuarios.findAll({
             where : {
                 correo : {
@@ -57,7 +52,6 @@ const usersController = {
                 });
             };
         })
-
         db.Usuarios.create({
             nombre: req.body.nombre,
             apellido:req.body.apellido,
@@ -65,9 +59,12 @@ const usersController = {
             contrasena: bcrypt.hashSync(req.body.password, 10),
             imagen: "default.jpg"
         })
-
         return res.redirect('/');
     },
+    login : (req, res) => {
+        res.render('users/login');
+    },
+    
     userEdit : (req, res) => {
         let idUser = req.params.id;
         db.Usuarios.findByPk(idUser)
