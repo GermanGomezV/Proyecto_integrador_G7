@@ -16,7 +16,7 @@
                     </div>
                 <% } %>
                 <label for="descripcion" >Descripción del producto</label>
-                <textarea class="descripcion" type="text" name="descripcion" rows="10" cols="50" placeholder="Descripcion del producto" value="<%= locals.oldData ? oldData.descripcion : null %>"></textarea><br>
+                <textarea class="descripcion" type="text" name="descripcion" rows="10" cols="50" placeholder="Descripcion del producto" value="<%= locals.oldData ? oldData.descripcion : producto.descripcion %>"></textarea><br>
                 <div class="notificacion_error descripcion_error"></div>
                 <% if (locals.errors && errors.descripcion) { %>
                     <div class="notificacion_error">

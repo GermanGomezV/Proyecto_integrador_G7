@@ -7,32 +7,26 @@
     <div id="contenedor">
         <div id="registro"><h1>Editar Perfil</h1></div>
         <div id="form">
-            <form action="/users/<%=usuario.id_usuario%>/edit?_method=PUT" method="POST" enctype="multipart/form-data">
+            <form action="/users/<%= usuario.id_usuario %>/edit?_method=PUT" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <img src="/images/usuarios/<%= usuario.imagen %>" alt="defaul-profile-image">
                 </div>
                 <div class=ingresoManual>
-                    <input type="hidden" name="id" value="<%=usuario.id_usuario%>">
-                    <label for="imagen">Modificar imagen</label>
-
                     <p>Nombre</p>
                     <p><%= usuario.nombre %></p>
-                    <input class="imagen" type="file" name="imagen" acept=".jpg, .png">
-                    <label for="nombre">Nombre</label>
-                    <input class="nombre" type="text" name="nombre" value="<%= usuario.nombre %>">
-                    <label for="apellido">Apellido</label>
-                    <input class="nombre" type="text" name="apellido" value="<%= usuario.apellido %>">
-                    <label for="email">Email</label>
-                    <input class="email" type="text" name="email" value="<%= usuario.correo %>">
-                    <label for="direccion">Dirección de envio</label>
-                    <input class="nombre" type="text" name="direccion" value="<%= usuario.direccion %>">
-                    <label for="telefono">Teléfono de contacto</label>
-                    <input class="nombre" type="text" name="telefono" value="<%= usuario.telefono %>">
-                    <label for="nacimiento">Fecha de nacimiento</label>
-                    <input class="nombre" type="date" name="nacimiento" value="<%= usuario.nacimiento %>">
+                    <p>Apellido</p>
+                    <p><%= usuario.apellido %></p>
+                    <p>Email</p>
+                    <p><%= usuario.correo %></p>
+                    <p>Direccion de envio</p>
+                    <p><%= usuario.direccion %></p>
+                    <p>Telefono</p>
+                    <p><%= usuario.telefono %></p>
+                    <p>Fecha de Nacimiento</p>
+                    <p><%= usuario.nacimiento %></p>
                 </div>
                 <div class="ingresos">
-                    <button type="submit" class="ingresar" >Modificar</button>
+                    <button type="submit" class="ingresar" >Editar Perfil</button>
                     <a href="/users/logout" class="registrate" >Cerrar Sesion</a>
                 </div>
             </form>

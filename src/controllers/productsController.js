@@ -81,17 +81,25 @@ const productsController = {
 
         const resultValidation = validationResult(req)
 
+        if (resultValidation.errors.length > 0){
+            return res.render('products/Edit', {
+                errors: resultValidation.mapped(),
+                oldData: req.body,
+            });
+        };
+
         //Nota: De todos los productos, vamos a editar el sumistrado como parametro de la URL
         let idProduct = req.params.id;
         db.Productos.findByPk(idProduct, {
             include: [{association: 'categorias'}]
         })
             .then(producto => {
-                res.render('products/productEdit', {producto, resultValidation})
+                res.render('products/Edit', {producto})
             })
          },
 
     productUpdate : (req, res) => {
+
         let idProduct = req.params.id;
         if(req.file) {
             db.Productos.update({
@@ -129,7 +137,6 @@ const productsController = {
             })
             return res.redirect('/');          
         }
-        
     },
     delete : (req, res) => {
         db.Productos.destroy({

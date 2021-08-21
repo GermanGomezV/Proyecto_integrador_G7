@@ -64,7 +64,6 @@ const usersController = {
     login : (req, res) => {
         res.render('users/login');
     },
-    
     userEdit : (req, res) => {
         let idUser = req.params.id;
         db.Usuarios.findByPk(idUser)
@@ -164,7 +163,6 @@ const usersController = {
             res.render("users/profile", {usuario:usuario})
         })
     }
-
 };
 
 //Exportando al router para que pueda ser usado por el entry point
