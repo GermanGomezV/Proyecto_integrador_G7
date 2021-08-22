@@ -70,7 +70,7 @@ const productsController = {
             descripcion: req.body.descripcion,
             precio: req.body.precio,
             descuento: req.body.descuento,
-            id_categoria_FK: req.body.categoria_id,
+            id_categoria_FK: req.body.categoria,
             imagen: req.file.filename
         })
 
@@ -82,7 +82,7 @@ const productsController = {
         const resultValidation = validationResult(req)
 
         if (resultValidation.errors.length > 0){
-            return res.render('products/Edit', {
+            return res.render('products/productEdit', {
                 errors: resultValidation.mapped(),
                 oldData: req.body,
             });
@@ -94,7 +94,7 @@ const productsController = {
             include: [{association: 'categorias'}]
         })
             .then(producto => {
-                res.render('products/Edit', {producto})
+                res.render('products/productEdit', {producto})
             })
          },
 

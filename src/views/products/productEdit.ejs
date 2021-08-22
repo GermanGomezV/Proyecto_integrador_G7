@@ -40,8 +40,8 @@
                 <label for="categoria">Categoría</label>
                 <select class="categoria" name="categoria">
                     <option value="0">Seleccione una categoria</option>
-                    <option value="1" <%= locals.old && old.categoria === 1 ? 'selected' : ''; %>>Bebidas</option>
-                    <option value="2" <%= locals.old && old.categoria === 2 ? 'selected' : ''; %>>Comidas</option>
+                    <option value="1" >Bebidas</option>
+                    <option value="2" >Comidas</option>
                 </select>
                 <% if (locals.errors && errors.categoria) { %>
                     <div class="notificacion_error">
