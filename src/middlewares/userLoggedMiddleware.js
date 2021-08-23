@@ -31,6 +31,9 @@ function userLoggedMiddleware (req, res, next) {
         
             next();
     })
+    .catch(error => {
+        console.log(error)
+    })
 };
 
 module.exports = userLoggedMiddleware;

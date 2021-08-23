@@ -52,12 +52,18 @@ const usersController = {
                 });
             };
         })
+        .catch(error => {
+            console.log(error)
+        })
         db.Usuarios.create({
             nombre: req.body.nombre,
             apellido:req.body.apellido,
             correo: req.body.email,
             contrasena: bcrypt.hashSync(req.body.password, 10),
             imagen: "default.jpg"
+        })
+        .catch(error => {
+            console.log(error)
         })
         return res.redirect('/');
     },
@@ -69,6 +75,9 @@ const usersController = {
         db.Usuarios.findByPk(idUser)
             .then(usuario => {
                 res.render('users/edit', {usuario: usuario})
+            })
+            .catch(error => {
+                console.log(error)
             })
          },
     userUpdate : (req, res) => {
@@ -89,6 +98,9 @@ const usersController = {
                     id_usuario: idUser
                 }
             })
+            .catch(error => {
+                console.log(error)
+            })
               return res.redirect('/');
         }else{
             db.Usuarios.update({
@@ -104,6 +116,9 @@ const usersController = {
                 where: {
                     id_usuario: idUser
                 }
+            })
+            .catch(error => {
+                console.log(error)
             })
             return res.redirect('/');          
         }        
@@ -147,6 +162,9 @@ const usersController = {
                 })
             }
         })
+        .catch(error => {
+            console.log(error)
+        })
     },
     logout: (req, res) => {
         res.clearCookie('userEmail');
@@ -158,9 +176,15 @@ const usersController = {
         .then(usuarios=> {
             return usuarios
         })
+        .catch(error => {
+            console.log(error)
+        })
         db.Usuarios.findByPk(req.params.id)
         .then(usuario =>{
             res.render("users/profile", {usuario:usuario})
+        })
+        .catch(error => {
+            console.log(error)
         })
     }
 };

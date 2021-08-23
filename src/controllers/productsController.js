@@ -31,6 +31,9 @@ const productsController = {
         .then(producto => {
             res.render("products/productList", {producto})
         })
+        .catch(error => {
+            console.log(error)
+        })
     },
     
     productCart : (req, res) => {
@@ -42,16 +45,25 @@ const productsController = {
             .then(producto => {
                 return producto
             })
+            .catch(error => {
+                console.log(error)
+            })
 
         db.Productos.findByPk(req.params.id)
             .then(producto => {
                 res.render('products/productDetail', {producto})
             })
+            .catch(error => {
+                console.log(error)
+            })
     },
     productCharge : (req, res) => {
         db.Categorias.findAll()
-        .then (function(categorias){
+        .then (categorias => {
             return res.render('products/productCharge',{categorias});
+        })
+        .catch(error => {
+            console.log(error)
         })
     },
     store: (req, res) => {
@@ -73,6 +85,9 @@ const productsController = {
             id_categoria_FK: req.body.categoria,
             imagen: req.file.filename
         })
+        .catch(error => {
+            console.log(error)
+        })
 
         return res.redirect('/');
 
@@ -88,15 +103,26 @@ const productsController = {
             });
         };
 
+        db.Categorias.findAll()
+        .then (categorias => {
+            return categorias
+        })
+        .catch(error => {
+            console.log(error)
+        })
+
         //Nota: De todos los productos, vamos a editar el sumistrado como parametro de la URL
         let idProduct = req.params.id;
         db.Productos.findByPk(idProduct, {
             include: [{association: 'categorias'}]
-        })
-            .then(producto => {
-                res.render('products/productEdit', {producto})
             })
-         },
+            .then(producto => {
+                res.render('products/productEdit', {producto, categorias})
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    },
 
     productUpdate : (req, res) => {
 
@@ -118,6 +144,9 @@ const productsController = {
             {
                 include: [{association:'categorias'}]
             })
+            .catch(error => {
+                console.log(error)
+            })
               return res.redirect('/');
         }else{
             db.Productos.update({
@@ -135,6 +164,9 @@ const productsController = {
             {
                 include: [{association:'categorias'}]
             })
+            .catch(error => {
+                console.log(error)
+            })
             return res.redirect('/');          
         }
     },
@@ -144,6 +176,9 @@ const productsController = {
                 id_producto : req.params.id
             }
         })
+        .catch(error => {
+            console.log(error)
+        })
         res.redirect('/');
     },
     search : (req, res) => {
@@ -151,6 +186,9 @@ const productsController = {
         db.Productos.findAll()
         .then(productos => {
             return productos
+        })
+        .catch(error => {
+            console.log(error)
         })
 
         db.Productos.findAll({
@@ -162,6 +200,9 @@ const productsController = {
         })
         .then((producto) => {
             res.render("products/productList", {producto, productos})
+        })
+        .catch(error => {
+            console.log(error)
         })
     },
 
