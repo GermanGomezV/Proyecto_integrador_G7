@@ -41,7 +41,7 @@
                 <select class="categoria" name="categoria">
                     <option value="0">Seleccione una categoria</option>
                     <% for (const categoria of categorias ) { %>
-                        <option value="<%= categoria.id %>" <%= locals.oldData && ( categoria === oldData.categoria) ? selected : null %> ><%= categoria.nombre %> </option>
+                        <option value="<%= categoria.id_categoria %>" <%= locals.oldData && ( categoria === oldData.categoria) ? selected : null %> ><%= categoria.nombre %> </option>
                     <% } %>
                 </select>
                 <% if (locals.errors && errors.categoria) { %>

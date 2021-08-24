@@ -10,7 +10,8 @@ const { Op } = require("sequelize");
 const fs = require('fs');
 
 //Requiriendo el metodo validation Result
-const { validationResult } = require('express-validator')
+const { validationResult } = require('express-validator');
+
 
 // BORRAR
 //Requerir la funcionalidad para leer y leer/actualizar el archivo .json 
@@ -41,21 +42,19 @@ const productsController = {
     },
 
     productDetail : (req, res) => {
-        db.Productos.findAll()
-            .then(producto => {
-                return producto
-            })
-            .catch(error => {
-                console.log(error)
-            })
 
-        db.Productos.findByPk(req.params.id)
-            .then(producto => {
-                res.render('products/productDetail', {producto})
-            })
-            .catch(error => {
-                console.log(error)
-            })
+        //productos totales
+        let pt = db.Productos.findAll()
+        //producto
+        let p = db.Productos.findByPk(req.params.id)
+        Promise
+        .all([p, pt])
+        .then(([p, pt]) => {
+            res.render('products/productDetail', {p, pt})
+        })
+        .catch(error => {
+            console.log(error)
+        })
     },
     productCharge : (req, res) => {
         db.Categorias.findAll()
@@ -183,23 +182,21 @@ const productsController = {
     },
     search : (req, res) => {
 
-        db.Productos.findAll()
-        .then(productos => {
-            return productos
-        })
-        .catch(error => {
-            console.log(error)
-        })
+        //productos totales
+        let pt = db.Productos.findAll()
 
-        db.Productos.findAll({
+        //productos buscados
+        let p = db.Productos.findAll({
             where : {
                 nombre : {
                     [Op.like] : `%${req.body.busqueda}%`
                 }
             }
         })
-        .then((producto) => {
-            res.render("products/productList", {producto, productos})
+        Promise
+        all([pt, p])
+        .then(([pt, p]) => {
+            res.render("products/productList", {pt, p})
         })
         .catch(error => {
             console.log(error)

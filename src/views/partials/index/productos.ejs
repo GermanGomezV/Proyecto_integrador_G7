@@ -1,19 +1,19 @@
 <section>
     <article class="productos">
-        <% for(i in producto) {%>
+        <% for(i in pt) {%>
         <div class="slider-productos">
             <div class="detalle-productos">
-                <p class="nombre-productos"><%= producto[i].nombre %></p>
-                <a href="/products/detail/<%= producto[i].id_producto %>" class="caja-flecha">
+                <p class="nombre-productos"><%= pt[i].nombre %></p>
+                <a href="/products/detail/<%= pt[i].id_producto %>" class="caja-flecha">
                     <p class="compralo">Compralo</p>
                     <i class="fas flecha fa-arrow-right"></i>
                 </a> 
             </div>
-            <a href="/products/detail/<%= producto[i].id_producto %>" class="caja-foto-productos">
-                <img class="fotos" src="/images/productos/<%= producto[i].imagen %>" alt="">
+            <a href="/products/detail/<%= pt[i].id_producto %>" class="caja-foto-productos">
+                <img class="fotos" src="/images/productos/<%= pt[i].imagen %>" alt="">
             </a>
             <div class="precio-producto">
-                $<%= producto[i].precio %>
+                $<%= pt[i].precio %>
             </div>
         </div> 
         <% } %>
