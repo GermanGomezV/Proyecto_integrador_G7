@@ -65,7 +65,7 @@ const usersController = {
         .catch(error => {
             console.log(error)
         })
-        return res.redirect('/');
+        return res.redirect('/users/login');
     },
     login : (req, res) => {
         res.render('users/login');
