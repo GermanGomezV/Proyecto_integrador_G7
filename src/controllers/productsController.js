@@ -138,7 +138,7 @@ const productsController = {
                 descripcion: req.body.descripcion,
                 precio: req.body.precio,
                 descuento: parseInt(req.body.descuento),
-                id_categoria_FK: req.body.categoria_id
+                id_categoria_FK: req.body.categoria
             },
             {
                 where: {

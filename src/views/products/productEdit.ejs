@@ -42,9 +42,17 @@
                     En caso de no seleccionar ninguna categoria, quedara la misma que se cargo originalmente.
                 </span>
                 <select class="categoria" name="categoria">
-                    <option value="0">Seleccione una categoria</option>
-                    <% for (const categoria of c ) { %>
-                        <option value="<%= categoria.id_categoria %>" <%= locals.oldData && ( categoria.nombre === oldData.categoria) ? selected : null %> ><%= categoria.nombre %></option>
+                    <option disabled selected value> Seleccionar Categoría </option>
+                    <% for (let i=0; i < c.length; i++) { %>
+                        <% if(c[i].id_categoria === p.id_categoria_FK ) { %>
+                            <option value="<%= c[i].id_categoria %>" selected>
+                                <%= c[i].nombre %>
+                            </option>
+                        <% }else{ %>
+                            <option value="<%= c[i].id_categoria %>">
+                                <%= c[i].nombre %>
+                            </option>
+                        <% } %> 
                     <% } %>
                 </select>
                 <% if (locals.errors && errors.categoria) { %>
