@@ -21,6 +21,7 @@ const methodOverride = require('method-override');
 const rutasPrincipal= require('./routes/main')
 const rutasProductos= require('./routes/products')
 const rutasUsuario= require('./routes/users')
+const rutasApi= require('./routes/api')
 
 const process = require('process');
 
@@ -55,6 +56,7 @@ app.use(express.json());
 app.use('/', rutasPrincipal);
 app.use('/products', rutasProductos);
 app.use('/users', rutasUsuario);
+app.use('/api', rutasApi);
 app.use((req, res, next)=>{
     res.status(404).render('404');
 });
