@@ -4,7 +4,7 @@
 <body>
     <%- include('../partials/header') %>
     <main>
-        <form action="/products/charge" method="POST" enctype="multipart/form-data" class="formCharge">
+        <form action="/products/<%= p.id_producto %>/edit?_method=PUT" method="POST" enctype="multipart/form-data" class="formEdit">
             <div class=ingresoManual>
                 <p class="ingresa-cuenta">Edita el producto</p><br>
                 <label for="nombre">Nombre de producto</label>
@@ -37,8 +37,10 @@
                         <%= errors.descuento.msg %> 
                     </div>
                 <% } %>
-                <% console.log(c[0]) %>
                 <label for="categoria">Categoría</label>
+                <span class="aclaracion-imagen"><br>
+                    En caso de no seleccionar ninguna categoria, quedara la misma que se cargo originalmente.
+                </span>
                 <select class="categoria" name="categoria">
                     <option value="0">Seleccione una categoria</option>
                     <% for (const categoria of c ) { %>
@@ -51,7 +53,10 @@
                     </div>
                 <% } %>
                 <label for="imagen">Imagen</label>
-                <span class="aclaracion-imagen">(La imagen debe ser de 1000 x 1000 píxeles y fondo blanco)</span>
+                <span class="aclaracion-imagen"><br>
+                    La imagen debe ser de 1000 x 1000 píxeles y fondo. <br>
+                    En caso de no subir ninguna imagen, quedara la misma imagen anterior.
+                </span>
                 <div class="imagen-edit">
                     <img class="imagenEdit" src="/images/productos/<%=p.imagen%>" alt="">
                 </div>
