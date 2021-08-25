@@ -34,8 +34,8 @@ const usersController = {
                 oldData: req.body,
             });
         };
-
-        db.Usuarios.findAll({
+        
+        db.Usuarios.findOne({
             where : {
                 correo : {
                     [Op.like] : `%${req.body.email}%`
@@ -69,7 +69,6 @@ const usersController = {
         .catch(error => {
             console.log(error)
         })
-
     },
     login : (req, res) => {
         res.render('users/login');
