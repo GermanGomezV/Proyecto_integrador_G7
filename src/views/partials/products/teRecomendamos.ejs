@@ -3,14 +3,14 @@
     <a href="/products/list"><p class="mira"> Mirá todo</p></a>
 </div>
 <div class="cajaRecomendaciones">
-    <% for (i in producto) { %>
-        <a href="/products/detail/<%= producto[i].id_producto %>" class="cajaProducto">
+    <% for (i in pt) { %>
+        <a href="/products/detail/<%= pt[i].id_producto %>" class="cajaProducto">
             <div class="fotoDetalle">
-                <img class="prod" src="/images/productos/<%= producto[i].imagen %>" alt="">
+                <img class="prod" src="/images/productos/<%= pt[i].imagen %>" alt="">
             </div>
             <div class="descDetalle">
-                <p class="nombre"><%= producto[i].nombre %></p>
-                <p class="precio">$ <%= producto[i].precio %></p>
+                <p class="nombre"><%= pt[i].nombre %></p>
+                <p class="precio">$ <%= pt[i].precio %></p>
             </div>
         </a>
     <% } %>

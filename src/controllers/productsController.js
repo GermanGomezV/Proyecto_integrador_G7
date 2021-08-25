@@ -10,17 +10,7 @@ const { Op } = require("sequelize");
 const fs = require('fs');
 
 //Requiriendo el metodo validation Result
-const { validationResult } = require('express-validator')
-
-// BORRAR
-//Requerir la funcionalidad para leer y leer/actualizar el archivo .json 
-// const {readJson, writeJson, newId} = require('./helpers');
-
-//arrays de productos por categoria
-// const productos = readJson('products.json');
-// const productosBebida = productos.filter (producto => producto.categoria == 'Bebida');
-// const productosAsado = productos.filter (producto => producto.categoria == 'Asado');
-// const productosPicada = productos.filter (producto => producto.categoria == 'Picada');
+const { validationResult } = require('express-validator');
 
 //Definiendo la logica del controlador: Renderizando vistas EJS
 //El controlador está compuesto por un objeto literal que a su vez compuesto por métodos (funciones o callbacks)
@@ -41,21 +31,19 @@ const productsController = {
     },
 
     productDetail : (req, res) => {
-        db.Productos.findAll()
-            .then(producto => {
-                return producto
-            })
-            .catch(error => {
-                console.log(error)
-            })
 
-        db.Productos.findByPk(req.params.id)
-            .then(producto => {
-                res.render('products/productDetail', {producto})
-            })
-            .catch(error => {
-                console.log(error)
-            })
+        //productos totales
+        let pt = db.Productos.findAll()
+        //producto
+        let p = db.Productos.findByPk(req.params.id)
+        Promise
+        .all([p, pt])
+        .then(([p, pt]) => {
+            res.render('products/productDetail', {p, pt})
+        })
+        .catch(error => {
+            console.log(error)
+        })
     },
     productCharge : (req, res) => {
         db.Categorias.findAll()
@@ -103,25 +91,21 @@ const productsController = {
             });
         };
 
-        db.Categorias.findAll()
-        .then (categorias => {
-            return categorias
+        let c = db.Categorias.findAll()
+
+        //Nota: De todos los productos, vamos a editar el sumistrado como parametro de la URL
+        let idProduct = req.params.id;
+        let p = db.Productos.findByPk(idProduct, {
+            include: [{association: 'categorias'}]
+            })
+        Promise
+        .all([c, p])
+        .then(([c, p]) => {
+            res.render('products/productEdit', {p, c})
         })
         .catch(error => {
             console.log(error)
         })
-
-        //Nota: De todos los productos, vamos a editar el sumistrado como parametro de la URL
-        let idProduct = req.params.id;
-        db.Productos.findByPk(idProduct, {
-            include: [{association: 'categorias'}]
-            })
-            .then(producto => {
-                res.render('products/productEdit', {producto, categorias})
-            })
-            .catch(error => {
-                console.log(error)
-            })
     },
 
     productUpdate : (req, res) => {
@@ -183,23 +167,21 @@ const productsController = {
     },
     search : (req, res) => {
 
-        db.Productos.findAll()
-        .then(productos => {
-            return productos
-        })
-        .catch(error => {
-            console.log(error)
-        })
+        //productos totales
+        let pt = db.Productos.findAll()
 
-        db.Productos.findAll({
+        //productos buscados
+        let p = db.Productos.findAll({
             where : {
                 nombre : {
                     [Op.like] : `%${req.body.busqueda}%`
                 }
             }
         })
-        .then((producto) => {
-            res.render("products/productList", {producto, productos})
+        Promise
+        all([pt, p])
+        .then(([pt, p]) => {
+            res.render("products/productList", {pt, p})
         })
         .catch(error => {
             console.log(error)

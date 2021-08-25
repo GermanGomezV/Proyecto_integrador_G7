@@ -8,7 +8,7 @@
             <div class=ingresoManual>
                 <p class="ingresa-cuenta">Edita el producto</p><br>
                 <label for="nombre">Nombre de producto</label>
-                <input class="nombre" type="text" name="nombre" placeholder="Nombre del Producto" value="<%= locals.oldData ? oldData.nombre : producto.nombre %>">
+                <input class="nombre" type="text" name="nombre" placeholder="Nombre del Producto" value="<%= locals.oldData ? oldData.nombre : p.nombre %>">
                 <div class="notificacion_error nombre_error"></div>
                 <% if (locals.errors && errors.nombre) { %>
                     <div class="notificacion_error">
@@ -16,7 +16,7 @@
                     </div>
                 <% } %>
                 <label for="descripcion" >Descripción del producto</label>
-                <textarea class="descripcion" type="text" name="descripcion" rows="10" cols="50" placeholder="Descripcion del producto" value="<%= locals.oldData ? oldData.descripcion : producto.descripcion %>"></textarea><br>
+                <textarea class="descripcion" type="text" name="descripcion" rows="10" cols="50" placeholder="Descripcion del producto"><%= locals.oldData ? oldData.descripcion : p.descripcion %></textarea>
                 <div class="notificacion_error descripcion_error"></div>
                 <% if (locals.errors && errors.descripcion) { %>
                     <div class="notificacion_error">
@@ -24,25 +24,26 @@
                     </div>
                 <% } %>
                 <label for="precio">Precio</label>
-                <input class="precio" type="text" name="precio" placeholder="Precio" value="<%= locals.oldData ? oldData.precio : producto.precio %>">
+                <input class="precio" type="text" name="precio" placeholder="Precio" value="<%= locals.oldData ? oldData.precio : p.precio %>">
                 <% if (locals.errors && errors.precio) { %>
                     <div class="notificacion_error">
                         <%= errors.precio.msg %> 
                     </div>
                 <% } %>
                 <label for="descuento">Descuento</label>
-                <input class="descuento" type="text" name="descuento" placeholder="Descuento" value="<%= locals.oldData ? oldData.descuento : producto.descuento %>">
+                <input class="descuento" type="text" name="descuento" placeholder="Descuento" value="<%= locals.oldData ? oldData.descuento : p.descuento %>">
                 <% if (locals.errors && errors.descuento) { %>
                     <div class="notificacion_error">
                         <%= errors.descuento.msg %> 
                     </div>
                 <% } %>
+                <% console.log(c[0]) %>
                 <label for="categoria">Categoría</label>
                 <select class="categoria" name="categoria">
                     <option value="0">Seleccione una categoria</option>
-                    <% for (const categoria of categorias ) { %>
-                        <option value="<%= categoria.id %>" <%= locals.oldData && ( categoria === oldData.categoria) ? selected : null %> ><%= categoria.nombre %></option>
-                    <% } %> 
+                    <% for (const categoria of c ) { %>
+                        <option value="<%= categoria.id_categoria %>" <%= locals.oldData && ( categoria.nombre === oldData.categoria) ? selected : null %> ><%= categoria.nombre %></option>
+                    <% } %>
                 </select>
                 <% if (locals.errors && errors.categoria) { %>
                     <div class="notificacion_error">
@@ -52,7 +53,7 @@
                 <label for="imagen">Imagen</label>
                 <span class="aclaracion-imagen">(La imagen debe ser de 1000 x 1000 píxeles y fondo blanco)</span>
                 <div class="imagen-edit">
-                    <img class="imagenEdit" src="/images/productos/<%=producto.imagen%>" alt="">
+                    <img class="imagenEdit" src="/images/productos/<%=p.imagen%>" alt="">
                 </div>
                 <input class="imagen" type="file" name="imagen" accept=".jpg, .png"></input>
                 <div class="notificacion_error"></div>

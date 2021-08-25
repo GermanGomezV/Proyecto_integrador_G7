@@ -47,7 +47,7 @@ function validateForm(evento) {
         // Valido
         //Expresión regular de emails
         expressionEmail = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
-        if (expressionEmail.test("input.email")) {
+        if (!expressionEmail.test("input.email")) {
         } else {
             errores.email = "El email debe contener un formato de email";
         }

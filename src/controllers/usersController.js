@@ -27,12 +27,14 @@ const usersController = {
     },
     processRegister : (req, res) => {
         const resultValidation = validationResult(req);
+
         if (resultValidation.errors.length > 0){
             return res.render('users/register', {
                 errors: resultValidation.mapped(),
                 oldData: req.body,
             });
         };
+
         db.Usuarios.findAll({
             where : {
                 correo : {
@@ -50,22 +52,24 @@ const usersController = {
                     },
                     oldData: req.body
                 });
-            };
+            }else{
+                db.Usuarios.create({
+                    nombre: req.body.nombre,
+                    apellido:req.body.apellido,
+                    correo: req.body.email,
+                    contrasena: bcrypt.hashSync(req.body.password, 10),
+                    imagen: "default.jpg"
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+                return res.redirect('/users/login');
+            }
         })
         .catch(error => {
             console.log(error)
         })
-        db.Usuarios.create({
-            nombre: req.body.nombre,
-            apellido:req.body.apellido,
-            correo: req.body.email,
-            contrasena: bcrypt.hashSync(req.body.password, 10),
-            imagen: "default.jpg"
-        })
-        .catch(error => {
-            console.log(error)
-        })
-        return res.redirect('/users/login');
+
     },
     login : (req, res) => {
         res.render('users/login');
@@ -172,16 +176,9 @@ const usersController = {
         return res.redirect("/");
     },
     profile: (req, res) => {
-        db.Usuarios.findAll()
-        .then(usuarios=> {
-            return usuarios
-        })
-        .catch(error => {
-            console.log(error)
-        })
         db.Usuarios.findByPk(req.params.id)
         .then(usuario =>{
-            res.render("users/profile", {usuario:usuario})
+            res.render("users/profile", { usuario })
         })
         .catch(error => {
             console.log(error)
