@@ -1,52 +1,49 @@
+<!DOCTYPE html>
 <html lang="en">
-  <%- include('../partials/head') %>
-  <body>
-    <!-- header -->
+    <%- include('../partials/head') %>
+<body>
     <%- include('../partials/header') %>
     <main>
-      <!--div class="erroresFront">
-            <ul></ul>
-        </div-->
-      <form action="/res_ayuda" method="GET" class="formRegister">
-        <div class="ingresoManual">
-          <p class="ingresa-cuenta">Dejanos tu mensaje</p>
-          <br />
-          <label for="nombre">Nombre</label>
-          <input
-            class="nombre"
-            type="text"
-            placeholder="Ingresá tu nombre"
-            name="nombre"
-          />
-
-          <label for="apellido">Apellido</label>
-          <input
-            class="apellido"
-            type="text"
-            placeholder="Ingresá tu apellido"
-            name="apellido"
-          />
-
-          <label for="email">Correo</label>
-          <input
-            class="email"
-            type="email"
-            placeholder="Ingresá tu e-mail"
-            name="email"
-          />
-
-          <label for="descripcion">Escribí tu mensaje</label>
-          <textarea class="descripcion" type="text" name="descripcion">
-          </textarea>
-
-          <a href="/res_ayuda">
-            <button class="editar" href="" type="submit" value="Editar">
-              Enviar
-            </button>
-          </a>
-        </div>
-        <%- include('../partials/footer') %>
-      </form>
+        <form method="POST" action=""  class="formRegister">
+            <div class=ingresoManual>
+                <p class="ingresa-cuenta">Envianos tu mensaje!</p><br>
+                <label for="nombre">Nombre</label>
+                <input class="nombre" type="text" placeholder="Ingresá tu nombre" name="nombre" value="<%= locals.oldData ? oldData.nombre : null %>">
+                <div class="notificacion_error nombre_error"></div>
+                <% if (locals.errors && errors.nombre) { %>
+                    <div class="notificacion_error">
+                        <%= errors.nombre.msg %> 
+                    </div>
+                <% } %>
+                <label for="apellido" >Apellido</label>
+                <input class="apellido" type="text" placeholder="Ingresá tu apellido" name="apellido" value="<%= locals.oldData ? oldData.apellido : null %>">
+                <div class="notificacion_error apellido_error"></div>
+                <% if (locals.errors && errors.apellido) { %>
+                    <div class="notificacion_error">
+                        <%= errors.apellido.msg %> 
+                    </div>
+                <% } %>
+                <label for="email" >Correo</label>
+                <input class="email" type="email" placeholder="Ingresá tu e-mail" name="email" value="<%= locals.oldData ? oldData.email : null %>">
+                <div class="notificacion_error email_error"></div>
+                <% if (locals.errors && errors.email) { %>
+                    <div class="notificacion_error">
+                        <%= errors.email.msg %> 
+                    </div>
+                <% } %>
+                <label for="descripcion">Contraseña</label>
+                <textarea class="descripcion" type="text" placeholder="Escribi tus comentarios" name="descripcion" value="<%= locals.oldData ? oldData.descripcion : null %>"></textarea>
+                <div class="notificacion_error password_error"></div>
+                <% if (locals.errors && errors.descripcion) { %>
+                    <div class="notificacion_error">
+                        <%= errors.descripcion.msg %> 
+                    </div>
+                <% } %>
+                <div class="ingresos">
+                <button type="submit" class="ingresar" >Enviar</button>
+            </div>        
+        </form>
     </main>
-  </body>
+    <%- include('../partials/footer') %>
+</body>
 </html>

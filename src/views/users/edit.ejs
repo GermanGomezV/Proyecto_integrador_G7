@@ -5,7 +5,9 @@
     <%- include('../partials/header') %>
     <main>
     <div id="contenedor">
-        <div id="registro"><h1>Editar Perfil</h1></div>
+        <div id="registro"><h1><%=usuario.nombre%> completa tu perfil!</h1></div>
+        <div id="registro"><h4>Recorda que para recibir tus productos a tiempo debes completar</h4></div>
+        <div id="registro"><h4> tu edad de nacimiento, la direccíon de envio y tu número de telefono.</h4></div><br>
         <div id="form">
             <form action="/users/<%=usuario.id_usuario%>/edit?_method=PUT" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
