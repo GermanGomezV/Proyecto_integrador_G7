@@ -5,28 +5,24 @@
     <%- include('../partials/header') %>
     <main>
     <div id="contenedor">
-        <div id="registro"><h1>Editar Perfil</h1></div>
         <div id="form">
+            <h2 class="titulo-profile"><%= usuario.nombre %> estos son tus datos personales:</h2><br>
             <form action="/users/<%= usuario.id_usuario %>/edit?_method=PUT" method="POST" enctype="multipart/form-data">
-                <div class="form-group">
-                    <img src="/images/usuarios/<%= usuario.imagen %>" alt="defaul-profile-image">
-                </div>
-                <div class=ingresoManual>
-                    <p>Nombre</p>
-                    <p><%= usuario.nombre %></p>
-                    <p>Apellido</p>
-                    <p><%= usuario.apellido %></p>
-                    <p>Email</p>
-                    <p><%= usuario.correo %></p>
-                    <p>Direccion de envio</p>
-                    <p><%= usuario.direccion %></p>
-                    <p>Telefono</p>
-                    <p><%= usuario.telefono %></p>
-                    <p>Fecha de Nacimiento</p>
-                    <p><%= usuario.nacimiento %></p>
-                </div>
+                <div class="cont">
+                    <div class="form-group-profile">
+                        <img src="/images/usuarios/<%= usuario.imagen %>" alt="defaul-profile-image">
+                    </div>
+                    <div class="cont1">
+                        <p>Nombre: <%= usuario.nombre %></p>
+                        <p>Apellido: <%= usuario.apellido %></p>
+                        <p>Email: <%= usuario.correo %></p>
+                        <p>Direccion de envio: <%= usuario.direccion %></p>
+                        <p>Telefono: <%= usuario.telefono %></p>
+                        <p>Fecha de Nacimiento: <%= usuario.fecha_nacimiento %></p>
+                    </div>
+                </div><br>
                 <div class="ingresos">
-                    <button type="submit" class="ingresar" >Editar Perfil</button>
+                    <a class="ingresar" href="/users/<%= usuario.id_usuario %>/edit">Editar Perfil</a>
                     <a href="/users/logout" class="registrate" >Cerrar Sesion</a>
                 </div>
             </form>
