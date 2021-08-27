@@ -1,8 +1,8 @@
 module.exports = {
   "development": {
     "username": "root",
-    "password": "root",
-    "database": "all meet",
+    "password": null,
+    "database": "all_meet",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
