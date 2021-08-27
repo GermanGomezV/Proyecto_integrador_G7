@@ -58,7 +58,8 @@ const usersController = {
                     apellido:req.body.apellido,
                     correo: req.body.email,
                     contrasena: bcrypt.hashSync(req.body.password, 10),
-                    imagen: "default.jpg"
+                    imagen: "default.jpg",
+                    admin: 0
                 })
                 .catch(error => {
                     console.log(error)

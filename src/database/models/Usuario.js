@@ -33,6 +33,9 @@ module.exports = (sequelize, dataTypes) => {
         },
         imagen: {
             type: dataTypes.STRING(100),
+        },
+        admin: {
+            type: dataTypes.INTEGER,
         }
     };
 
