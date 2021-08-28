@@ -1193,13 +1193,16 @@ a .editar_res_ayuda{
         display: flex;
         height: 40px;
         line-height: 40px;
-        
+        justify-content: space-around;
+    }
+
+    .menu1 .ingresos .lista-nav{
+        width: 220px;
     }
 
     .lista-nav{
         list-style: none;
         margin-right: 20px;
-        
     }
 
     .btn-nav{
@@ -1215,7 +1218,7 @@ a .editar_res_ayuda{
         position: absolute;
         top: -20px;
         left: 40%;
-        width: 40%;
+        width: 25%;
     }
 
 

@@ -22,4 +22,14 @@
     <div class="detalleProducto">
         <p><%= p.descripcion %></p>
     </div>
+    
+    <% if (locals.userLogged && locals.userLogged.admin == 1) { %>
+        <div class="ingresos">
+            <a href="/products/<%= p.id_producto %>/edit" class="ingresar" >Editar</a>
+            <form action="/products/<%= p.id_producto %>/delete" method="POST">
+                <button type="submit" class="registrate">Eliminar</button>
+            </form> 
+        </div>
+    <% } %>
+
 </article>

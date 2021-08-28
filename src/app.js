@@ -17,6 +17,9 @@ const app = express();
 //Los métodos PUT y DELETE no son soportados por todos los navegades. Por ello, es necesario usar la dependencia method-override.
 const methodOverride = require('method-override');
 
+//Requiriendo Cons
+const cors = require('cors');
+
 // Ruteo: Link hacia con el sistema de ruteo
 const rutasPrincipal= require('./routes/main')
 const rutasProductos= require('./routes/products')
@@ -37,6 +40,9 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
 }));
+
+//configurando cors
+app.use(cors());
 
 //Configurando cookie parser
 app.use(cookies());
