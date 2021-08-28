@@ -1,0 +1,20 @@
+
+@import url(./assets/css/Footer.css);
+
+.App{
+    display: flex;
+    flex-direction: column;
+}
+  
+.paneles-juntos{
+    display: flex;
+    justify-content: center;
+}
+
+.boton-ver-detalle{
+    text-align: center;
+}
+
+.panel-categoria-cantidad{
+    text-align: center;
+}

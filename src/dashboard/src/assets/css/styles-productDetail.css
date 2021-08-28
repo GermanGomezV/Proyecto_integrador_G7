@@ -1,0 +1,246 @@
+main article{
+    width: 100%;
+    height: 100%;
+    margin-top: 10px;
+}
+
+main article div.caja-foto{
+    font-size: 30px;
+    color: #717171;
+    font-weight: 700;
+    border-radius: 20px;
+    padding: 25px 5%;
+    background-color: #f6f6f6 ;
+}
+
+main article div.caja-foto img.foto{
+    width: 100%;
+}
+
+main article div.caja1{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px 5px;
+}
+
+main article div.caja1 .pago{
+    margin-right: 150px;
+}
+
+main article div.caja1 div.pago p.precio{
+    margin-top: 10px;
+    font-size: 25px;
+    color: #666;
+}
+
+main article div.caja1 div.pago p.pago{
+    font-size: 8px;
+    font-weight: bold;
+}
+    
+main article div.caja1 div.valoracion{
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 12px;
+    align-items: center;
+}
+            
+main article div.caja1 div.valoracion i.fa-star{
+    color: #ffa400;
+}
+            
+main article div.caja1 div.valoracion p{
+    margin-right: 5px;
+}
+    
+main article div.compra{
+    width: 100%;
+    margin: 10px auto;
+    text-align: center;
+}
+        
+main article div.compra button{
+    width: 40%;
+    border: 1px solid #666;
+    border-radius: 10px;
+    padding: 10px;  
+    background-color: #717171;
+    color: #fff
+}
+
+main article div.detalleProducto{
+    margin: 10px auto;
+    font-size: 12px;
+    border-radius: 15px;
+    padding: 10px 15px;
+    background-color: #f6f6f6 ;
+    width: 40%;
+}
+
+main article div.detalleProducto p{
+    font-size: 16px;
+    text-align: center;
+}
+
+main article div.recomendaciones{
+    font-size: 12px;
+    border-radius: 15px;
+    padding: 10px 15px;
+    background-color: #f6f6f6 ;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+main article div.recomendaciones p.recIzq{
+    width: 70%;
+}
+
+main article div.recomendaciones p.recDer{
+    width: 30%;
+    font-size: 10px;
+    align-self: flex-end;
+    color: #717171;
+}
+
+main article div.recomendaciones div.productos{
+    width: 22%;
+} 
+main article div.recomendaciones div.productos img{
+    width: 100%;
+
+} 
+main section.recomendaciones {
+    background-color: #f6f6f6;
+    width: 100%;
+    margin: 20px auto;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-radius: 10px;
+}
+
+main section.recomendaciones div.separador{
+    display: flex;
+    padding: 30px 20px;
+    justify-content: space-between;
+    color: #717171;
+}
+
+main section.recomendaciones div.separador p.titulo{
+    font-weight: 700;
+}
+
+main section.recomendaciones div.cajaRecomendaciones{
+    display: flex;
+    color: #717171;
+    overflow-x: auto;
+    margin: 0 10px;
+}
+
+main section.recomendaciones div.cajaRecomendaciones a.cajaProducto{
+    height: 47%;
+    border-radius: 10px;
+    background-color: #fff;
+    flex: 0 0 auto;
+    margin-right: 15px;
+    width: 40%;
+}
+
+main section.recomendaciones div.cajaRecomendaciones a.cajaProducto{
+    text-decoration: none;
+}
+
+main section.recomendaciones div.cajaRecomendaciones a.cajaProducto div.fotoDetalle{
+    position: relative;
+    width: 80%;
+    height: 65%;
+    margin: 15%;
+}
+
+main section.recomendaciones div.cajaRecomendaciones a.cajaProducto div.fotoDetalle img{
+    position: relative;
+    width: 80%;   
+}
+
+main section.recomendaciones div.cajaRecomendaciones a.cajaProducto div.descDetalle{
+    position: relative;
+    width: 80%;
+    margin: 15px 0;
+    top: 11%;
+    left: 10%;
+    font-size: 18px;
+}   
+
+main section.recomendaciones div.cajaRecomendaciones a.cajaProducto div.descDetalle p.nombre{
+    font-weight: 700;
+    font-size: 18px;
+    color: #717171;
+}
+
+main section.recomendaciones div.cajaRecomendaciones a.cajaProducto div.descDetalle p.precio{
+    font-weight: 700;
+    font-size: 18px;
+    color: #717171;
+}
+
+article.listadoArticulo img{
+    margin: auto;
+    width: 80%;
+    height: 80%;
+}
+
+div.cajaArticulo p{
+    color: #717171;
+    margin-top: 10px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+/* Diseño tablet */
+@media (min-width:481px){
+
+main article{
+    width: 100%;
+    margin-top: 10px;
+}
+
+main article div.caja-foto{
+    margin: auto;
+    height: 80%;
+    width: 80%;
+    border-radius: 20px;
+    padding: 25px 15px;
+    background-color: #f6f6f6 ;
+}
+
+}
+/* Diseño desktop */
+@media (min-width:769px){
+
+main article div.caja-foto{
+    margin: 10px auto;
+    height: 60%;
+    width: 60%;
+    border-radius: 20px;
+    padding: 25px 15px;
+    background-color: #f6f6f6 ;
+}   
+
+main article div.compra{
+    width:  60%;
+}
+main article div.caja1{
+    flex-wrap: nowrap;
+}
+
+
+}
+/* Diseño larger desktop */
+@media (min-width:1280px){
+
+main article div.caja-foto{
+    height: 40%;
+    width: 40%;
+}   
+}
