@@ -9,7 +9,8 @@ const usersController = {
             const response = USERS.map(user => ({
                 id: user.id_usuario,
                 name: user.nombre,
-                email: user.correo, 
+                email: user.correo,
+                imagen: user.imagen,
                 detail: `${req.protocol}://${req.get('host')}/api/users/${user.id_usuario}`
             }));
             return res.status(200).json({

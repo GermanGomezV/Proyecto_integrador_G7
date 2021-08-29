@@ -75,13 +75,9 @@ function ContentRowMovies(){
     return (
     
         <div className="row">
-            
             {tarjeta.map( (movie, i) => {
-
                 return <SmallCard {...movie} key={i}/>
-            
             })}
-
         </div>
     )
 }

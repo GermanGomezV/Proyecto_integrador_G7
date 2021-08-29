@@ -15,6 +15,7 @@ const validacionesAyuda = require('../middlewares/validacionAyuda')
 router.get('/', mainController.inicio);
 router.get('/ayuda', mainController.ayuda);
 router.get('/charge', productsController.productCharge);
+router.get('/dash', mainController.dashboard);
 router.post('/ayuda', validacionesAyuda, mainController.envioAyuda);
 
 //Exportando al router para que pueda ser usado por el entry point

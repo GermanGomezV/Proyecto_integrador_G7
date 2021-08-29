@@ -31,6 +31,9 @@ const mainController = {
         }else{
             return res.render('main/res_ayuda')
         }
+    },
+    dashboard: (req, res) => {
+        res.redirect('http://localhost:3000/')
     }
 };
 

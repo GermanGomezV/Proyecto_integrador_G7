@@ -38,11 +38,15 @@ function ContentRowCenter(){
     useEffect(()=> console.log('Se desmontó el componente'),[]);
 
     let TotalCategorias = {
-        quantity: categorias.name
+        name: categorias.name,
+        quantity: categorias.count
     }
 
     let TotalUsuario = {
-        
+        imagen: usuarios.imagen,
+        nombre: usuarios.nombre,
+        correo: usuarios.correo,
+        perfil: usuarios.detail,
     }
 
     let tarjeta = [TotalCategorias, TotalUsuario]

@@ -1,5 +1,5 @@
 import React from 'react';
-import imagenFondo from '../assets/images/mandalorian.jpg';
+import PropTypes from 'prop-types';
 
 function LastMovieInDb(props){
     return(
@@ -10,14 +10,34 @@ function LastMovieInDb(props){
                 </div>
                 <div className="card-body">
                     <div className="text-center">
-                        <img className="img-fluid px-3 px-sm-4 mt-3 mb-4" style={{width: 40 +'rem'}} src={imagenFondo} alt=" Star Wars - Mandalorian "/>
+                        <img className="img-fluid px-3 px-sm-4 mt-3 mb-4" style={{width: 40 +'rem'}} src={props.imagen} alt="Profile Imagen"/>
                     </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, consequatur explicabo officia inventore libero veritatis iure voluptate reiciendis a magnam, vitae, aperiam voluptatum non corporis quae dolorem culpa citationem ratione aperiam voluptatum non corporis ratione aperiam voluptatum quae dolorem culpa ratione aperiam voluptatum?</p>
-                    <a className="btn btn-danger" target="_blank" rel="nofollow" href="/">View movie detail</a>
+                    <p>{props.nombre} - {props.correo}</p>
+                    <a className="btn btn-danger" target="_blank" rel="nofollow" href={props.detail}>Ver Perfil</a>
                 </div>
             </div>
         </div>
     )
+}
+
+/* DEFINICIÓN DE PROPIEDADES POR DEFAULT */
+
+LastMovieInDb.defaultProps = {
+    imagen: 'No Picture',
+    nombre: 'No Name',
+    correo: 'No email',
+    detail: 'No detail'
+}
+
+/* PROPTYPES */
+
+LastMovieInDb.propTypes = {
+    atritutes: PropTypes.shape({
+        imagen: PropTypes.string.isRequired,
+        nombre: PropTypes.string.isRequired,
+        correo: PropTypes.string.isRequired,
+        detail: PropTypes.string.isRequired
+    })
 }
 
 export default LastMovieInDb;

@@ -9,7 +9,8 @@ const productsController = {
             const response = PRODUCTS.map(product => ({
                 id: product.id_producto,
                 name: product.nombre,
-                description: product.descripcion, 
+                description: product.descripcion,
+                imagen: product.imagen,
                 detail: `${req.protocol}://${req.get('host')}/api/products/${product.id_producto}`
             }));
             return res.status(200).json({

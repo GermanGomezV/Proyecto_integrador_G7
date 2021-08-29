@@ -14,7 +14,7 @@ function GenresInDb(props) {
           <div className="row">
             <div className="col-lg-6 mb-4">
               <div className="card bg-dark text-white shadow">
-                <div className="card-body">{props.quantity}</div>
+                <div className="card-body">{props.name} - Productos: {props.quantity} </div>
               </div>
             </div>
           </div>
@@ -27,14 +27,19 @@ function GenresInDb(props) {
 /* DEFINICIÓN DE PROPIEDADES POR DEFAULT */
 
 GenresInDb.defaultProps = {
-  title: 'No Title'
+  name: 'No Category',
+  quantity: "No quantity"
 }
 
 /* PROPTYPES */
 
 GenresInDb.propTypes = {
   atritutes: PropTypes.shape({
-      title: PropTypes.string.isRequired
+      name: PropTypes.string.isRequired,
+      quantity: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]).isRequired,
   })
 }
 
