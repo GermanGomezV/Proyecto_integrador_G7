@@ -28,7 +28,7 @@ function SideBar(){
                 <li className="nav-item active">
                     <Link className="nav-link" to="/">
                         <i className="fas fa-fw fa-tachometer-alt"></i>
-                        <span>All Meet Dashboard</span></Link>
+                        <span>All Meet</span></Link>
                 </li>
 
                 {/*<!-- Divider -->*/}
@@ -41,30 +41,15 @@ function SideBar(){
                 <li className="nav-item">
                 <Link className="nav-link" to="/GenresInDb">
                         <i className="fas fa-fw fa-folder"></i>
-                        <span>Pages</span>
+                        <span>Productos</span>
                     </Link>
-                </li>
-
-                {/*<!-- Nav Item - Charts -->*/}
-                <li className="nav-item">
-                    <Link className="nav-link" to="/LastMovieInDb">
-                        <i className="fas fa-fw fa-chart-area"></i>
-                        <span>Charts</span></Link>
                 </li>
 
                 {/*<!-- Nav Item - Tables -->*/}
                 <li className="nav-item nav-link">
                 <Link className="nav-link" to="/ContentRowMovies">
                         <i className="fas fa-fw fa-table"></i>
-                        <span>Tables</span></Link>
-                </li>
-                
-                {/*<!-- Buscador -->*/}
-                <li className="nav-item nav-link">
-                    <Link className="nav-link" to="/SearchMovies">
-                        <i className="fas fa-search"></i>
-                        <span>Search a movie</span>
-                    </Link>
+                        <span>Usuarios</span></Link>
                 </li>
 
                 {/*<!-- Divider -->*/}

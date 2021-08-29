@@ -36,8 +36,6 @@ function SearchMovies(){
 		// e.target.buscador.value = '';
 	}
 
-	
-
 	return(
 		<div className="container-fluid">
 			{
