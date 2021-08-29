@@ -23,7 +23,7 @@ function ContentRowCenter(){
     const [categorias, setCategorias] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3001/api/category')
+        fetch('http://localhost:3001/api/categories')
             .then ( respo => respo.json())
             .then ( category => {
                 setCategorias(category)

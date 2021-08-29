@@ -22,11 +22,11 @@ router.get('/products/:id', productsController.show);
 
 //API de Categorias
 //Requiriendo el controlador para obtener sus funcionalidades
-const categoryController = require('../controllers/api/categoryController')
+const categoryController = require('../controllers/api/categoriesController')
 
 //Rutas (sin el prefijo /api definido en app.js)
-router.get('/category', categoryController.list);
-router.get('/category/:id', categoryController.show);
+router.get('/categories', categoryController.list);
+router.get('/categories/:id', categoryController.show);
 
 //Exportando al router para que pueda ser usado por el entry point
 module.exports = router;

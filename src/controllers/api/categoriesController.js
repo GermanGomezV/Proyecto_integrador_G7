@@ -9,7 +9,7 @@ const categoriesController = {
             const response = CATEGORY.map(category => ({
                 id: category.id_categoria,
                 name: category.nombre,
-                detail: `${req.protocol}://${req.get('host')}/api/category/${category.id_categoria}`
+                detail: `${req.protocol}://${req.get('host')}/api/categories/${category.id_categoria}`
             }));
             return res.status(200).json({
                 count: CATEGORY.length,
