@@ -40,7 +40,7 @@ function ContentRowMovies(){
     const [categorias, setCategorias] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3001/api/users')
+        fetch('http://localhost:3001/api/category')
             .then ( respo => respo.json())
             .then ( category => {
                 setCategorias(category)
@@ -57,17 +57,17 @@ function ContentRowMovies(){
     
     let TotalProductos = {
         title: 'Cantidad de productos',
-        cuantity: productos.count
+        quantity: productos.count
     }
 
     let TotalUsuarios = {
         title: 'Cantidad de usuarios',
-        cuantity: usuarios.count
+        quantity: usuarios.count
     }
 
     let TotalCategorias = {
         title: 'Cantidad de categorias',
-        cuantity: categorias.count
+        quantity: categorias.count
     }
 
     let tarjeta = [TotalProductos, TotalUsuarios, TotalCategorias]
