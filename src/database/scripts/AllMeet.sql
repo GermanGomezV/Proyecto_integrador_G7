@@ -20,12 +20,11 @@ CREATE TABLE IF NOT EXISTS usuarios (
   telefono bigint(20) DEFAULT NULL,
   fecha_nacimiento date NOT NULL,
   imagen varchar(100) DEFAULT NULL,
-  admin int(1) DEFAULT NULL
+  admin int(1) DEFAULT NULL,
   PRIMARY KEY (id_usuario)
 );
 -- INSERT INTO usuarios (id_usuario, nombre, apellido, correo, contrasena, direccion, telefono, fecha_nacimiento,imagen ) VALUES (null );
 
-INSERT INTO `usuarios` VALUES (1, "Joaco", "Gorosito", "jgorosito@gmail.com", "P. Sherman Calle Wallaby 42", 2615887846, 19900224, "default.jpg");
 
 CREATE TABLE IF NOT EXISTS compras (
   id_compra int(11) NOT NULL AUTO_INCREMENT,
