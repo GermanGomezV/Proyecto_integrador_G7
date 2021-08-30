@@ -31,7 +31,7 @@
                         <%= errors.email.msg %> 
                     </div>
                 <% } %>
-                <label for="descripcion">Contraseña</label>
+                <label for="descripcion">Comentarios</label>
                 <textarea class="descripcion" type="text" placeholder="Escribi tus comentarios" name="descripcion" value="<%= locals.oldData ? oldData.descripcion : null %>"></textarea>
                 <div class="notificacion_error password_error"></div>
                 <% if (locals.errors && errors.descripcion) { %>
