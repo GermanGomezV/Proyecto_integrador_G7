@@ -2,8 +2,7 @@
   
 # **AllMeet**
 #### **Oferta de productos y servicios**
-El ecommerce va a ofrecer bebidas alcoholicas y otros productos para que consigas todo lo que necesitas para una reunion con amigos.  
-El publico al que esta apuntado es de 25 a 45 años, que busca comodidad y simpleza de las cosas.
+El ecommerce va a ofrecer bebidas alcoholicas y otros productos para que consigas todo lo que necesitas para una reunion con amigos.
 
 #### **Integrantes del equipo**
 
@@ -11,7 +10,7 @@ El publico al que esta apuntado es de 25 a 45 años, que busca comodidad y simpl
 30 años, nacido en Gualeguaychú y viviendo en Capital Federal.  
 Soy ingeniero industrial y trabajo como comercial en "ABB".  
 Me anote en DH por recomendacion de un amigo, interés propio y porque considero que es un mercado con características sumamente atractivas para desempeñarme en él.  
-Dc: Me gusta juntarme a tomar mate (c/u con el suyo) con amigos.
+Dc: Me gusta juntarme con amigos.
 
 ###### Gorosito Joaquin
 31 años, nacido y viviendo en San Fernando de Buenos Aires.  
