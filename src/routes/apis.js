@@ -12,6 +12,7 @@ router.get('/users', apisController.usersList)
 router.get('/users/:id', apisController.usersDetail)
 router.get('/products', apisController.productsList)
 router.get('/products/:id', apisController.productsDetail)
+router.get('/categories', apisController.categoriesList)
 
 //Exportando al router para que pueda ser usado por el entry point
 module.exports = router

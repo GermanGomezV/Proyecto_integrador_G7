@@ -72,6 +72,7 @@ let apisController = {
                             description: product.descripcion,
                             category: product.id_categoria_FK,
                             price: product.precio,
+                            imagen: `http://localhost:3001/images/${product.imagen}`,
                             detail: `http://localhost:3001/products/${product.id_producto}`
                         }
                     })
@@ -100,7 +101,24 @@ let apisController = {
                 })
             })
             .catch(error => console.log(error))        
-    }
+    },
+
+    categoriesList: (req, res) => {
+        db.Categorias.findAll()
+            .then(users => {
+                return res.status(200).json({
+                    count: users.length,
+                    users: users.map(function(category) {
+                        return {
+                            id: category.id_categoria,
+                            name: category.nombre,
+                            detail: `http://localhost:3001/api/categories/${category.id_categoria}`
+                        }
+                    })
+                })
+            })
+            .catch(error => console.log(error))
+    },
 }
 
 module.exports = apisController
