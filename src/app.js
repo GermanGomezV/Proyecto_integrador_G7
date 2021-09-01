@@ -24,7 +24,7 @@ const cors = require('cors');
 const rutasPrincipal= require('./routes/main')
 const rutasProductos= require('./routes/products')
 const rutasUsuario= require('./routes/users')
-const rutasApi= require('./routes/api')
+const rutasApi= require('./routes/apis')
 
 const process = require('process');
 
