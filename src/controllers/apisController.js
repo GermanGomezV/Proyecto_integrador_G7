@@ -34,7 +34,7 @@ let apisController = {
                     name: user.nombre,
                     lastName: user.apellido,
                     email: user.correo,
-                    avatar: `http://localhost:3001/images/avatar/${user.imagen}`
+                    avatar: `http://localhost:3001/images/usuarios/${user.imagen}`
                 })
             })
             .catch(error => console.log(error))
@@ -73,7 +73,7 @@ let apisController = {
                             category: product.id_categoria_FK,
                             price: product.precio,
                             imagen: `http://localhost:3001/images/productos/${product.imagen}`,
-                            detail: `http://localhost:3001/products/${product.id_producto}`
+                            detail: `http://localhost:3001/products/detail/${product.id_producto}`
                         }
                     })
                 })

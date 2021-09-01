@@ -46,7 +46,7 @@ class ContentRowTop extends Component {
                         </div>
                         <p>{this.state.nombre}</p>
                         <p>{this.state.descripcion}</p>
-                        <a className="btn btn-danger" rel="nofollow" href={`http://localhost:3001/products/${this.state.id}`}>Ver Detalle</a>
+                        <a className="btn btn-danger" rel="nofollow" href={`http://localhost:3001/products/detail/${this.state.id}`}>Ver Detalle</a>
                     </UltimoProducto>
     
                     <Categorias
