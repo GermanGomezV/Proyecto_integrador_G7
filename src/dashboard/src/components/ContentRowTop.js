@@ -26,7 +26,7 @@ class ContentRowTop extends Component {
             descripcion: ultimoProducto.descripcion,
             id: ultimoProducto.id,
             categorias: [
-                "Bebida: " + products.countByCategory.Bebidas,
+                "Bebidas: " + products.countByCategory.Bebidas,
                 "Previa: " + products.countByCategory.Previas,
             ]
         })

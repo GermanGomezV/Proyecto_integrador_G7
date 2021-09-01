@@ -21,33 +21,35 @@ class Products extends Component {
 	render() {
 		return(
 			<>
-				{/*<!-- PRODUCTS LIST -->*/}
-				<h1 className="h3 mb-0 text-gray-800 movies">Listado de Productos</h1>
-				<br/>
-				
-				{/*<!-- DataTales Example -->*/}
-				<div className="card shadow mb-4 movies">
-					<div className="card-body">
-						<div className="table-responsive">
-							<table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
-								<thead>
-									<tr>
-										<th>Nombre</th>
-										<th>Descripción</th>
-										<th>Categoría</th>
-										<th>Precio</th>
-									</tr>
-								</thead>
+			<div className="container-fluid">
+					{/*<!-- PRODUCTS LIST -->*/}
+					<h1 className="h3 mb-0 text-gray-800 movies">Listado de Productos</h1>
+					<br/>
+					
+					{/*<!-- DataTales Example -->*/}
+					<div className="card shadow mb-4 movies">
+						<div className="card-body">
+							<div className="table-responsive">
+								<table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
+									<thead>
+										<tr>
+											<th>Nombre</th>
+											<th>Descripción</th>
+											<th>Categoría</th>
+											<th>Precio</th>
+										</tr>
+									</thead>
 
-								<tbody>
-									<ProductsList
-										products = {this.state.products}
-									/>
-								</tbody>
-							</table>
+									<tbody>
+										<ProductsList
+											products = {this.state.products}
+										/>
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
-				</div>            
+				</div>         
 			</>
 		)	
 	}
