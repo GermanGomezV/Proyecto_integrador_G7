@@ -179,7 +179,7 @@ const productsController = {
             }
         })
         Promise
-        all([pt, p])
+        .all([pt, p])
         .then(([pt, p]) => {
             res.render("products/productList", {pt, p})
         })
