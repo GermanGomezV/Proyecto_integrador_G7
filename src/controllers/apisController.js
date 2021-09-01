@@ -111,8 +111,7 @@ let apisController = {
                     users: users.map(function(category) {
                         return {
                             id: category.id_categoria,
-                            name: category.nombre,
-                            detail: `http://localhost:3001/api/categories/${category.id_categoria}`
+                            name: category.nombre
                         }
                     })
                 })
