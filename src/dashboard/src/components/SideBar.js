@@ -7,7 +7,7 @@ function SideBar () {
         
             <ul className="navbar-nav bg-gradient-secondary sidebar sidebar-dark accordion" id="accordionSidebar">
         
-                <a className="sidebar-brand d-flex align-items-center justify-content-center" href="http://localhost:3000">
+                <a className="sidebar-brand d-flex align-items-center justify-content-center" href="http://localhost:3001">
                     <div className="sidebar-brand-icon">
                         <img className="w-100" src={logo} alt="All Meet"/>
                     </div>

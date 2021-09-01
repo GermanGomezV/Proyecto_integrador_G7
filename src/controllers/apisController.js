@@ -72,7 +72,7 @@ let apisController = {
                             description: product.descripcion,
                             category: product.id_categoria_FK,
                             price: product.precio,
-                            imagen: `http://localhost:3001/images/${product.imagen}`,
+                            imagen: `http://localhost:3001/images/productos/${product.imagen}`,
                             detail: `http://localhost:3001/products/${product.id_producto}`
                         }
                     })
@@ -94,7 +94,7 @@ let apisController = {
                     id: product.id_producto,
                     nombre: product.nombre,
                     descripcion: product.descripcion,
-                    imagen: `http://localhost:3001/images/${product.imagen}`,
+                    imagen: `http://localhost:3001/images/productos/${product.imagen}`,
                     precio: product.precio,
                     descuento: product.descuento,
                     category: product.id_categoria_FK
