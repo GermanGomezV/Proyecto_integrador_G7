@@ -1,12 +1,12 @@
-/*------- ESTILOS FOOTER -------*/
+/* ---------------------------------- */
 
 footer{
-    width: 100%;
+    width: 200%;
     height: 300px;
     background-color: #277597;
-    position: absolute;
+    position: relative;
     z-index: 5px;
-    right: 0px;
+    right: 650px;
 }
 
 .iconos-footer{
