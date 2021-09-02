@@ -1,8 +1,10 @@
+// Aca falta cambiar el nombre de la base de datos, sino no va a funcionar
+
 module.exports = {
   "development": {
     "username": "root",
-    "password": "root",
-    "database": "all meet",
+    "password": null,
+    "database": "allmeet",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
@@ -21,6 +23,3 @@ module.exports = {
     "dialect": "mysql"
   }
 }
-
-
-// Aca falta cambiar el nombre de la base de datos, sino no va a funcionar
