@@ -47,9 +47,9 @@ let apisController = {
                 let cantidadPrevia = []
                 for (let i=0; i<products.length; i++) {
                     switch(products[i].id_categoria_FK) {
-                        case 1: cantidadBebidas.push("Bebidas")
+                        case 1: cantidadBebidas.push("1")
                         break
-                        case 2: cantidadPrevia.push("Previa")
+                        case 2: cantidadPrevia.push("2")
                         break
                     }
                 } 
@@ -61,9 +61,9 @@ let apisController = {
                     },
                     products: products.map(function(product) {
                         switch (product.id_categoria_FK) {
-                            case 1: product.id_categoria_FK = "Bebidas"
+                            case 1: product.id_categoria_FK = "1"
                             break
-                            case 2: product.id_categoria_FK= "Previa"
+                            case 2: product.id_categoria_FK= "2"
                             break
                         }
                         return {
@@ -85,9 +85,9 @@ let apisController = {
         db.Productos.findByPk(req.params.id) 
             .then(product => {
                 switch (product.id_categoria_FK) {
-                    case 1: product.id_categoria_FK = "Bebidas"
+                    case 1: product.id_categoria_FK = "1"
                     break
-                    case 2: product.id_categoria_FK= "Previa"
+                    case 2: product.id_categoria_FK= "2"
                     break
                 }
                 return res.status(200).json({
